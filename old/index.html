@@ -1,0 +1,63 @@
+<h1>CASTLES & CANNONS</h1>
+
+<canvas id=a width=960 height=540></canvas>
+<script>
+c = a.getContext('2d');
+</script>
+<script src="2d.js"></script>
+<script>
+
+
+
+// New circle
+var Circle = (center, radius, mass, friction, restitution) => RigidShape(center, mass, friction, restitution, 0, radius);
+
+// New rectangle
+var Rectangle = (center, width, height, mass, friction, restitution) => RigidShape(center, mass, friction, restitution, 1, Math.hypot(width, height)/2, width, height);
+
+// DEMO
+// ====
+
+r = Rectangle(Vec2(500, 400), 400, 20, 0, 1, .5);
+
+a.onclick = (e) => {
+  console.log(e);
+  r = Rectangle(
+    Vec2(
+      e.offsetX,
+      e.offsetY
+    ),
+    Math.random() * 20 + 30,
+    Math.random() * 20 + 30,
+    30,
+    .9,
+    0
+  );
+
+}
+
+/*for(var i = 0; i < 40; i++){
+  r = Rectangle(
+    Vec2(
+      Math.random() * 200 + 400,
+      Math.random() * 200 + 100
+    ),
+    Math.random() * 20 + 30,
+    Math.random() * 20 + 30,
+    30,
+    .6,
+    .1
+  );
+}
+
+setInterval(()=>{
+  r = Circle(
+    Vec2(100,300),
+    20,
+    200,
+    .5,
+    .9
+  );
+  r.V = add(r.V, Vec2(300,-50));
+},1000);*/
+</script>
