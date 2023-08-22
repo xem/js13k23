@@ -43,11 +43,11 @@ init: t => {
 },
 
 // Group of objects
-/*group: t => { 
+group: t => { 
   t.d||t.d===0||(t.d=t.h),
   C.init(t),
   C.$(t.g).innerHTML+=`<div id="${t.n}"class="group ${t.css}"style="position:absolute;width:${t.w}${C.unit};height:${t.d}${C.unit};transform:${C.tr(t)}">`
-},*/
+},
 
 // Plane
 plane: t => {

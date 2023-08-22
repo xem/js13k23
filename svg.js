@@ -13,3 +13,5 @@ svghay="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M40 
 svgwitch="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M26 33L68 28L53 25L36 0L35 27Z' fill='#a49' stroke='#222'/><path d='M52 42L72 53L55 63L50 52L55 63L61 59L69 95L18 94L33 50L29 62L20 55L36 43Z' fill='#a49' stroke='#222'/><path d='M36 32L29 41L37 39L36 46L30 51L43 50L52 42L53 30M24 58L20 64L25 67L28 62M62 59L65 67L73 63L66 57Z' fill='#fec' stroke='#222'/></svg>";
 
 svgtime="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M5 75A45 45 0 0 1 95 75Z' fill='#854' stroke='#222'/></svg>";
+
+svganvil="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M95 50L5 50Q16 65 31 66Q46 75 17 90L17 95L80 95L80 90Q35 71 95 54Z' fill='#111' stroke='#000'/></svg>";
