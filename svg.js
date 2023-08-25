@@ -15,3 +15,15 @@ svgwitch="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M2
 svgtime="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M5 75A45 45 0 0 1 95 75Z' fill='#854' stroke='#222'/></svg>";
 
 svganvil="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M95 50L5 50Q16 65 31 66Q46 75 17 90L17 95L80 95L80 90Q35 71 95 54Z' fill='#111' stroke='#000'/></svg>";
+
+svgchest="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><rect x=10 y=50 width=80 height=40 fill='#853' stroke='#333'/><rect x=10 y=64 width=80 height=13 fill='#853' stroke='#333'/><path d='M10 50Q13 33 25 30L75 30Q90 33 90 50Z' fill='#853' stroke='#333'/></svg>";
+
+svgtable="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><rect x=5 y=50 width=90 height=7 fill='#853' stroke='#222'/><rect x=10 y=57 width=5 height=38 fill='#853' stroke='#222'/><rect x=85 y=57 width=5 height=38 fill='#853' stroke='#222'/><rect x=15 y=57 width=70 height=38 fill='#888' stroke='#222'/></svg>"
+
+svgentrance="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M5 95L50 95L50 30Q4 27 5 95' fill='#853' stroke='#333'/><circle cx=38 cy=63 r=4 fill='#fe8' stroke='#333'/></svg>";
+
+svgknight="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M24 28L11 34Q16 11 25 28L21 42L12 40L11 33M22 40L28 48L26 72L9 73L12 40M10 72L9 97L21 97L13 93L17 72M25 72L24 91L31 96L20 95L19 72M22 31L20 39M19 33L18 39M16 34L16 39' fill='#999' stroke='#444'/><path d='M10 40L15 44L11 55L14 66L7 68L5 54L10 40' fill='#999' stroke='#444'/></svg>"
+
+svgtorchsupport="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><rect x=12 y=42 width=31 height=6 fill='#854' stroke='#222'/></svg>";
+
+svgtorch="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M25 24L14 64L19 66L37 29Z' fill='#854' stroke='#222'/></svg>";
