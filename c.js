@@ -17,17 +17,10 @@ $: t => self[t],
 // Initialize an object's properties
 init: t => {
   t.css||(t.css=""),
+  t.on=`txt\`${t.on!=null?t.on:t.css}\``,
   t.html||(t.html=""),
   t.g||(t.g="scene"),
   t.o||(t.o="center"),
-  /*t.o=="top left"&&(t.x+=t.w/2,t.y+=t.h/2),
-  t.o=="top"&&(t.y+=t.h/2),
-  t.o=="top right"&&(t.x-=t.w/2,t.y+=t.h/2),
-  t.o=="right"&&(t.x-=t.w/2),
-  t.o=="bottom right"&&(t.x-=t.w/2,t.y-=t.h/2),
-  t.o=="bottom"&&(t.y-=t.h/2),
-  t.o=="bottom left"&&(t.x+=t.w/2,t.y-=t.h/2),
-  t.o=="left"&&(t.x+=t.w/2),*/
   t.w||(t.w=0),
   t.h||(t.h=0),
   t.x||(t.x=0),
@@ -53,7 +46,7 @@ group: t => {
 plane: t => {
   t.n||(t.n=`plane${C.plane_count++}`),
   C.init(t),
-  C.$(t.g).innerHTML+=`<div id="${t.n}"class="plane ${t.css}"style="position:absolute;width:${t.w}${C.unit};height:${t.h}${C.unit};background:${t.b};transform-origin:${t.o};transform:${C.tr(t)}">${t.html}`,
+  C.$(t.g).innerHTML+=`<div id="${t.n}"class="plane ${t.css}"style="position:absolute;width:${t.w}${C.unit};height:${t.h}${C.unit};background:${t.b};transform-origin:${t.o};transform:${C.tr(t)}"onmouseover="${t.on||''}">${t.html}`,
   C.camera()
 },
 

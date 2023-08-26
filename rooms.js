@@ -1,18 +1,18 @@
 // Left window
 windowleft = (bars) => {
-  C.plane({x:-300,y:-95,z:-40,w:30,h:30,html:svgwindow,css:"window"});
-  if(bars) C.plane({x:-300,y:-95,z:-40,w:30,h:30,html:svgbars,css:"bars"});
+  C.plane({x:-300+30,y:-95+92,z:-40,w:100,h:100,html:svgwindow,css:"window"});
+  if(bars) C.plane({x:-300-20,y:-95+40,z:-40,html:svgbars,css:"bars",on:""});
 }
 
 windowright = (bars) => {
-  C.plane({x:300,y:-95,z:-40,w:30,h:30,html:svgwindow,css:"window",sx:-1});
-  if(bars) C.plane({x:300,y:-95,z:-40,w:30,h:30,html:svgbars,css:"bars",sx:-1});
+  C.plane({x:300-70,y:-95+72,z:-40,w:100,h:100,html:svgwindow,css:"window",sx:-1});
+  if(bars) C.plane({x:300,y:-95,z:-40,html:svgbars,css:"bars",on:"",sx:-1});
 }
 
 addsun = (left,right) => {
   if(left){
-    C.plane({x:-555,y:-222,z:-100,w:400,h:400,b:"radial-gradient(#ffb 5%,#fff0 50%)",css:"sun"});
-    C.plane({x:0,y:0,z:0,w:700,h:500,b:"#f000",html:"<canvas id=sun width=700 height=500>"});
+    C.plane({x:-555,y:-222,z:-100,w:400,h:400,b:"radial-gradient(#ffb 5%,#fff0 50%)",css:"sun",on:""});
+    C.plane({x:0,y:0,z:0,w:700,h:500,b:"#f000",css:"sunwrapper",html:"<canvas id=sun width=700 height=500>"});
     ctx=sun.getContext("2d");
     ctx.fillStyle = "#ffb3";
     ctx.beginPath();
@@ -163,33 +163,89 @@ room = (skyleft, skyright, skytop, tower,i,j,x,y,z,w,dx,ry,no) => {
   }
 }
 
-// Room 0-0
+// Room 0-0, start cell
 room00 = () => {
   tower(1)
-  C.plane({x:-5,y:-130,z:-20,w:690,h:70,b:"linear-gradient(#333,#555)",rx:105,css:"c"});
-  C.plane({x:-5,y:225,z:-30,w:690,h:70,b:"linear-gradient(#333,#555)",rx:60,css:"c"});
-  C.plane({x:-130,y:35,w:30,h:30,html:"🚪",css:"door",ry:5});
-  C.plane({x:-100,y:100,w:30,h:30,html:"🔒",css:"lock",rz:-2});
-  C.plane({x:120,y:-10,w:30,h:30,html:"🖼️",css:"frame",rz:2});
-  C.plane({x:165,y:32,w:30,h:30,html:"️🧔🏻‍♂️",css:"head",rz:2});
-  C.plane({x:165,y:14,w:30,h:30,html:"👑️",css:"crown",rz:2,sy:.5});
-  C.plane({x:260,y:50,w:30,h:30,html:"🛏️",css:"bed", sx:-1});
-  C.plane({x:-250,y:210,z:-40,w:30,h:30,html:"🕳️",css:"hole",rz:90,sy:2});
+  C.plane({x:-5,y:-130,z:-20,w:690,h:70,b:"linear-gradient(#333,#555)",on:"",rx:105,css:"c"});
+  C.plane({x:-5,y:225,z:-30,w:690,h:70,b:"linear-gradient(#333,#555)",on:"",rx:60,css:"c"});
+  C.plane({x:-145,y:110,html:"🚪",css:"door",ry:5});
+  C.plane({x:-100-15,y:120,html:"🔒",css:"lock",rz:-2});
+  C.plane({x:120-15,y:-10-15,html:"🖼️",css:"frame",rz:2});
+  C.plane({x:165-15,y:32-45,html:"️🧔🏻‍♂️",css:"framehead",on:"",rz:2});
+  C.plane({x:165-15,y:14-40,html:"👑️",css:"framecrown",on:"",rz:2,sy:.5});
+  C.plane({x:260-15,y:120,html:"🛏️",css:"bed",sx:-1});
+  C.plane({x:-250-15,y:208-15,z:-50,html:"🕳️",css:"hole",rz:90,ry:10,sy:2});
   windowleft(1);
   addsun(1,0);
 }
 
-// Room 0-1
+// Room 0-1: cannon
 room01 = () => {
   tower(0)
-  C.plane({x:-5,y:-190,z:-20,w:690,h:70,b:"linear-gradient(#333,#555)",rx:105,css:"c"});
-  C.plane({x:-5,y:225,z:-30,w:690,h:70,b:"linear-gradient(#333,#555)",rx:60,css:"c"});
-  C.plane({x:10,y:-80,w:30,h:30,html:"🛡️",css:"shield",rz:2});
-  C.plane({x:-205,y:-25,w:30,h:30,html:svgdoorstair,ry:5,sx:1.6,sy:1.6});
-  C.plane({x:-10,y:-125,z:0,w:30,h:30,html:svgcannon,css:"cannon",sx:2.7,sy:2.7});
+  C.plane({x:-5,y:-190,z:-20,w:690,h:70,b:"linear-gradient(#333,#555)",rx:105,css:"c",on:""});
+  C.plane({x:-5,y:225,z:-30,w:690,h:70,b:"linear-gradient(#333,#555)",rx:60,css:"c",on:""});
+  C.plane({x:10,y:-50,html:"🛡️",css:"shield",rz:2});
+  C.plane({x:-160,y:195,w:100,h:200,html:svgdoorstair,on:"door",ry:9,sx:1.6,sy:1.6});
+  C.plane({x:40,y:195,z:0,w:90,h:50,html:svgcannon,css:"cannon",sx:2.7,sy:2.7});
   windowright(0);
   addsun(0,1);
 }
+
+// room 0-2: telescope
+room02 = () => {
+  room(1,0,1,1)
+  C.plane({x:25,y:-120,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
+  C.plane({x:25,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
+  wallside(1,0,1);
+  C.plane({x:190,y:170,w:30,h:30,html:"🔭",css:"telescope",rz:2,sx:-1});
+  C.plane({x:-50,y:150,w:50,h:100,z:-20,html:svgdoorstair,on:"door",sx:1.6,sy:1.6});
+  windowleft(0);
+  addsun(1,1);
+}
+
+// room 0-3: throne
+room03 = () => {
+  room(1,0,0,0)
+  C.plane({x:25,y:-220,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145,css:""});
+  C.plane({x:25,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60,css:""});
+  C.plane({x:-90,y:125,w:30,h:30,html:"💺",css:"throne",sx:-1});
+  C.plane({x:250,y:185,w:30,h:30,html:"🪨",css:"rock",sx:-1});
+  C.plane({x:210,y:135,z:-5,w:30,h:30,html:"🗡️",css:"sword",sx:-1,rz:40,rx:-30});
+  wallside(1,0);
+}
+
+
+
+
+// room 1-2: library
+room12 = (i,j) => {
+  room(0,0,1,0)
+  C.plane({x:-15,y:-120,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145,css:""});
+  C.plane({x:-15,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60,css:""});
+  C.plane({x:-150,y:95,html:"🪜",css:"shelf"});
+  addsun(0,0);
+  
+  for(i=0;i<5;i++){
+    for(j=0;j<4;j++){
+      C.plane({x:i*22-42 + Math.random()*4,y:j*65-30,w:15+Math.random()*2,h:45,b:`hsl(${(i*5+j*15)*20} 50% ${63}%)`,z:20,css:"book"});
+    }
+  }
+  C.plane({x:-270,y:60,html:"🛡️",css:"shield",rz:2});
+  C.plane({x:255,y:145,w:50,h:100,html:svgdoor,on:"door",sx:-1.6,sy:1.6});
+  
+}
+
+// room 1-3: knight
+room13 = () => {
+  room(0,0,0,0)
+  C.plane({x:-25,y:-220,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145,css:""});
+  C.plane({x:-25,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60,css:""});
+  C.plane({x:-290,y:105,w:50,h:100,html:svgknight,css:"knight",sx:2.8,sy:2.8});
+  C.plane({x:215,y:145,w:50,h:100,html:svgdoorstair,on:"door",sx:-1.6,sy:1.6});
+}
+
+
+
 
 // Room 2-0
 room20 = () => {
@@ -257,35 +313,9 @@ room41 = () => {
   
 }
 
-// room 0-2
-room02 = () => {
-  room(1,0,1,1)
-  C.plane({x:15,y:-120,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145,css:""});
-  C.plane({x:15,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60,css:""});
-  wallside(1);
-  C.plane({x:190,y:80,w:30,h:30,html:"🔭",css:"telescope",rz:2,sx:-1});
-  C.plane({x:-110,y:5,w:30,h:30,z:-20,html:svgdoorstair,sx:1.6,sy:1.6});
-  windowleft(0);
-  addsun(1,1);
-}
 
-// room 1-2
-room12 = (i,j) => {
-  room(0,0,1,0)
-  C.plane({x:-15,y:-120,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145,css:""});
-  C.plane({x:-15,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60,css:""});
-  C.plane({x:-130,y:-55,w:30,h:30,html:"🪜",css:"shelf"});
-  addsun(0,0);
-  
-  for(i=0;i<5;i++){
-    for(j=0;j<4;j++){
-      C.plane({x:i*22-42 + Math.random()*4,y:j*65-30,w:15+Math.random()*2,h:45,b:`hsl(${(i*5+j*15)*20} 50% ${63}%)`,z:20,css:"book"});
-    }
-  }
-  C.plane({x:-250,y:-60,w:30,h:30,html:"🛡️",css:"shield",rz:2});
-  C.plane({x:255,y:-5,w:30,h:30,html:svgdoor,sx:-1.6,sy:1.6});
-  
-}
+
+
 
 // room 2-2
 room22 = (i,j) => {
@@ -372,21 +402,16 @@ room23 = () => {
   C.plane({x:70,y:-315,w:30,h:30,html:svgdoor,css:"exit",sx:-4,sy:4});
 }
 
-// room 1-3
-room13 = () => {
-  room(0,0,0,0)
-  C.plane({x:-45,y:-220,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145,css:""});
-  C.plane({x:-45,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60,css:""});
-  C.plane({x:-290,y:-155,w:30,h:30,html:svgknight,css:"knight",sx:2.8,sy:2.8});
-  C.plane({x:215,y:-5,w:30,h:30,html:svgdoorstair,sx:-1.6,sy:1.6});
-}
 
-// room 0-3
-room03 = () => {
-  room(1,0,0,0)
-  C.plane({x:25,y:-220,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145,css:""});
-  C.plane({x:25,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60,css:""});
-  C.plane({x:-90,y:-25,w:30,h:30,html:"💺",css:"throne",sx:-1});
-  C.plane({x:-170,y:25,w:30,h:30,html:"🗡️",css:"sword",sx:-1,rz:-40});
-  wallside(1,0);
+
+
+// Text
+lasttxt="";
+to=0;
+txt = s => {
+  if(s.length){
+    text.innerHTML = s;
+    clearTimeout(to);
+    to=setTimeout(`text.innerHTML=""`, 2000);
+  }
 }

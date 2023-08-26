@@ -3,20 +3,25 @@
   <div id=camera>
     <div id=scene></div>
   </div>
+  <div id=inventory></div>
+  <div id=text></div>
 </div>
 <script src=c.js></script>
 <script src=svg.js></script>
 <script src=rooms.js></script>
 <script>
 
-room03();
+room13();
 
 </script>
 
 <style>
-#viewport{width:960px;height:540px;overflow:hidden;position:relative;perspective:500px}
-#viewport *{transform-style:preserve-3d;box-sizing:border-box}
-#camera{width:0;height:0;position:absolute;top:50%;left:50%}
+#viewport{width:1080px;height:540px;overflow:hidden;position:relative;perspective:500px;cursor:pointer;cursor:grab;}
+#viewport *{transform-style:preserve-3d;box-sizing:border-box;line-height:0}
+#inventory { width: 130px; background: #000; height: 100%; position: absolute; right: 0 }
+svg { pointer-events: none; position: absolute; top: 0;  }
+#text { position: absolute; bottom: 10px; left: 0; text-align: center; font: 45px Papyrus, Calibri; color: #fff; text-shadow: 0 0 15px #000, 0 0 5px #000, 0 0 5px #000; width: 960px; pointer-events: none; }
+#camera{width:0;height:0;position:absolute;top:50%;left:480px}
 /*@font-face { font-family: e; src: url(//xem.github.io/unicode13/Twemoji.ttf) }*/
 @font-face { font-family: e; src: url(Twemoji.ttf) }
 #scene div { font-size: 170px; font-family: e; }
@@ -29,8 +34,8 @@ room03();
 #scene .bed { filter: sepia(.8) drop-shadow(0 0 4px #000)}
 #scene .hole { font-size: 40px; }
 #scene .frame { font-size: 90px; filter: sepia(.9) drop-shadow(0 0 4px #000) }
-#scene .head { font-size: 30px; filter: sepia(.5) }
-#scene .crown { font-size: 30px; filter: sepia(.5) drop-shadow(0 0 4px #000) }
+#scene .framehead { font-size: 30px; filter: sepia(.5); pointer-events:none }
+#scene .framecrown { font-size: 30px; filter: sepia(.5) drop-shadow(0 0 4px #000); pointer-events:none }
 #scene .shield { font-size: 100px; filter: sepia(.5) drop-shadow(0 0 4px #000) }
 #scene .boulder { font-size: 80px; }
 #scene .pin { font-size: 30px; }
@@ -50,5 +55,7 @@ room03();
 #scene .cheese { font-size:50px; filter: sepia(.2) drop-shadow(0 0 1px #000) }
 #scene .pot { font-size:80px; filter: sepia(.2) drop-shadow(0 0 1px #000) }
 #scene .throne { font-size:260px; filter: sepia(.5) saturate(.5) hue-rotate(348deg) drop-shadow(0 0 1px #000) }
+#scene .rock { font-size:160px; filter: sepia(.5) saturate(.5) drop-shadow(0 0 1px #000) }
 #scene .sword { font-size:130px; filter: sepia(.5) saturate(.5) hue-rotate(348deg) drop-shadow(0 0 1px #000) }
+#sun, .sunwrapper { pointer-events: none }
 </style>
