@@ -11,11 +11,12 @@
 <script src=rooms.js></script>
 <script>
 
-room13();
+room02();
 
 </script>
 
 <style>
+@keyframes wiggle { 50% { margin-left: -5px } 100% { rotate: -1deg }}
 #viewport{width:1080px;height:540px;overflow:hidden;position:relative;perspective:500px;cursor:pointer;cursor:grab;}
 #viewport *{transform-style:preserve-3d;box-sizing:border-box;line-height:0}
 #inventory { width: 130px; background: #000; height: 100%; position: absolute; right: 0 }
@@ -27,7 +28,7 @@ svg { pointer-events: none; position: absolute; top: 0;  }
 #scene div { font-size: 170px; font-family: e; }
 #viewport { background: linear-gradient(#bcf,#def) }
 #scene .c { border-radius: 50%; border-width:8px }
-#scene .brick { border: 4px solid #555; pointer-events: none;}
+#scene .brick { border: 3px solid #555; pointer-events: none;}
 #scene .door { filter: sepia(.5) drop-shadow(0 0 4px #000) }
 #scene .lock { font-size: 40px; filter: sepia(.5) saturate(.5) drop-shadow(0 0 2px #000) }
 #scene .chain { font-size: 40px; filter: sepia(.5) drop-shadow(0 0 2px #000) }
@@ -40,7 +41,7 @@ svg { pointer-events: none; position: absolute; top: 0;  }
 #scene .boulder { font-size: 80px; }
 #scene .pin { font-size: 30px; }
 #scene .triangle { color: #111; font-size: 30px; }
-#scene .man { font-size: 170px; filter: sepia(.9) drop-shadow(0 0 4px #000) }
+#scene .prisoner { font-size: 170px; filter: sepia(.9) drop-shadow(0 0 4px #000) }
 #scene .witch { filter: sepia(.5) drop-shadow(0 0 4px #000) }
 #scene .telescope { font-size: 150px; filter: sepia(.9) drop-shadow(0 0 4px #000) }
 #scene .shelf { font-size: 300px; filter: sepia(.6) }
@@ -48,7 +49,7 @@ svg { pointer-events: none; position: absolute; top: 0;  }
 #scene .hammer { font-size:70px; filter: sepia(.8) brightness(.2) drop-shadow(0 0 1px #000) }
 #scene .wood { font-size:70px; filter: sepia(.5) drop-shadow(0 0 1px #000) }
 #scene .fireplace { font-size:200px; filter: sepia(.2) brightness(.5) drop-shadow(0 0 1px #000) }
-#scene .fire { font-size:50px; filter: sepia(.2) }
+#scene .fire { font-size:50px; filter: sepia(.2); animation: wiggle .2s infinite; transform-origin: center center;}
 #scene .skeleton { font-size:50px; filter: saturate(0) }
 #scene .note { font-size:50px; filter: sepia(.5) brightness(.7) drop-shadow(0 0 1px #000) }
 #scene .cook { font-size:100px; filter: sepia(.2) drop-shadow(0 0 1px #000) }
@@ -56,6 +57,9 @@ svg { pointer-events: none; position: absolute; top: 0;  }
 #scene .pot { font-size:80px; filter: sepia(.2) drop-shadow(0 0 1px #000) }
 #scene .throne { font-size:260px; filter: sepia(.5) saturate(.5) hue-rotate(348deg) drop-shadow(0 0 1px #000) }
 #scene .rock { font-size:160px; filter: sepia(.5) saturate(.5) drop-shadow(0 0 1px #000) }
+#scene .bat { font-size:60px; filter: saturate(.5) brightness(.5) drop-shadow(0 0 1px #000) }
 #scene .sword { font-size:130px; filter: sepia(.5) saturate(.5) hue-rotate(348deg) drop-shadow(0 0 1px #000) }
+#scene .crown { font-size:90px; filter: sepia(.5) drop-shadow(0 0 1px #000) }
+#scene .arrow { font-size:50px; filter: drop-shadow(0 0 1px #000) }
 #sun, .sunwrapper { pointer-events: none }
 </style>

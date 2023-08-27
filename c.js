@@ -18,6 +18,7 @@ $: t => self[t],
 init: t => {
   t.css||(t.css=""),
   t.on=`txt\`${t.on!=null?t.on:t.css}\``,
+  t.cl=t.cl?`onclick=${t.cl}()`:"";
   t.html||(t.html=""),
   t.g||(t.g="scene"),
   t.o||(t.o="center"),
@@ -46,7 +47,7 @@ group: t => {
 plane: t => {
   t.n||(t.n=`plane${C.plane_count++}`),
   C.init(t),
-  C.$(t.g).innerHTML+=`<div id="${t.n}"class="plane ${t.css}"style="position:absolute;width:${t.w}${C.unit};height:${t.h}${C.unit};background:${t.b};transform-origin:${t.o};transform:${C.tr(t)}"onmouseover="${t.on||''}">${t.html}`,
+  C.$(t.g).innerHTML+=`<div id="${t.n}"class="plane ${t.css}"style="position:absolute;width:${t.w}${C.unit};height:${t.h}${C.unit};background:${t.b};transform-origin:${t.o};transform:${C.tr(t)}"onmouseover="${t.on||''}"${t.cl}>${t.html}`,
   C.camera()
 },
 
@@ -87,3 +88,5 @@ move: t => {
 tr: t => `translateX(-50%)translateY(-50%)translateX(${t.x}${C.unit})translateY(${t.y}${C.unit})translateZ(${t.z}${C.unit})rotateX(${t.rx}deg)rotateY(${t.ry}deg)rotateZ(${t.rz}deg)scaleX(${t.sx})scaleY(${t.sy})scaleZ(${t.sz})`
 
 }
+
+
