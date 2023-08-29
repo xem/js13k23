@@ -27,3 +27,5 @@ svgknight="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M
 svgtorchsupport="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><rect x=0 y=0 width=31 height=6 fill='#854' stroke='#222'/></svg>";
 
 svgtorch="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M25 24L14 64L19 66L37 29Z' fill='#854' stroke='#222'/></svg>";
+
+svghanger="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M19 7L12 8Q9 14 6 8' stroke='#000' fill='#0000' stroke-width='2'/></svg>"

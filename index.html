@@ -1,9 +1,17 @@
 ﻿<!doctype html>
+<title>🏃🏰</title>
 <div id=viewport>
   <div id=camera>
     <div id=scene></div>
   </div>
-  <div id=inventory></div>
+  <div id=inventory>
+    <div id=i0 onclick="use(0)"></div>
+    <div id=i1 onclick="use(1)"></div>
+    <div id=i2 onclick="use(2)"></div>
+    <div id=i3 onclick="use(3)"></div>
+    <div id=i4 onclick="use(4)"></div>
+    <div id=i5 onclick="use(5)"></div>
+  </div>
   <div id=text></div>
 </div>
 <script src=c.js></script>
@@ -11,15 +19,17 @@
 <script src=rooms.js></script>
 <script>
 
-room02();
+room00();
 
 </script>
 
 <style>
-@keyframes wiggle { 50% { margin-left: -5px } 100% { rotate: -1deg }}
+@keyframes wiggle { 50% { margin-left: -5px } 100% { margin-left: 0 }}
 #viewport{width:1080px;height:540px;overflow:hidden;position:relative;perspective:500px;cursor:pointer;cursor:grab;}
-#viewport *{transform-style:preserve-3d;box-sizing:border-box;line-height:0}
-#inventory { width: 130px; background: #000; height: 100%; position: absolute; right: 0 }
+#viewport *{transform-style:preserve-3d;box-sizing:border-box;line-height:0; }
+.t * { transition: all .5s;}
+#inventory { width: 130px; background: #555; height: 100%; position: absolute; right: 0 }
+#inventory div { background: #ccc; width: 120px; height: 84px; margin: 5px; }
 svg { pointer-events: none; position: absolute; top: 0;  }
 #text { position: absolute; bottom: 10px; left: 0; text-align: center; font: 45px Papyrus, Calibri; color: #fff; text-shadow: 0 0 15px #000, 0 0 5px #000, 0 0 5px #000; width: 960px; pointer-events: none; }
 #camera{width:0;height:0;position:absolute;top:50%;left:480px}
@@ -29,7 +39,7 @@ svg { pointer-events: none; position: absolute; top: 0;  }
 #viewport { background: linear-gradient(#bcf,#def) }
 #scene .c { border-radius: 50%; border-width:8px }
 #scene .brick { border: 3px solid #555; pointer-events: none;}
-#scene .door { filter: sepia(.5) drop-shadow(0 0 4px #000) }
+#scene .door { font-size: 150px; filter: sepia(.5) drop-shadow(0 0 4px #000); }
 #scene .lock { font-size: 40px; filter: sepia(.5) saturate(.5) drop-shadow(0 0 2px #000) }
 #scene .chain { font-size: 40px; filter: sepia(.5) drop-shadow(0 0 2px #000) }
 #scene .bed { filter: sepia(.8) drop-shadow(0 0 4px #000)}
@@ -60,6 +70,7 @@ svg { pointer-events: none; position: absolute; top: 0;  }
 #scene .bat { font-size:60px; filter: saturate(.5) brightness(.5) drop-shadow(0 0 1px #000) }
 #scene .sword { font-size:130px; filter: sepia(.5) saturate(.5) hue-rotate(348deg) drop-shadow(0 0 1px #000) }
 #scene .crown { font-size:90px; filter: sepia(.5) drop-shadow(0 0 1px #000) }
-#scene .arrow { font-size:50px; filter: drop-shadow(0 0 1px #000) }
+#scene .arrow { font-size:35px; filter: saturate(.4) drop-shadow(0 0 5px #000) }
 #sun, .sunwrapper { pointer-events: none }
+.h { display: none }
 </style>
