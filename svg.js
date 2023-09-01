@@ -2,7 +2,7 @@ svgwindow="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M
 
 svgbars="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M25 30L24 95M44 28L45 95' fill='#fff' stroke='#111' stroke-width='8'/></svg>";
 
-svgcannon="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M90 5L90 25L25 30A15 15 0 0 1 25 0Z' fill='#222' stroke='#000'/><circle cx=26 cy=22 r=10 fill='#955' stroke='#000'/></svg></svg>";
+svgcannon="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M90 15L90 36L25 40A15 15 0 0 1 25 10Z' fill='#222' stroke='#000'/><circle cx=26 cy=32 r=10 fill='#955' stroke='#000'/><path d='M15 13L10 5' stroke='#950'stroke-width='4'/></svg>";
 
 svgdoorstair="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><rect x=5 y=5 width=55 height=90 fill='#222' stroke='#000'/><path d='M5 45L10 45L10 55L5 55L20 55L20 65L5 65L30 65L30 75L5 75L40 75L40 85L5 85L50 85L50 95L5 95Z' fill='#444' stroke='#000'/></svg>"
 
@@ -28,4 +28,5 @@ svgtorchsupport="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><rec
 
 svgtorch="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M25 24L14 64L19 66L37 29Z' fill='#854' stroke='#222'/></svg>";
 
-svghanger="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M19 7L12 8Q9 14 6 8' stroke='#000' fill='#0000' stroke-width='2'/></svg>"
+svghanger="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M34 4L18 6Q14 19 6 9' stroke='#000' fill='#0000' stroke-width='4'/></svg>"
+

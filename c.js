@@ -16,9 +16,10 @@ $: t => self[t],
 
 // Initialize an object's properties
 init: t => {
+  //if(t.cl)console.log("a", using, t.cl);
   t.css||(t.css=""),
   t.on=`txt\`${t.on!=null?t.on:t.css}\``,
-  t.cl=t.cl?`onclick=${t.cl}()`:"";
+  t.cl=t.cl?`onclick=if(!animation)${t.cl}()`:"";
   t.html||(t.html=""),
   t.g||(t.g="scene"),
   t.o||(t.o="center"),
