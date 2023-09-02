@@ -30,3 +30,4 @@ svgtorch="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M2
 
 svghanger="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M34 4L18 6Q14 19 6 9' stroke='#000' fill='#0000' stroke-width='4'/></svg>"
 
+svgplan = "<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M20 87L26 82L29 88L26 82L23 98M13 38L17 42M16 38L13 42M53 10L49 14M49 10L53 14M83 60L87 64M87 60L83 64M65 82L70 86M69 81L65 86M5 95L95 95L95 5L75 5L75 50L60 50L60 5L40 5L40 50L25 50L25 5L5 5Z' fill='#fff' stroke='#000'/></svg>"

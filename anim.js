@@ -28,9 +28,9 @@ book20 = () => {
 
 book11 = () => {
   i=1,j=1;
-  bookcover.innerHTML = "Horse naming"
+  bookcover.innerHTML = "Horse Jokes"
   bookcover.style.background = `hsl(${(i*5+j*15)*20} 50% ${63}%)`
-  book.innerHTML = `Sir 1: why did you call your<br>horse "Mayo" ?<br>Sir 2: You'll see...<br>Mayo: *neighs*`
+  book.innerHTML = `Sir 1: why did you call your<br>horse "Mayo" ?<br>Sir 2: You'll see...<br>Mayo: *neighs*<br><br>~~~<br><br>On which side does a horse<br>have the most hair?<br>The outside<br><br>~~~<br><br>How to get a horse to sleep?<br>Tell him "it's pasture bedtime"`
   bookcover.className = "";
 }
 
@@ -38,16 +38,17 @@ book01 = () => {
   i=0,j=1;
   bookcover.innerHTML = "Decoding shields"
   bookcover.style.background = `hsl(${(i*5+j*15)*20} 50% ${63}%)`
-  book.innerHTML = "I've been told that<br>symbols must be read<br>from top to bottom<br>while colors are read<br>from left to right.<br>What does it mean?"
+  book.innerHTML = "I've been told that<br>symbols must be read<br>from top to bottom<br>while colors are read<br>from left to right."
   bookcover.className = "";
 }
 
 
 book02 = () => {
   i=0,j=2;
-  bookcover.innerHTML = "How to get a horse to sleep"
+  bookcover.innerHTML = "Map of the castle"
   bookcover.style.background = `hsl(${(i*5+j*15)*20} 50% ${63}%)`
-  book.innerHTML = `Tell him "it's pasture bedtime"`
+  book.innerHTML += "<br><br><br><br><br><br><br>Thou are here";
+  C.plane({g:"book",html:svgplan,x:40,y:-200,sx:1.5,sy:1.5,css:"plan"});
   bookcover.className = "";
 }
 
@@ -70,14 +71,20 @@ book22 = () => {
   i=2,j=2;
   bookcover.innerHTML = "Phases of the moon"
   bookcover.style.background = `hsl(${(i*5+j*15)*20} 50% ${63}%)`
-  book.innerHTML = "A moon cycle is 30 days long.<br>🌑 🌓 🌔 🌕 🌖 🌘 🌑<br>new -------- full -------- new<br>I could elaborate more but<br>my zip is almost full now,<br>so you see, I shouldn't waste<br>any more bytes by <br>writing useless stuff<br>that no one will read anyway,<br>in a virtual book.<br>For example, just this one <br>costs me almost a kilobyte,<br>which is totally unreasonable,<br>so let's stop this nonsense,<br>shall we?"
+  book.innerHTML = "A moon cycle is 30 days long.<br>🌑 🌓 🌔 🌕 🌖 🌘 🌑<br>new -------- full -------- new";//<br>I could elaborate more but<br>my zip is almost full now,<br>so you see, I shouldn't waste<br>any more bytes by <br>writing useless stuff<br>that no one will read anyway,<br>in a virtual book.<br>For example, just this one <br>costs me almost a kilobyte,<br>which is totally unreasonable,<br>so let's stop this nonsense,<br>shall we?"
   bookcover.className = "";
 }
 
 book23 = () => {
   i=2,j=3;
-  bookcover.innerHTML = "On which side does a horse have the most hair?"
+  bookcover.innerHTML = "Drag on"
   bookcover.style.background = `hsl(${(i*5+j*15)*20} 50% ${63}%)`
-  book.innerHTML = "The outside"
+  C.plane({g:"book",w:50,h:50,html:"🐉️",x:50,y:30+30,css:"dragon",o:"20px 20px"});
+  C.plane({g:"book",w:50,h:50,html:"🐉️",x:70,y:30+70,rz:-90,css:"dragon",o:"20px 20px"});
+  C.plane({g:"book",w:50,h:50,html:"🐉️",x:50,y:30+30+110,rz:0,css:"dragon",o:"20px 20px"});
+  C.plane({g:"book",w:50,h:50,html:"🐉️",x:30,y:30+30+150,rz:90,css:"dragon",o:"20px 20px"});
+  C.plane({g:"book",w:50,h:50,html:"🐉️",x:50,y:30+30+190,rz:180,css:"dragon",o:"20px 20px"});
+  C.plane({g:"book",w:50,h:50,html:"🐉️",x:70,y:30+30+60+230,rz:270,css:"dragon",o:"20px 20px"});
+  C.plane({g:"book",w:50,h:50,html:"🐉️",x:50,y:30+30+60+270,rz:180,css:"dragon",o:"20px 20px"});
   bookcover.className = "";
 }

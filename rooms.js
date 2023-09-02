@@ -107,7 +107,7 @@ txt = s => {
   }
 }
 
-if(debug) { inv=["telescope", "lit torch","hammer","wood","boulder","crown","gear","cheese","mouse","wand","sword","soup"]; draw_inv() }
+if(debug) { inv=["telescope", "torch","hammer","wood","boulder","crown","gear","cheese","mouse","wand","sword","soup"]; draw_inv() }
 
 
 
@@ -117,8 +117,8 @@ windowleft = (bars,tower) => {
   if(bars) C.plane({x:-300-20,y:-95+40,z:-40,html:svgbars,css:"bars",on:""});
 }
 
-windowright = (bars) => {
-  C.plane({x:300-70,y:-95+92,z:-65,w:100,h:100,html:svgwindow,css:"window",sx:-1,ry:tower?-10:0});
+windowright = (bars,tower,cl='') => {
+  C.plane({x:300-70,y:-95+92,z:-65,w:100,h:100,html:svgwindow,css:"window",sx:-1,ry:tower?-10:0,cl});
   if(bars) C.plane({x:278,y:-55,z:-40,html:svgbars,css:"bars",on:"",sx:-1});
 }
 
@@ -450,7 +450,7 @@ r02b = () => {
 }
 
 // ===========================================================================
-// room 0-3: throne room
+// room 0-3: throne room (ok)
 room03 = () => {
   note.className = "h";
   room(1,0,0,0);
@@ -459,13 +459,14 @@ room03 = () => {
   C.plane({x:25,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
   C.plane({x:-90,y:125,w:30,h:30,html:"💺",css:"throne",sx:-1});
   C.plane({x:250,y:185,w:30,h:30,html:"🪨",css:"rock",sx:-1});
-  C.plane({x:210,y:135,z:-5,w:30,h:30,html:"🗡️",css:"sword",sx:-1,rz:40,rx:-30,cl:"room03p"});
+  if(!inv.includes("sword"))C.plane({x:210,y:135,z:-5,w:30,h:30,html:"🗡️",css:"sword",sx:-1,rz:40,rx:-30,cl:"room03p"});
   C.plane({x:275,y:95,z:40,html:"➡️",css:"arrow",on:"right",cl:"room13"});
   wallside(1,0);
 }
 
 // Sword puzzle
 room03p = () => {
+  r03pm = "";
   room(1,0,0,0);
   C.plane({x:25,y:0,z:50,w:950,h:650,b:"linear-gradient(#333,#555)"});
   C.plane({x:-170,y:30,z:70,html:"🪨",css:"rock",sx:-1,sx:2,sy:2});
@@ -478,15 +479,19 @@ room03p = () => {
 }
 
 // moves
-r03pm = [];
+r03pm = "";
 
 // pull
 r03pp = () => {
-  if(r03pm.join('').startsWith('rlrldduu')) { alert(1)}
+  if(r03pm.endsWith('uuddlrlr')) {
+    C.move({n:"r03p1",x:80,y:-50,z:200});
+    setTimeout(room03,510);
+    add_inv("sword");
+  }
   
   else {
-    setTimeout('r03p1.style.animation=""',510);
     r03p1.style.animation="wiggle .2s 2";
+    setTimeout('r03p1.style.animation=""',510);
   }
 }
 
@@ -494,25 +499,25 @@ r03pp = () => {
 r03pu = () => {
   C.move({n:"r03p1",rx:-30})
   setTimeout('C.move({n:"r03p1",rx:-50})',510);
-  r03pm.unshift("u");
+  r03pm+="u";
 }
 
 r03pl = () => {
   C.move({n:"r03p1",rz:30})
   setTimeout('C.move({n:"r03p1",rz:55})',510);
-  r03pm.unshift("l");
+  r03pm+="l";
 }
 
 r03pr = () => {
   C.move({n:"r03p1",rz:70})
   setTimeout('C.move({n:"r03p1",rz:55})',510);
-  r03pm.unshift("r");
+  r03pm+="r";
 }
 
 r03pd = () => {
   C.move({n:"r03p1",rx:-70})
   setTimeout('C.move({n:"r03p1",rx:-50})',510);
-  r03pm.unshift("d");
+  r03pm+="d";
 }
 
 
@@ -535,8 +540,8 @@ room12 = (i,j) => {
   C.plane({x:275,y:95,z:40,html:"➡️",css:"arrow",on:"right",cl:"room22"});
   C.plane({x:-325,y:95,z:40,html:"⬅️",css:"arrow",on:"left",cl:"room02"});
   C.plane({x:195,y:165,z:40,html:"⬇️",css:"arrow",on:"down",cl:"room13"});
-  
 }
+  
 
 
 
@@ -581,7 +586,7 @@ r13a = () => {
 
 
 // ===========================================================================
-// Room 2-0: boulders
+// Room 2-0: boulders (todo: anim, lock)
 room20 = (anim=1) => {
   tower(1)
   C.plane({x:-5,y:-130,z:-20,w:690,h:70,b:"linear-gradient(#333,#555)",rx:105,css:"c"});
@@ -654,50 +659,101 @@ r20f = () => {
 
 
 // ===========================================================================
-// Room 2-1: hay
+// Room 2-1: hay (todo: anim,pick gear)
 room21 = () => {
   tower(0)
   C.plane({x:-5,y:-190,z:-20,w:690,h:70,b:"linear-gradient(#333,#555)",rx:105,css:"c"});
   C.plane({x:-5,y:225,z:-30,w:690,h:70,b:"linear-gradient(#333,#555)",rx:60,css:"c"});
-  C.plane({x:15,y:120,z:-20,w:100,h:100,html:svghay,on:"hay",sx:2.8,sy:2.8});
-  C.plane({x:-195,y:125,w:50,h:100,z:-20,html:svgdoorstair,ry:5,sx:1.5,sy:1.6});
-  C.plane({x:-185,y:70,z:40,html:"⬆️",css:"arrow",on:"up",cl:"room20"});
-  C.plane({x:-145,y:70,z:40,html:"⬇️",css:"arrow",on:"down",cl:"room22"});
-  windowright(0);
+  C.plane({x:-40,y:120,z:-20,w:100,h:100,html:svghay,on:"hay",sx:2.8,sy:2.8,cl:"r21a"});
+  C.plane({x:-235,y:130,w:50,h:100,z:-20,html:svgdoorstair,ry:5,sx:1.5,sy:1.6});
+  C.plane({x:-185-35,y:70,z:40,html:"⬆️",css:"arrow",on:"up",cl:"room20"});
+  C.plane({x:-145-35,y:70,z:40,html:"⬇️",css:"arrow",on:"down",cl:"room22"});
+  windowright(0,1,"r21a");
   addsun(0,0);
 }
 
+// Put telescope on window/hay
+r21b = 0;
+r21a = () => {
+  if(usingstr == "use telescope with "){
+    C.plane({x:180,y:140,w:30,h:30,html:"🔭",css:"telescope",rz:2,sx:-1,sy:1.1});
+  }
+}
+
 // ===========================================================================
-// room 2-2: torch
+// room 2-2: torch (ok)
 room22 = (i,j) => {
   room(0,0,1,1)
   C.plane({x:-15,y:-120,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
   C.plane({x:-15,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
   C.plane({x:85,y:75,html:"📜",css:"note",sx:1.6,sy:1.6,cl:"r22a"});
-  C.plane({x:-25,y:85,w:50,h:10,z:10,html:svgtorchsupport,css:"torch holder",sx:1.6,sy:1.6});
-  if(!r22a) C.plane({x:-40,y:45,w:50,h:50,html:svgtorch,on:"torch",sx:1.6,sy:1.6,cl:"r22c",n:"r221"});
+  C.plane({x:-25,y:85,w:50,h:10,z:10,html:svgtorchsupport,css:"torch holder",sx:1.6,sy:1.6,cl:"r22f"});
+  if(!r22b) C.plane({x:-40,y:45,w:50,h:50,html:svgtorch,on:"torch",sx:1.6,sy:1.6,cl:"r22c",n:"r221"});
+  if(!r22b && r22e){
+    C.plane({x:-35,y:50,z:20,w:30,h:30,html:"🔥",css:"fire",on:"torch",n:"r222",cl:"r22c"});
+  }
   C.plane({x:-205,y:140,w:50,h:100,html:svgdoorstair,sx:1.6,sy:1.6});
   C.plane({x:275,y:95,z:40,html:"➡️",css:"arrow",on:"right",cl:"room32"});
   C.plane({x:-325,y:95,z:40,html:"⬅️",css:"arrow",on:"left",cl:"room12"});
-  C.plane({x:-190,y:85,z:40,html:"⬆️",css:"arrow",on:"up",cl:"room21"});
+  C.plane({x:-190,y:85,z:40,html:"⬆️",css:"arrow",on:"up",cl:"r22d"});//"room21"});
 }
 
 // Note
 r22a = () => {
   note.className="";
-  note.innerHTML = "This tower contains flammable material, please let your torch here before going up";
+  note.innerHTML = "This tower contains flammable material, please leave torch here before going up";
+}
+
+// Take/leave torch
+r22b = debug?1:0; // torch removed
+r22e = 0; // torch lit
+
+// Put down torch
+r22f = () => {
+  if(inv.includes("lit torch")){
+    rem_inv("lit torch");
+    r22b = 0;
+    r22e = 1;
+    C.plane({x:-40,y:45,w:50,h:50,html:svgtorch,on:"torch",sx:1.6,sy:1.6,cl:"r22c",n:"r221"});
+    C.plane({x:-35,y:50,z:20,w:30,h:30,html:"🔥",css:"fire",on:"torch",n:"r222",cl:"r22c"});
+  }
+  else if(inv.includes("torch")){
+    rem_inv("torch");
+    r22b = 0;
+    r22e = 0;
+    C.plane({x:-40,y:45,w:50,h:50,html:svgtorch,on:"torch",sx:1.6,sy:1.6,cl:"r22c",n:"r221"});
+  }
+  else {
+    r22c();
+  }
+  use(-1);
 }
 
 // Take torch
-r22b = debug?1:0; // torch removed
 r22c = () => {
-  add_inv("torch");
+  if(r22e) {
+    add_inv("lit torch");
+    r222.remove();
+  } else {
+    add_inv("torch");
+  }
   r221.remove();
   r22b = 1;
 }
 
+// Go up
+r22d = () => {
+  if(r22b){
+    r22a();
+  }
+  else {
+    room21();
+  }
+}
+
+
 // ===========================================================================
-// room 2-3: exit
+// room 2-3: exit (todo)
 room23 = () => {
   room(0,0,0,0)
   mount();
@@ -718,7 +774,7 @@ room23 = () => {
 
 
 // ===========================================================================
-// room 3-2: anvil fire
+// room 3-2: anvil fire (todo: cook pot)
 room32 = () => {
   room(0,0,1,0)
   C.plane({x:-15,y:-120,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
@@ -729,9 +785,9 @@ room32 = () => {
   C.plane({x:-290+20,y:230,z:10,html:"🪵",css:"wood",rz:-90});
   if(!r32c) C.plane({x:-310+20,y:200,html:"🪵",css:"wood",rz:-90,n:"r322",cl:"r32d"});
   C.plane({x:110-40,y:125,html:"🏦",css:"fireplace"});
-  C.plane({x:160-40,y:185,z:20,w:30,h:30,html:"🔥",css:"fire"});
-  C.plane({x:215-40,y:185,z:20,w:30,h:30,html:"🔥",css:"fire",sx:-1});
-  C.plane({x:230-40,y:185,z:20,w:30,h:30,html:"🔥",css:"fire"});
+  C.plane({x:160-40,y:185,z:20,w:30,h:30,html:"🔥",css:"fire",cl:"r32e"});
+  C.plane({x:215-40,y:185,z:20,w:30,h:30,html:"🔥",css:"fire",cl:"r32e",sx:-1});
+  C.plane({x:230-40,y:185,z:20,w:30,h:30,html:"🔥",css:"fire",cl:"r32e"});
   C.plane({x:208-40,y:163,z:10,w:115,h:70,b:"#444"});
   C.plane({x:220-40,y:25,z:-40,w:80,h:300,b:"#555"});
   C.plane({x:-100,y:185,w:100,h:50,html:svganvil,css:"anvil",sx:2,sy:2});
@@ -756,8 +812,16 @@ r32d = () => {
   r32b = 1;
 }
 
+// Lit torch
+r32e = () => {
+  if(usingstr == "use torch with "){
+    inv[using] = "lit torch";
+    draw_inv();
+  }
+}
+
 // ===========================================================================
-// room 3-3: kitchen
+// room 3-3: kitchen (todo: take pot, return hot pot, get cheese, break wall)
 room33 = () => {
   room(0,0,0,0,1)
   C.plane({x:-45,y:-220,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
@@ -778,7 +842,7 @@ room33 = () => {
 
 
 // ===========================================================================
-// Room 4-0: witch
+// Room 4-0: witch (todo: give wand, change time)
 room40 = () => {
   tower(1)
   C.plane({x:-5,y:-130,z:-20,w:690,h:70,b:"linear-gradient(#333,#555)",rx:105,css:"c"});
@@ -806,7 +870,7 @@ room40 = () => {
 }
 
 // ===========================================================================
-// Room 4-1: wolf
+// Room 4-1: wolf (todo: wolf on full moon, guy alive in the past)
 room41 = () => {
   tower(0)
   C.plane({x:-5,y:-190,z:-20,w:690,h:70,b:"linear-gradient(#333,#555)",rx:105,css:"c"});
@@ -833,7 +897,7 @@ room41 = () => {
 }
 
 // ===========================================================================
-// room 4-2: stairs hole
+// room 4-2: stairs hole (todo: take mouse with cheese)
 room42 = () => {
   room(0,1,1,1)
   C.plane({x:-45,y:-120,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
@@ -857,7 +921,7 @@ r42a = () => {
 }
 
 // ===========================================================================
-// room 4-3: treasure
+// room 4-3: treasure (take crown and wand)
 room43 = () => {
   room(0,1,0,0)
   mount();
