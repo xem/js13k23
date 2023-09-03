@@ -18,8 +18,13 @@ $: t => self[t],
 init: t => {
   //if(t.cl)console.log("a", using, t.cl);
   t.css||(t.css=""),
-  t.on=`txt\`${t.on!=null?t.on:t.css}\``,
-  t.cl=t.cl?`onclick=if(!animation)${t.cl}()`:"";
+  t.on=`txt\`${t.on!=null?t.on:t.css}\``;
+  if(t.cl && t.cl.startsWith("room")){
+    t.cl=t.cl?`onclick=if(!animation){fadeout(),setTimeout(()=&gt;{${t.cl}();fadein()},50)}`:"";
+  }
+  else {
+    t.cl=t.cl?`onclick=if(!animation)${t.cl}()`:"";
+  }
   t.html||(t.html=""),
   t.g||(t.g="scene"),
   t.o||(t.o="center"),

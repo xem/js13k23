@@ -22,6 +22,7 @@
   <div id=note class=h onclick="innerHTML='',className='h'"></div>
   <div id=bookcover class=h onclick="innerHTML='',className='h';book.className=''">a</div>
   <div id=book class=h onclick="innerHTML='',className='h'"></div>
+  <div id=fo style=opacity:1></div>
 </div>
 <script src=c.js></script>
 <script src=anim.js></script>
@@ -29,7 +30,9 @@
 <script src=rooms.js></script>
 <script>
 
-room32();
+room43();
+
+setTimeout(fadein, 200);
 
 </script>
 
@@ -40,6 +43,7 @@ room32();
 #viewport{width:1200px;height:540px;overflow:hidden;position:relative;perspective:500px;cursor:pointer;cursor:grab;}
 #viewport *{transform-style:preserve-3d;box-sizing:border-box;line-height:0; }
 .t * { transition: all .5s;}
+.o0 { opacity: 0 }
 #inventory { width: 250px; background: #555; height: 100%; position: absolute; right: 0 }
 #inventory div { background: #ccc; width: 115px; height: 80px; margin: 5px; float: left;}
 #viewport .plane { font-size: 170px; font-family: e; }
@@ -52,6 +56,7 @@ svg { pointer-events: none; position: absolute; top: 0;  }
 #viewport .brick { border: 3px solid #555; pointer-events: none; transition: none;}
 #viewport .door { font-size: 150px; filter: sepia(.5) drop-shadow(0 0 4px #000); }
 #viewport .lock { font-size: 40px; filter: sepia(.5) saturate(.5) drop-shadow(0 0 2px #000) }
+#viewport .lock.big { font-size: 250px; }
 #viewport .chain { font-size: 40px; filter: sepia(.5) drop-shadow(0 0 2px #000) }
 #viewport .bed { filter: sepia(.8) drop-shadow(0 0 4px #000)}
 #viewport .hole { font-size: 40px; }
@@ -76,11 +81,14 @@ svg { pointer-events: none; position: absolute; top: 0;  }
 #viewport .note { font-size:50px; filter: sepia(.5) brightness(.7) drop-shadow(0 0 1px #000) }
 #viewport .cook { font-size:100px; filter: sepia(.2) drop-shadow(0 0 1px #000) }
 #viewport .cheese { font-size:50px; filter: sepia(.2) drop-shadow(0 0 1px #000) }
-#viewport .pot { font-size:80px; filter: sepia(.2) drop-shadow(0 0 1px #000) }
+#viewport .soup { font-size:80px; filter: sepia(.2) drop-shadow(0 0 1px #000);transition:opacity 1.5s; }
+#viewport .mouse { filter: sepia(.2) drop-shadow(0 0 2px #000); }
+#viewport .soup.hot { font-size:80px; filter: sepia(.2) hue-rotate(293deg) drop-shadow(0 0 1px #000) }
 #viewport .throne { font-size:260px; filter: sepia(.5) saturate(.5) hue-rotate(348deg) drop-shadow(0 0 1px #000) }
 #viewport .rock { font-size:160px; filter: sepia(.5) saturate(.5) drop-shadow(0 0 1px #000) }
 #viewport .bat { font-size:60px; filter: saturate(.5) brightness(.5) drop-shadow(0 0 1px #000) }
 #viewport .sword { font-size:130px; filter: sepia(.5) saturate(.5) hue-rotate(348deg) drop-shadow(0 0 1px #000) }
+#viewport .wand { font-size:60px; filter: sepia(.5) drop-shadow(0 0 1px #000) }
 #viewport .crown { font-size:90px; filter: sepia(.5) drop-shadow(0 0 1px #000) }
 #viewport .arrow { font-size:35px; filter: saturate(.4) drop-shadow(0 0 5px #000) }
 #viewport .sword2 { font-size:200px; filter: saturate(.4) drop-shadow(0 0 5px #000) }
@@ -93,4 +101,5 @@ svg { pointer-events: none; position: absolute; top: 0;  }
 #bookcover { width: 350px; height: 490px; background: #cba ; margin: 25px 0 0 250px; box-shadow: 0 0 5px #000; text-align: center; font: 45px Papyrus, Calibri; color: #000; padding: 20px;}
 #book { width: 750px; height: 490px; background: linear-gradient(90deg, #fed 48%, #876 50%, #fed 52%); margin: 28px 0 0 125px; border:10px solid #555; box-shadow: 0 0 5px #000; font: 25px/30px Papyrus, Calibri; color: #000; padding: 10px;}
 .mount { border-radius: 50% }
+#fo { position: absolute; top: 0; left: 0; width: 960px; height: 540px; pointer-events: none; background: #000; transition: opacity .5s } 
 </style>

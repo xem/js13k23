@@ -86,5 +86,6 @@ book23 = () => {
   C.plane({g:"book",w:50,h:50,html:"🐉️",x:50,y:30+30+190,rz:180,css:"dragon",o:"20px 20px"});
   C.plane({g:"book",w:50,h:50,html:"🐉️",x:70,y:30+30+60+230,rz:270,css:"dragon",o:"20px 20px"});
   C.plane({g:"book",w:50,h:50,html:"🐉️",x:50,y:30+30+60+270,rz:180,css:"dragon",o:"20px 20px"});
+  C.plane({g:"book",w:50,h:50,html:"🐉️",x:70,y:30+30+60+310,rz:270,css:"dragon",o:"20px 20px"});
   bookcover.className = "";
 }

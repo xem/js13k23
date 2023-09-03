@@ -18,6 +18,8 @@ svganvil="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M9
 
 svgchest="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><rect x=10 y=50 width=80 height=40 fill='#853' stroke='#333'/><rect x=10 y=64 width=80 height=13 fill='#853' stroke='#333'/><path d='M10 50Q13 33 25 30L75 30Q90 33 90 50Z' fill='#853' stroke='#333'/></svg>";
 
+svgchestopen="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><rect x=10 y=50 width=80 height=40 fill='#853' stroke='#333'/><rect x=10 y=64 width=80 height=13 fill='#853' stroke='#333'/><path d='M10 50L10 17Q10 8 19 8L79 8Q90 8 90 17L90 50Z' fill='#742' stroke='#333'/></svg>";
+
 svgtable="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><rect x=5 y=50 width=90 height=7 fill='#853' stroke='#222'/><rect x=10 y=57 width=5 height=38 fill='#853' stroke='#222'/><rect x=85 y=57 width=5 height=38 fill='#853' stroke='#222'/><rect x=15 y=57 width=70 height=38 fill='#888' stroke='#222'/></svg>"
 
 svgexit="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M5 95L50 95L50 30Q4 27 5 95' fill='#853' stroke='#333'/><circle cx=38 cy=63 r=4 fill='#fe8' stroke='#333'/></svg>";
@@ -31,3 +33,5 @@ svgtorch="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M2
 svghanger="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M34 4L18 6Q14 19 6 9' stroke='#000' fill='#0000' stroke-width='4'/></svg>"
 
 svgplan = "<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M20 87L26 82L29 88L26 82L23 98M13 38L17 42M16 38L13 42M53 10L49 14M49 10L53 14M83 60L87 64M87 60L83 64M65 82L70 86M69 81L65 86M5 95L95 95L95 5L75 5L75 50L60 50L60 5L40 5L40 50L25 50L25 5L5 5Z' fill='#fff' stroke='#000'/></svg>"
+
+svgrock="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M4 94L19 94L17 85L9 81L4 88L4 94M17 85L24 73L36 74L35 89L18 91L17 85M35 93L39 85L48 92Z' fill='#ccc' stroke='#222'/></svg>"
