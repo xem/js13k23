@@ -18,6 +18,14 @@ book00 = (i,j) => {
   bookcover.className = "";
 }
 
+book10 = (i,j) => {
+  i=1,j=0;
+  bookcover.innerHTML = "King's diary"
+  bookcover.style.background = `hsl(${(i*5+j*15)*20} 50% ${63}%)`
+  book.innerHTML = "Dear diary,<br><br>A wild beast attacked me today.<br>It swallowed the key of my castle.<br>I managed to capture it,<br>but I need to find a way to get<br>my key back...<br><br>Also, my drawbridge mechanism<br>is broken!<br><br>- King Andrzej";
+  bookcover.className = "";
+}
+
 book20 = () => {
   i=2,j=0;
   bookcover.innerHTML = "How Arthur Became King"
@@ -71,7 +79,7 @@ book22 = () => {
   i=2,j=2;
   bookcover.innerHTML = "Phases of the moon"
   bookcover.style.background = `hsl(${(i*5+j*15)*20} 50% ${63}%)`
-  book.innerHTML = "A moon cycle is 30 days long.<br>🌑 🌓 🌔 🌕 🌖 🌘 🌑<br>new -------- full -------- new";//<br>I could elaborate more but<br>my zip is almost full now,<br>so you see, I shouldn't waste<br>any more bytes by <br>writing useless stuff<br>that no one will read anyway,<br>in a virtual book.<br>For example, just this one <br>costs me almost a kilobyte,<br>which is totally unreasonable,<br>so let's stop this nonsense,<br>shall we?"
+  book.innerHTML = "In this magical world,<br>a moon cycle is 8 days long.<br><br>🌑 🌒 🌓 🌔 🌕 🌖 🌗 🌘 🌑 <br>new ------------- full ------------ new<br><br>(Actually, it's because there<br>aren't more moon emoji than that)"
   bookcover.className = "";
 }
 

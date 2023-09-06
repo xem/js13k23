@@ -20,7 +20,7 @@ init: t => {
   t.css||(t.css=""),
   t.on=`txt\`${t.on!=null?t.on:t.css}\``;
   if(t.cl && t.cl.startsWith("room")){
-    t.cl=t.cl?`onclick=if(!animation){fadeout(),setTimeout(()=&gt;{${t.cl}();fadein()},50)}`:"";
+    t.cl=t.cl?`onclick=if(!animation){fadeout(),setTimeout(()=&gt;{${t.cl}();fadein()},500)}`:"";
   }
   else {
     t.cl=t.cl?`onclick=if(!animation)${t.cl}()`:"";
@@ -53,7 +53,7 @@ group: t => {
 plane: t => {
   t.n||(t.n=`plane${C.plane_count++}`),
   C.init(t),
-  C.$(t.g).innerHTML+=`<div id="${t.n}"class="plane ${t.css}"style="position:absolute;width:${t.w}${C.unit};height:${t.h}${C.unit};background:${t.b};transform-origin:${t.o};transform:${C.tr(t)}"onmouseover="${t.on||''}"${t.cl}>${t.html}`,
+  C.$(t.g).insertAdjacentHTML("beforeEnd",`<div id="${t.n}"class="plane ${t.css}"style="position:absolute;width:${t.w}${C.unit};height:${t.h}${C.unit};background:${t.b};transform-origin:${t.o};transform:${C.tr(t)}"onmouseover="${t.on||''}"${t.cl}>${t.html}`),
   C.camera()
 },
 
