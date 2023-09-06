@@ -606,7 +606,7 @@ r13a = () => {
 
 
 // ===========================================================================
-// Room 2-0: boulders (todo: anim, lock)
+// Room 2-0: boulders (todo: anim)
 room20 = (anim=1) => {
   tower(1)
   C.plane({x:-5,y:-130,z:-20,w:690,h:70,b:"linear-gradient(#333,#555)",rx:105,css:"c"});
@@ -620,12 +620,14 @@ room20 = (anim=1) => {
   if(anim) C.plane({x:-300,y:20,html:"⬤",css:"boulder",n:"r2099",cl:"r20z"});
   C.plane({x:-50,y:-20,html:"🛡️",css:"shield",rz:2});
   C.plane({x:-20,y:-25,html:"🔴",css:"shape",on:"shield",rz:1});
-  C.plane({x:210,y:20,html:"🔒",css:"lock",rz:-2,z:10});
-  C.plane({x:210,y:-15,html:"🔗",css:"chain",rz:40});
+  if(!r20pf) {
+    C.plane({x:210,y:20,html:"🔒",css:"lock",rz:-2,z:10,cl:"room20p"});
+    C.plane({x:210,y:-15,html:"🔗",css:"chain",rz:40});
+  }
   C.plane({x:-85,y:120,w:50,h:100,z:-20,html:svgdoor,ry:5,sx:-1.6,sy:1.6});
   if(!anim) C.plane({x:-95,y:65,z:40,html:"⬇️",css:"arrow",on:"down",cl:"room21"})
   windowleft(0,1);
-  windowright(1,1);
+  windowright(r20pf ? 0 : 1,1);
   draw_sky(1,0);
 }
 
@@ -678,6 +680,56 @@ r20f = () => {
   }
 }
 
+// Puzzle
+
+r20pm = [0,0,0,0];
+r20pf = 0; // open
+
+room20p = () => {
+  room(1,0,0,0);
+  C.plane({x:25,y:0,z:50,w:950,h:650,b:"linear-gradient(#853,#431)"});
+  C.plane({x:-360,y:-180,z:80,html:"❌",css:"cross",on:"exit",cl:"room20"});
+  C.plane({x:-220,y:-20,z:50,html:"🔒",css:"big lock",on:"",sx:1.8,sy:1.8});
+  C.plane({x:0,y:-10,z:55,w:50,h:50,b:"#fff",css:"shape",html:[svgsquare,svgstar,svgtri,svgcircle][r20pm[0]],on:"",cl:"r20pa",n:"r20p1"});
+  C.plane({x:0,y:50,z:55,w:50,h:50,b:"#fff",css:"shape",html:[svgsquare,svgstar,svgtri,svgcircle][r20pm[1]],on:"",cl:"r20pb",n:"r20p2"});
+  C.plane({x:0,y:110,z:55,w:50,h:50,b:"#fff",css:"shape",html:[svgsquare,svgstar,svgtri,svgcircle][r20pm[2]],on:"",cl:"r20pc",n:"r20p3"});
+  C.plane({x:0,y:170,z:55,w:50,h:50,b:"#fff",css:"shape",html:[svgsquare,svgstar,svgtri,svgcircle][r20pm[3]],on:"",cl:"r20pd",n:"r20p4"});
+}
+
+
+r20pa = () => {
+  r20pm[0] = (r20pm[0]+1) % 4;
+  r20pe();
+}
+
+r20pb = () => {
+  r20pm[1] = (r20pm[1]+1) % 4;
+  r20pe();
+}
+
+r20pc = () => {
+  r20pm[2] = (r20pm[2]+1) % 4;
+  r20pe();
+}
+
+r20pd = () => {
+  r20pm[3] = (r20pm[3]+1) % 4;
+  r20pe();
+}
+
+r20pe = () => { // draw
+  r20p1.innerHTML = [svgsquare,svgstar,svgtri,svgcircle][r20pm[0]];
+  r20p2.innerHTML = [svgsquare,svgstar,svgtri,svgcircle][r20pm[1]];
+  r20p3.innerHTML = [svgsquare,svgstar,svgtri,svgcircle][r20pm[2]];
+  r20p4.innerHTML = [svgsquare,svgstar,svgtri,svgcircle][r20pm[3]];
+  if(r20pm.join("") == "3201"){
+    r20pf = 1;
+    animation = 1;
+    setTimeout(fadeout, 600);
+    setTimeout(room20, 1100);
+    setTimeout(()=>{animation = 1; fadein() }, 1200);
+  }
+}
 
 // ===========================================================================
 // Room 2-1: hay (todo: anim,pick gear)

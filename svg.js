@@ -41,3 +41,9 @@ svgrock="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M4 
 svgwolf = "<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M60 21L52 15L47 13L43 8L37 12L42 12L39 15L42 15L42 17L45 17L44 20L47 18L44 22L41 21L43 19L40 18L40 16L37 17L38 13L34 15L39 25L39 36L32 43L29 59L19 75L27 88L10 94L16 94L13 96L19 95L17 97L31 89L30 80L25 76L33 71L43 63L39 79L48 85L50 94L64 96L61 92L66 94L62 90L66 89L53 88L51 76L47 73L53 65L60 73L57 81L66 73L63 64L49 57L55 49L70 55L76 65L73 69L74 75L76 70L80 74L77 68L83 71L79 66L85 66L79 63L76 50L48 39L52 34L58 33L60 25L65 27L60 21M36 39L11 49L7 62L3 66L8 65L9 70L11 64L14 68L13 62L15 52L30 50' fill='#100' stroke='#aaa'/></svg>";
 
 svgtri = "<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M10 90L90 90L50 24' fill='#000000'/></svg>";
+
+svgstar = "<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M50 6L80 95L5 35L95 35L15 95Z' fill='#000'/></svg>";
+
+svgcircle = "<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><circle cx=50 cy=50 r=45 fill='#000'/></svg>";
+
+svgsquare = "<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><rect x=10 y=10 width=80 height=80 fill='#000'/></svg>"
