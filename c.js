@@ -86,6 +86,7 @@ move: t => {
    (t.ry||0===t.ry)&&(n.ry=t.ry),
    (t.rz||0===t.rz)&&(n.rz=t.rz),
    (t.sx||0===t.sx)&&(n.sx=t.sx),
+   (t.sy||0===t.sy)&&(n.sx=t.sy),
    C.options[t.n]=n,
    r.style.transform=C.tr(n)
  }

@@ -1,11 +1,41 @@
 animation = 0;
+
+// Cannon
 anim1 = () => {
   animation = 1;
-  room20(1);
+  room20();
   r2099.style.transformOrigin = "250px 150px";
-  r2099.style.transition = "1s all";
+  r2099.style.transition = ".7s all linear";
   
   setTimeout('C.move({n:"r2099",x:-200,rz:100,z:30})',100);
+  
+  // Window 2-0 open
+  if(r20pf){
+    setTimeout(room41,800);
+    
+    // Wolf
+    if((day % 8) == 4 && r40c < 300 && r40c > 60 && !r41v){
+      setTimeout('r2099.style.transition=".5s all";C.move({n:"r2099",x:-155,y:65})',900);
+      setTimeout('r2099.style.transition="1s all";C.move({n:"r2099",x:-280,y:185});C.move({n:"ww",x:5,y:165,z:50,rx:65,rz:75,sx:2,sy:2})',1410);
+      setTimeout('ww.style.opacity=0;r41v=1;',2000);
+      setTimeout('C.move({n:"key",y:0});',2500);
+      setTimeout(fadeout,5500);
+      setTimeout('r41w=r41y=1;room01();fadein();animation=0',6000);
+    }
+    else {
+      setTimeout('r2099.style.transition=".5s all";C.move({n:"r2099",x:-80,y:185})',900);
+      setTimeout('r2099.style.transition="2s all";C.move({n:"r2099",x:55,y:185})',1410);
+      setTimeout(fadeout,5000);
+      setTimeout('r41y=1;room01();fadein();animation=0',5500);
+    }
+  }
+  
+  else {
+    
+    setTimeout('r2099.style.transition=".3s all";C.move({n:"r2099",x:-310,y:115,rz:100,z:30})',800);
+    setTimeout(fadeout,2500);
+    setTimeout('r20g=0;room01();fadein();animation=0',3000);
+  }
 }
 
 
