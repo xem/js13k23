@@ -4,7 +4,7 @@
   <div id=camera>
     <div id=scene></div>
   </div>
-  <div id=inventory>
+  <div id=inventory style="opacity:1">
     <div id=i0 onclick="use(0)"></div>
     <div id=i1 onclick="use(1)"></div>
     <div id=i2 onclick="use(2)"></div>
@@ -30,7 +30,7 @@
 <script src=rooms.js></script>
 <script>
 
-room21();
+room00();
 
 setTimeout(fadein, 200);
 
@@ -41,11 +41,12 @@ setTimeout(fadein, 200);
 @font-face { font-family: e; src: url(Twemoji.ttf) }
 @keyframes wiggle { 50% { margin-left: -5px } 100% { margin-left: 0 }}
 #viewport{width:1200px;height:540px;overflow:hidden;position:relative;perspective:500px;cursor:pointer;cursor:grab; background: #cde; transition: background 1s; }
+#scene { transition: 10s all; }
 #viewport *{transform-style:preserve-3d;box-sizing:border-box;line-height:0; }
 .t * { transition: all .5s;}
 * { user-select: none }
 .o0 { opacity: 0 }
-#inventory { width: 250px; background: #555; height: 100%; position: absolute; right: 0; padding:2px; transition: all 5s;}
+#inventory { width: 250px; background: #555; height: 100%; position: absolute; right: 0; padding:2px; transition: opacity 5s;}
 #inventory div { background: #ccc; width: 115px; height: 81px; margin: 4px; float: left;}
 #viewport .plane { font-size: 170px; font-family: e; }
 svg { pointer-events: none; position: absolute; top: 0;  }
@@ -84,7 +85,7 @@ svg { pointer-events: none; position: absolute; top: 0;  }
 #viewport .cook { font-size:100px; filter: sepia(.2) drop-shadow(0 0 1px #000) }
 #viewport .cheese { font-size:50px; filter: sepia(.2) drop-shadow(0 0 1px #000) }
 #viewport .soup { font-size:80px; filter: sepia(.2) drop-shadow(0 0 1px #000);transition:opacity 1.5s; }
-#viewport .mouse { font-size: 50px; filter: sepia(.2) drop-shadow(0 0 2px #000); }
+#viewport .mouse { font-size: 120px; filter: sepia(.2) drop-shadow(0 0 2px #000); }
 #viewport .soup.hot { font-size:80px; filter: sepia(.2) hue-rotate(293deg) drop-shadow(0 0 1px #000) }
 #viewport .throne { font-size:260px; filter: sepia(.5) saturate(.5) hue-rotate(348deg) drop-shadow(0 0 1px #000) }
 #viewport .rock { font-size:160px; filter: sepia(.5) saturate(.5) drop-shadow(0 0 1px #000) }
@@ -97,7 +98,9 @@ svg { pointer-events: none; position: absolute; top: 0;  }
 #viewport .moon { font-size:100px; }
 #viewport .cross { font-size:40px; filter: saturate(.8) drop-shadow(0 0 5px #000) }
 #viewport .gear { font-size:50px; filter: drop-shadow(0 0 2px #000) }
+#boook .gear { font-size: 130px }
 #viewport .shape { font-size:40px; filter: drop-shadow(0 0 5px #000) }
+#viewport .web { font-size:120px; filter: drop-shadow(0 0 5px #000) }
 #viewport .key { font-size:100px; filter: brightness(2) drop-shadow(0 0 2px #fff) }
 #viewport .shape2 svg { transform:scale(.5);margin:-25px }
 #viewport .color { filter: drop-shadow(0 0 2px #000) }

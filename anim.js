@@ -44,7 +44,7 @@ book00 = (i,j) => {
   i=0,j=0;
   bookcover.innerHTML = "The big book of inventions"
   bookcover.style.background = `hsl(${(i*5+j*15)*20} 50% ${63}%)`
-  book.innerHTML = "Things invented so far<br>Castles<br>Cannons<br>Clocks<br>Telescopes<br>...<br><br>Coming soon<br>Electricity<br>Microwaves<br>Nuclear fission<br>JavaScript (eww)<br>..."
+  book.innerHTML = "Things invented so far:<br>Castles<br>Cannons<br>Clocks<br>Telescopes<br>Books<br>...<br><br>Coming soon:<br>Electricity<br>Microwaves<br>Nuclear fission<br>JavaScript<br>..."
   bookcover.className = "";
 }
 
@@ -117,13 +117,13 @@ book23 = () => {
   i=2,j=3;
   bookcover.innerHTML = "Drag on"
   bookcover.style.background = `hsl(${(i*5+j*15)*20} 50% ${63}%)`
-  C.plane({g:"book",w:50,h:50,html:"🐉️",x:50,y:30+30,css:"dragon",o:"20px 20px"});
-  C.plane({g:"book",w:50,h:50,html:"🐉️",x:70,y:30+70,rz:-90,css:"dragon",o:"20px 20px"});
-  C.plane({g:"book",w:50,h:50,html:"🐉️",x:50,y:30+30+110,rz:0,css:"dragon",o:"20px 20px"});
-  C.plane({g:"book",w:50,h:50,html:"🐉️",x:30,y:30+30+150,rz:90,css:"dragon",o:"20px 20px"});
-  C.plane({g:"book",w:50,h:50,html:"🐉️",x:50,y:30+30+190,rz:180,css:"dragon",o:"20px 20px"});
-  C.plane({g:"book",w:50,h:50,html:"🐉️",x:70,y:30+30+60+230,rz:270,css:"dragon",o:"20px 20px"});
-  C.plane({g:"book",w:50,h:50,html:"🐉️",x:50,y:30+30+60+270,rz:180,css:"dragon",o:"20px 20px"});
-  C.plane({g:"book",w:50,h:50,html:"🐉️",x:70,y:30+30+60+310,rz:270,css:"dragon",o:"20px 20px"});
+  C.plane({g:"book",w:50,h:50,html:"🐉️",x:50,y:30+30-5,css:"dragon",o:"20px 20px"});
+  C.plane({g:"book",w:50,h:50,html:"🐉️",x:70,y:30+70-8,rz:-90,css:"dragon",o:"20px 20px"});
+  C.plane({g:"book",w:50,h:50,html:"🐉️",x:50,y:30+30+110-11,rz:0,css:"dragon",o:"20px 20px"});
+  C.plane({g:"book",w:50,h:50,html:"🐉️",x:30,y:30+30+150-14,rz:90,css:"dragon",o:"20px 20px"});
+  C.plane({g:"book",w:50,h:50,html:"🐉️",x:50,y:30+30+190-17,rz:180,css:"dragon",o:"20px 20px"});
+  C.plane({g:"book",w:50,h:50,html:"🐉️",x:70,y:30+30+60+230-23,rz:270,css:"dragon",o:"20px 20px"});
+  C.plane({g:"book",w:50,h:50,html:"🐉️",x:50,y:30+30+60+270-26,rz:180,css:"dragon",o:"20px 20px"});
+  C.plane({g:"book",w:50,h:50,html:"🐉️",x:70,y:30+30+60+350-29,rz:270,css:"dragon",o:"20px 20px"});
   bookcover.className = "";
 }
