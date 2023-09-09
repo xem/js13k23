@@ -482,7 +482,7 @@ r00n = () => {
 
 
 // ===========================================================================
-// Room 0-1: cannon (todo: finish window animations)
+// Room 0-1: cannon (ok)
 room01 = () => {
   tower(0)
   C.plane({x:-5,y:-190,z:-20,w:690,h:70,b:"linear-gradient(#333,#555)",rx:105,css:"c"});
@@ -492,10 +492,10 @@ room01 = () => {
   C.plane({x:-160,y:198,w:100,h:200,html:svgdoorstair,ry:9,sx:1.6,sy:1.6});
   if(r01a){
     C.plane({x:0,y:170,html:"🪵",css:"wood",z:-5});
-      C.plane({x:-50,y:220,z:0,w:90,h:50,html:svgcannon,css:r01b ? "loaded cannon" : "cannon",sx:2.7,sy:2.7,o:"bottom left",cl:"r01d",n:"r011",rz:-25});
+      C.plane({x:-65,y:135,z:0,w:900,h:500,html:svgcannon,css:r01b ? "loaded cannon" : "cannon",sx:.27,sy:.27,o:"bottom left",cl:"r01d",n:"r011",rz:-25});
   }
   else {
-    C.plane({x:-50,y:220,z:0,w:90,h:50,html:svgcannon,css:r01b ? "loaded cannon" : "cannon",sx:2.7,sy:2.7,o:"bottom left",cl:"r01d",n:"r011"});
+    C.plane({x:-50,y:100,z:0,w:900,h:500,html:svgcannon,css:r01b ? "loaded cannon" : "cannon",sx:.27,sy:.27,o:"bottom left",cl:"r01d",n:"r011"});
   }
   C.plane({x:-165,y:65,z:40,html:"⬇️",css:"arrow",on:"down",cl:"room02"});
   C.plane({x:-207,y:65,z:40,html:"⬆️",css:"arrow",on:"up",cl:"room00"});
@@ -553,6 +553,7 @@ r01d = () => {
 r01e = () => {
   add_inv("boulder");
   r012.remove();
+  C.plane({x:-50,y:r01a?125:180,z:-5,html:"⬤",css:"boulder",n:"r012",cl:"r01e"});
 }
 
 // ===========================================================================
@@ -595,6 +596,7 @@ room03 = () => {
 
 // Sword puzzle
 room03p = () => {
+  use(-1);
   r03pm = "";
   room(1,0,0,0);
   C.plane({x:25,y:0,z:50,w:950,h:650,b:"linear-gradient(#333,#555)"});
@@ -681,7 +683,7 @@ room13 = () => {
   room(0,0,0,0)
   C.plane({x:-25,y:-220,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
   C.plane({x:-25,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
-  C.plane({x:-220,y:105,w:50,h:100,html:svgknight,css:"knight",sx:2.8,sy:2.8,cl:"r13a"});
+  C.plane({x:-220,y:105,w:500,h:1000,html:svgknight,css:"knight",sx:.28,sy:.28,cl:"r13a"});
   C.plane({x:215,y:140,w:50,h:100,html:svgdoorstair,sx:-1.6,sy:1.6});
   C.plane({x:275,y:95,z:40,html:"➡️",css:"arrow",on:"right",cl:"room23"});
   C.plane({x:-325,y:95,z:40,html:"⬅️",css:"arrow",on:"left",cl:"r13a"});
@@ -755,6 +757,7 @@ r20pm = [0,0,0,0];
 r20pf = 0; // open
 
 room20p = () => {
+  use(-1);
   room(1,0,0,0);
   C.plane({x:25,y:0,z:50,w:950,h:650,b:((r40c >= 300 || r40c < 120) ? "#def":"#002")});
   C.plane({x:-360,y:-180,z:80,html:"❌",css:"cross",on:"exit",cl:"room20"});
@@ -797,10 +800,9 @@ r20pe = () => { // draw
   r20p4.innerHTML = [svgsquare,svgstar,svgtri,svgcircle][r20pm[3]];
   if(r20pm.join("") == "3201"){
     r20pf = 1;
-    animation = 1;
     setTimeout(fadeout, 600);
     setTimeout(room20, 1100);
-    setTimeout(()=>{animation = 0; fadein() }, 1200);
+    setTimeout(fadein, 1200);
   }
 }
 
@@ -810,7 +812,7 @@ room21 = () => {
   tower(0)
   C.plane({x:-5,y:-190,z:-20,w:690,h:70,b:"linear-gradient(#333,#555)",rx:105,css:"c"});
   C.plane({x:-5,y:225,z:-30,w:690,h:70,b:"linear-gradient(#333,#555)",rx:60,css:"c"});
-  if(!r21g) C.plane({x:-40,y:120,z:-20,w:100,h:100,html:svghay,on:"hay",sx:2.8,sy:2.8,cl:"r21a"});
+  if(!r21g) C.plane({x:-10,y:130,z:-20,w:1000,h:1000,html:svghay,on:"hay",sx:.28,sy:.28,cl:"r21a"});
   else if(!r21i) {
     // burnt - see gear
     C.plane({x:-40,y:210,z:-10,html:"⚙️",css:"gear",cl:"r21h",n:"r007",rx:130});
@@ -945,14 +947,14 @@ room23 = () => {
   mount();
   C.plane({x:-45,y:-220,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
   C.plane({x:-45,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
-  C.plane({x:-75,y:25,z:-10,w:100,h:100,html:svgoutside,css:"drawbridge",sx:4,sy:4.3});
+  C.plane({x:-75,y:25,z:-10,w:1000,h:1000,html:svgoutside,css:"drawbridge",sx:.4,sy:.43});
   if(r23k){
-    C.plane({x:-200,y:45,z:90,ry:-62,w:60,h:100,html:svgexit,css:"doors",sx:4,sy:4,n:"r231"});
-    C.plane({x:115,y:45,z:90,ry:95,w:60,h:100,html:svgexit,css:"doors",sx:-4,sy:4,n:"r232"});
+    C.plane({x:-200,y:45,z:90,ry:-62,w:600,h:1000,html:svgexit,css:"doors",sx:.4,sy:.4,n:"r231"});
+    C.plane({x:115,y:45,z:90,ry:95,w:600,h:1000,html:svgexit,css:"doors",sx:-.4,sy:.4,n:"r232"});
   }
   else{
-    C.plane({x:-150,y:35,w:60,h:100,html:svgexit,css:"doors",sx:4,sy:4,n:"r231"});
-    C.plane({x:10,y:35,w:60,h:100,html:svgexit,css:"doors",sx:-4,sy:4,n:"r232"});
+    C.plane({x:-150,y:35,w:600,h:1000,html:svgexit,css:"doors",sx:.4,sy:.4,n:"r231"});
+    C.plane({x:10,y:35,w:600,h:1000,html:svgexit,css:"doors",sx:-.4,sy:.4,n:"r232"});
     C.plane({x:-30,y:110,w:60,h:100,html:svgkeyhole,css:"keyhole",sx:.5,sy:.5,cl:"r23l",n:"r233"});
   }
   C.plane({x:150+15,y:80+50,z:-40,w:60,h:100,html:svglever,on:"broken lever",css:"lever",cl:"r23h"});
@@ -1122,7 +1124,7 @@ r32e = () => {
     rem_inv("soup");
     use(-1);
     C.plane({x:130,y:150,z:30,html:"🍲",css:"soup",n:"r323",cl:"r32g"});
-    C.plane({x:130,y:150,z:31,html:"🍲",css:"hot soup o0",n:"r324",cl:"r32g"});
+    C.plane({x:130,y:150,z:31,html:"🍲",css:"hot soup o0",on:"hot soup",n:"r324",cl:"r32g"});
     setTimeout('r324.className="plane hot soup";r324.setAttribute("onmouseover","txt`hot soup`");animation=0;r33b=1',2000);
   }
 }
@@ -1230,7 +1232,7 @@ room40 = () => {
   tower(1)
   C.plane({x:-5,y:-130,z:-20,w:690,h:70,b:"linear-gradient(#333,#555)",rx:105,css:"c"});
   C.plane({x:-5,y:225,z:-30,w:690,h:70,b:"linear-gradient(#333,#555)",rx:60,css:"c"});
-  C.plane({x:80,y:100,w:60,h:100,html:svgwitch,css:"witch",sx:2.5,sy:2.5,cl:"r40a"});
+  C.plane({x:80,y:100,w:600,h:1000,html:svgwitch,css:"witch",sx:.25,sy:.25,cl:"r40a"});
   if(r40b) C.plane({x:190,y:160,w:60,h:100,html:"🪄",css:"wand"});
   C.plane({x:80,y:-100,html:"🦇",css:"bat",sy:-1});
   C.plane({x:150,y:-95,html:"🦇",css:"bat",sy:-1});
@@ -1348,7 +1350,7 @@ room41 = () => {
   
   // beast
   else if ((day % 8) == 4 && r40c < 300 && r40c > 60) {
-    if(!r41v){ C.plane({x:-60,y:50,w:100,h:100,html:svgwolf,css:"werewolf",sx:3.7,sy:3.7,cl:"r41c",n:"ww"});
+    if(!r41v){ C.plane({x:-60,y:50,w:1000,h:1000,html:svgwolf,css:"werewolf",sx:.37,sy:.37,cl:"r41c",n:"ww"});
     C.plane({x:190-150,y:110,html:"🔗",css:"chain",rz:20});
     C.plane({x:220-150,y:100,html:"🔗",css:"chain",rz:5});
     C.plane({x:240-150,y:80,html:"🔗",css:"chain",rz:-35});
@@ -1524,6 +1526,7 @@ r42pm = [0,0,0,0];
 r42pf = 0; // open
 
 room42p = () => {
+  use(-1);
   room(1,0,0,0);
   C.plane({x:25,y:0,z:50,w:950,h:650,b:"linear-gradient(#853,#431)"});
   C.plane({x:-360,y:-180,z:80,html:"❌",css:"cross",on:"exit",cl:"room42"});
@@ -1608,6 +1611,7 @@ r43c = 0; // chest open
 
 // Puzzle
 room43p = () => {
+  use(-1);
   r43pm = "";
   r43pa = 0;
   room(1,0,0,0);
