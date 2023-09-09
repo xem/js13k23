@@ -53,12 +53,12 @@ group: t => {
 plane: t => {
   t.n||(t.n=`plane${C.plane_count++}`),
   C.init(t),
-  C.$(t.g).insertAdjacentHTML("beforeEnd",`<div id="${t.n}"class="plane ${t.css}"style="position:absolute;width:${t.w}${C.unit};height:${t.h}${C.unit};background:${t.b};transform-origin:${t.o};transform:${C.tr(t)}"onmouseover="${t.on||''}"${t.cl}>${t.html}`),
-  C.camera()
+  C.$(t.g).insertAdjacentHTML("beforeEnd",`<div id="${t.n}"class="plane ${t.css}"style="position:absolute;width:${t.w}${C.unit};height:${t.h}${C.unit};background:${t.b};transform-origin:${t.o};transform:${C.tr(t)}"onmouseover="${t.on||''}"${t.cl}>${t.html}`)
+  //C.camera()
 },
 
 // Move the camera
-camera: t => {
+/*camera: t => {
   t&&(t.x||0===t.x)&&(C.camX=t.x),
   t&&(t.y||0===t.y)&&(C.camY=t.y),
   t&&(t.z||0===t.z)&&(C.camZ=t.z),
@@ -72,7 +72,7 @@ camera: t => {
     o=n.style.transform.replace(/ *rotate.*\(.*?deg\)/g,"");
     n.style.transform=o+`rotateZ(${-C.camRZ}deg)rotateX(${-C.camRX}deg)`
   }
-},
+},*/
 
 // Move an object
 move: t => {

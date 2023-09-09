@@ -2,9 +2,9 @@
 <title>🏃🏰</title>
 <div id=viewport>
   <div id=camera>
-    <div id=scene></div>
+    <div id=scene style="transform:translateZ(100px)rotateX(90deg)"></div>
   </div>
-  <div id=inventory style="opacity:1">
+  <div id=inventory style="opacity:0">
     <div id=i0 onclick="use(0)"></div>
     <div id=i1 onclick="use(1)"></div>
     <div id=i2 onclick="use(2)"></div>
@@ -20,9 +20,9 @@
   </div>
   <div id=text></div>
   <div id=note class=h onclick="innerHTML='',className='h'"></div>
-  <div id=bookcover class=h onclick="innerHTML='',className='h';book.className=''">a</div>
+  <div id=bookcover class=h onclick="innerHTML='',className='h';book.className=''"></div>
   <div id=book class=h onclick="innerHTML='',className='h'"></div>
-  <div id=fo style=opacity:1></div>
+  <div id=fo style=opacity:0></div>
 </div>
 <script src=c.js></script>
 <script src=anim.js></script>
@@ -30,18 +30,33 @@
 <script src=rooms.js></script>
 <script>
 
-room40();
 
+title();
 setTimeout(fadein, 200);
+//room00();
+
+/*
+
+draw_inv();
+
+update_sky();
+
+
+*/
+
+
 
 </script>
 
 <style>
 /*@font-face { font-family: e; src: url(//xem.github.io/unicode13/Twemoji.ttf) }*/
+@font-face { font-family: Papyrus; src: url(Papyrus.ttf) }
 @font-face { font-family: e; src: url(Twemoji.ttf) }
 @keyframes wiggle { 50% { margin-left: -5px } 100% { margin-left: 0 }}
+h1,h2 { color: #000; font-family: Papyrus; text-shadow: 0 0 15px #fff; text-align: center; }
+h1 { font-size: 60px }
+h2 { font-size: 40px }
 #viewport{width:1200px;height:540px;overflow:hidden;position:relative;perspective:500px;cursor:pointer;cursor:grab; background: #cde; transition: background 1s; }
-#scene { transition: 10s all; }
 #viewport *{transform-style:preserve-3d;box-sizing:border-box;line-height:0; }
 .t * { transition: all .5s;}
 * { user-select: none }

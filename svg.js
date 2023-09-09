@@ -20,7 +20,7 @@ svgchest="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><rect x=10 
 
 svgchestopen="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><rect x=10 y=50 width=80 height=40 fill='#853' stroke='#333'/><rect x=10 y=64 width=80 height=13 fill='#853' stroke='#333'/><path d='M10 50L10 17Q10 8 19 8L79 8Q90 8 90 17L90 50Z' fill='#742' stroke='#333'/></svg>";
 
-svgtable="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><rect x=5 y=50 width=90 height=7 fill='#853' stroke='#222'/><rect x=10 y=57 width=5 height=38 fill='#853' stroke='#222'/><rect x=85 y=57 width=5 height=38 fill='#853' stroke='#222'/><rect x=15 y=57 width=70 height=38 fill='#888' stroke='#222'/></svg>"
+svgtable="<svg width=999 height=999 xmlns='http://www.w3.org/2000/svg'><rect x=50 y=500 width=900 height=70 fill='#853' stroke='#222' stroke-width='10'/><rect x=100 y=570 width=50 height=380 fill='#853' stroke='#222' stroke-width='10'/><rect x=850 y=570 width=50 height=380 fill='#853' stroke='#222' stroke-width='10'/><rect x=150 y=570 width=700 height=380 fill='#888' stroke='#222' stroke-width='10'/></svg>"
 
 svgexit="<svg width=999 height=999 xmlns='http://www.w3.org/2000/svg'><path d='M50 950L500 950L500 300Q40 270 50 950' fill='#853' stroke='#333' stroke-width='10'/><circle cx=380 cy=530 r=40 fill='#fe8' stroke='#333' stroke-width='10'/></svg>";
 
