@@ -139,6 +139,8 @@ ng = () => {
     //scene.innerHTML="";
     scene.style.transform="";
   },2000);
+  song();
+  setInterval(song,9000);
 }
 
 // continue game
@@ -153,4 +155,27 @@ cg = () => {
     scene.style.transform="";
   },2000);
   draw_inv();
+}
+
+
+
+a=(notes,center,duration,decaystart,decayduration,interval,volume,waveform,i)=>{
+  with(A=new AudioContext)
+    with(G=createGain())
+      for(i of notes){
+        with(O=createOscillator()){
+          connect(G),
+          G.connect(destination),
+          start(i[0]*interval),
+          frequency.setValueAtTime(center*1.06**(13-i[1]),i[0]*interval),
+          type=waveform,
+          gain.setValueAtTime(volume,i[0]*interval),
+          gain.setTargetAtTime(1e-5,i[0]*interval+decaystart,decayduration),
+          stop(i[0]*interval+duration);
+        }
+     }
+}
+
+song = () => {
+a([[0,21],[4,21],[2,14],[6,19],[10,19],[11,17],[12,16],[16,17],[17,19],[18,17],[21,21],[24,21],[26,14],[28,21],[30,19],[34,19],[35,21],[36,23],[41,19],[42,21],[40,21]],400,.3,.1,.2,.19,0.05,'triangle');
 }

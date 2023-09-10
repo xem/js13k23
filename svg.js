@@ -6,7 +6,7 @@ svgbars="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M25
 
 svgcannon="<svg width=999 height=999 xmlns='http://www.w3.org/2000/svg'><path d='M900 150L900 360L250 400A150 150 0 0 1 250 100Z' fill='#222' stroke='#000' stroke-width='10'/><circle cx=260 cy=320 r=100 fill='#955' stroke='#000' stroke-width='10'/><path d='M150 130L100 50' stroke='#950' stroke-width='40'/></svg>";
 
-svgdoorstair="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><rect x=5 y=5 width=55 height=90 fill='#222' stroke='#000'/><path d='M5 45L10 45L10 55L5 55L20 55L20 65L5 65L30 65L30 75L5 75L40 75L40 85L5 85L50 85L50 95L5 95Z' fill='#444' stroke='#000'/></svg>"
+svgdoorstair="<svg width=999 height=999 xmlns='http://www.w3.org/2000/svg'><rect x=50 y=50 width=550 height=900 fill='#222' stroke='#000'/><path d='M50 450L100 450L100 550L50 550L200 550L200 650L50 650L300 650L300 750L50 750L400 750L400 850L50 850L500 850L500 950L50 950Z' fill='#444' stroke='#000' stroke-width='10'/></svg>"
 
 svgdoor="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><rect x=5 y=5 width=55 height=90 fill='#222' stroke='#000'/><path d='M60 5L5 55L5 5Z' fill='#000' stroke='#000'/></svg>"
 
