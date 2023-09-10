@@ -1,5 +1,5 @@
 // clicks
-onclick = () => { if(self.s){s.clicks++; document.title=s.clicks} };
+onclick = () => { if(self.s){s.clicks++;} };
 
 // save
 save = () => { localStorage.castleescape = JSON.stringify(s) }
@@ -605,7 +605,7 @@ room02 = () => {
   C.plane({x:-45,y:95,z:40,html:"⬆️",css:"arrow",on:"up",cl:"room01"});
   C.plane({x:275,y:95,z:40,html:"➡️",css:"arrow",on:"right",cl:"room12"});
   windowleft(0);
-  draw_sky(1,1);
+  draw_sky(1,0);
 }
 
 // Take telescope
@@ -630,6 +630,7 @@ room03 = () => {
   if(!s.r03pt)C.plane({x:210,y:135,z:-5,w:30,h:30,html:"🗡️",css:"sword",sx:-1,rz:40,rx:-30,cl:"room03p"});
   C.plane({x:275,y:95,z:40,html:"➡️",css:"arrow",on:"right",cl:"room13"});
   wallside(1,0);
+  draw_sky(0,0);
 }
 
 // Sword puzzle
@@ -718,6 +719,7 @@ room12 = (i,j) => {
   C.plane({x:275,y:95,z:40,html:"➡️",css:"arrow",on:"right",cl:"room22"});
   C.plane({x:-325,y:95,z:40,html:"⬅️",css:"arrow",on:"left",cl:"room02"});
   C.plane({x:195,y:165,z:40,html:"⬇️",css:"arrow",on:"down",cl:"room13"});
+  draw_sky(0,0);
 }
   
 
@@ -735,6 +737,7 @@ room13 = () => {
   C.plane({x:275,y:95,z:40,html:"➡️",css:"arrow",on:"right",cl:"room23"});
   C.plane({x:-325,y:95,z:40,html:"⬅️",css:"arrow",on:"left",cl:"r13a"});
   C.plane({x:175,y:85,z:40,html:"⬆️",css:"arrow",on:"up",cl:"room12"});
+  draw_sky(0,0);
 }
 
 //r13b = 0; // dialog count
@@ -786,8 +789,8 @@ room20 = () => {
   C.plane({x:-85,y:120,w:50,h:100,z:-20,html:svgdoor,ry:5,sx:-1.6,sy:1.6});
   if(!animation) C.plane({x:-95,y:65,z:40,html:"⬇️",css:"arrow",on:"down",cl:"room21"})
   windowleft(0,1);
-  windowright(s.r20pf ? 0 : 1,1);
-  draw_sky(1,0);
+  windowright(s.r20pf ? 0 : 1, 1);
+  draw_sky(1,1);
 }
 
 // Take boulder
@@ -872,7 +875,7 @@ room21 = () => {
   C.plane({x:-185-35,y:70,z:40,html:"⬆️",css:"arrow",on:"up",cl:"room20"});
   C.plane({x:-145-37,y:70,z:40,html:"⬇️",css:"arrow",on:"down",cl:"room22"});
   windowright(0,1,"r21a");
-  if(s.r21b) { C.plane({x:180,y:140,w:30,h:30,html:"🔭",css:"telescope",rz:2,sx:-1,sy:1.1}); }
+  if(s.r21b) { C.plane({x:180,y:140,w:30,h:30,html:"🔭",css:"telescope",rz:2,sx:-1,sy:1.1,cl:"egg"}); }
   C.plane({x:120,y:-100,z:40,rx:-35,ry:30,html:"🕸️",css:"web"});
   draw_sky(0,1,1);
   if(!s.r21g && s.r21b && s.r40c == 60){
@@ -885,7 +888,7 @@ room21 = () => {
 //r21b = 0;
 r21a = () => {
   if(usingstr == "use telescope with "){
-    C.plane({x:180,y:140,w:30,h:30,html:"🔭",css:"telescope",rz:2,sx:-1,sy:1.1});
+    C.plane({x:180,y:140,w:30,h:30,html:"🔭",css:"telescope",rz:2,sx:-1,sy:1.1,cl:"egg"});
     s.r21b = 1;
     rem_inv("telescope");
     use(-1);
@@ -924,6 +927,17 @@ r21h = () => {
   save();
 }
 
+egg = () => {
+  // full moon
+  if((s.day % 8) == 4 && s.r40c == 240){
+    scene.innerHTML = "";
+    C.plane({x:-360,y:-180,z:80,html:"❌",css:"cross",on:"exit",cl:"room21"});
+    C.plane({x:-90,y:70,html:"🌕",sx:2,sy:2});
+    C.plane({w:640,h:120,x:30,y:-140,z:10,html:"Here's where I would have put an easter egg...<br>If I had enough time and spare bytes!",sx:.5,sy:.5,rz:-10,b:"#853",css:"egg"});
+    C.plane({w:30,h:140,x:30,y:-112,rz:-10,b:"#853"});
+  }
+}
+
 // ===========================================================================
 // room 2-2: torch (ok)
 room22 = (i,j) => {
@@ -940,6 +954,7 @@ room22 = (i,j) => {
   C.plane({x:275,y:95,z:40,html:"➡️",css:"arrow",on:"right",cl:"room32"});
   C.plane({x:-325,y:95,z:40,html:"⬅️",css:"arrow",on:"left",cl:"room12"});
   C.plane({x:-190,y:85,z:40,html:"⬆️",css:"arrow",on:"up",cl:"r22d"});//"room21"});
+  draw_sky(0,0);
 }
 
 // Note
@@ -1087,6 +1102,10 @@ r23j = () => {
     note.innerHTML = "You shall open the doors first";
     note.className = "";
   }
+  else if(!s.r32c || !s.r32e || !s.r32g){
+    note.innerHTML = "Some gears are missing";
+    note.className = "";
+  }
   else {
       sound(sword);
       C.move({n:"r239",x:182,y:64,rx:-82,ry:270,rz:-25});
@@ -1149,8 +1168,8 @@ room32 = () => {
   room(0,0,1,0);
   C.plane({x:-15,y:-120,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
   C.plane({x:-15,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
-  if(!s.r32a)C.plane({x:-120,y:230,w:30,h:30,html:"🔨",css:"hammer",on:"",rz:-45,n:"r323"});
-  if(!s.r32a) C.plane({x:-120,y:180,z:40,w:20,h:20,on:"???",n:"r321",cl:"r32b"});
+  if(!s.r32a)C.plane({x:-130,y:220,w:30,h:30,html:"🔨",css:"hammer",on:"",rz:-45,n:"r323"});
+  if(!s.r32a) C.plane({x:-125,y:170,z:40,w:20,h:30,on:"???",n:"r321",cl:"r32b"});
   C.plane({x:-330+20,y:230,html:"🪵",css:"wood",rz:-90,cl:"r32d"});
   C.plane({x:-290+20,y:230,z:10,html:"🪵",css:"wood",rz:-90,cl:"r32d"});
   if(!s.r32c) C.plane({x:-310+20,y:200,html:"🪵",css:"wood",rz:-90,n:"r322",cl:"r32d"});
@@ -1434,7 +1453,7 @@ room41 = () => {
   }
   
   // beast
-  else if ((s.day % 8) == 4 && s.r40c < 300 && s.r40c > 60) {
+  else if (s.day >= 790 && (s.day % 8) == 4 && s.r40c < 300 && s.r40c > 60) {
     if(!s.r41v){ C.plane({x:-60,y:50,w:1000,h:1000,html:svgwolf,css:"werewolf",sx:.37,sy:.37,cl:"r41c",n:"ww"});
     C.plane({x:190-150,y:110,html:"🔗",css:"chain",rz:20});
     C.plane({x:220-150,y:100,html:"🔗",css:"chain",rz:5});
@@ -1570,7 +1589,7 @@ room42 = () => {
   if(s.r42b && !s.r42c) { C.plane({x:170,y:185,z:50,html:"🐁",css:"mouse",sx:.4,sy:.4,cl:"r42f",n:"r422"}); }
   else { C.plane({x:270,y:185,z:-100,html:"🐁",css:"mouse",sx:.4,sy:.4,cl:"r42f",n:"r422"}); }
   windowright(0);
-  draw_sky(0,0);
+  draw_sky(0,1);
 }
 
 r42a = () => {
@@ -1683,7 +1702,7 @@ room43 = () => {
   C.plane({x:-325,y:95,z:40,html:"⬅️",css:"arrow",on:"left",cl:"room33"});
   wallside(0);
   windowright(1);
-  draw_sky(0,0);
+  draw_sky(0,1);
 }
 
 // Take crown

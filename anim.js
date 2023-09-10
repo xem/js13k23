@@ -16,7 +16,7 @@ anim1 = () => {
     
     
     // Wolf
-    if((s.day % 8) == 4 && s.r40c < 300 && s.r40c > 60 && !s.r41v){
+    if(s.day >= 790 && (s.day % 8) == 4 && s.r40c < 300 && s.r40c > 60 && !s.r41v){
       setTimeout('r2099.style.transition=".5s all";C.move({n:"r2099",x:-155,y:65})',900);
       setTimeout('r2099.style.transition="1s all";C.move({n:"r2099",x:-280,y:185});C.move({n:"ww",x:5,y:165,z:50,rx:65,rz:75,sx:.2,sy:.2})',1410);
       setTimeout('ww.style.opacity=0;s.r41v=1;',2000);
@@ -118,7 +118,7 @@ book22 = (i,j) => {
 book23 = (i,j) => {
   i=2,j=3;
   sound(paper);
-  bookcover.innerHTML = "Drag on"
+  bookcover.innerHTML = "How to turn your dragon"
   bookcover.style.background = `hsl(${(i*5+j*15)*20} 50% ${63}%)`
   C.plane({g:"book",w:50,h:50,html:"🐉️",x:50,y:30+30-5,css:"dragon",o:"20px 20px"});
   C.plane({g:"book",w:50,h:50,html:"🐉️",x:70,y:30+70-8,rz:-90,css:"dragon",o:"20px 20px"});
@@ -243,7 +243,7 @@ nudge = function(i){
   var n=6e3;
   if (i > n) return null;
   var q = t(i,n);
-  return Math.sin(i*0.01*Math.sin(0.009*i+Math.sin(i/200))+Math.sin(i/100))*q*q;
+  return Math.sin(i*0.01*Math.sin(0.009*i+Math.sin(i/200))+Math.sin(i/100))*q*q/4;
 }
 
 lock = function(i){
