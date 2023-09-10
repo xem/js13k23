@@ -19,7 +19,7 @@ anim1 = () => {
     if(s.day >= 790 && (s.day % 8) == 4 && s.r40c < 300 && s.r40c > 60 && !s.r41v){
       setTimeout('r2099.style.transition=".5s all";C.move({n:"r2099",x:-155,y:65})',900);
       setTimeout('r2099.style.transition="1s all";C.move({n:"r2099",x:-280,y:185});C.move({n:"ww",x:5,y:165,z:50,rx:65,rz:75,sx:.2,sy:.2})',1410);
-      setTimeout('ww.style.opacity=0;s.r41v=1;',2000);
+      setTimeout('ww.style.opacity=0;s.r41v=1',2000);
       setTimeout('C.move({n:"key",y:0});',2500);
       setTimeout(fadeout,5500);
       setTimeout('s.r41w=s.r41y=1;room01();fadein();animation=0;save()',6000);
@@ -182,7 +182,7 @@ cg = () => {
 }
 
 bs = () => {
-  alert("todo");
+  window.open("//xem.github.io/js13k23/leaderboards/");
 }
 
 

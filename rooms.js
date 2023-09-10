@@ -123,7 +123,7 @@ txt = (s = [""]) => {
     if(using > -1 && !["up","right","down","left"].includes(s[0])) {text.innerHTML = usingstr + s;}
     else {text.innerHTML = s; }
     clearTimeout(to);
-    to=setTimeout(`if(using == -1) text.innerHTML=""`, 2000);
+    to=setTimeout(`if(using==-1)text.innerHTML=""`, 2000);
   }
 }
 
@@ -218,7 +218,7 @@ tower = (top,i,j,x,y,z,w,dx,ry) => {
   scene.className = "";
   scene.innerHTML=text.innerHTML=note.innerHTML=book.innerHTML="";
   note.className=book.className="h";
-  setTimeout('scene.className = "t"',200);
+  setTimeout('scene.className="t"',200);
   for(i = 0; i < 8; i++){
     for(j = 15; j--;){
       if(((top && j > 1) || !top) && ((top && !(j==2 && i % 2)) || !top) && !(!(j % 2) && i == 7)){
@@ -284,7 +284,7 @@ room = (skyleft, skyright, skytop, tower,half,i,j,x,y,z,w,dx,ry,no) => {
   scene.className = "";
   scene.innerHTML=text.innerHTML=note.innerHTML=book.innerHTML="";
   note.className=book.className="h";
-  setTimeout('scene.className = "t"',200);
+  setTimeout('scene.className="t"',200);
   for(i = 0; i < 12; i++){
     for(j = 13; j--;){
       
@@ -402,7 +402,7 @@ room00 = () => {
 r00a = () => {
   sound(nudge);
   frame.style.animation="wiggle .5s";
-  setTimeout('frame.style.animation="";',600);
+  setTimeout('frame.style.animation=""',600);
   console.log(s.r00b);
   if(!s.r00b) s.r00b = 0;
   console.log(s.r00b);
@@ -1152,7 +1152,7 @@ room23c = () => {
   setTimeout("scene.style.transform='translateZ(1200px)rotateX(15deg)'",5500);
   setTimeout(()=>{
     note.style.left = "175px"
-    note.innerHTML = `Congratulations!<br>You're free!<br>Score: ${s.clicks} clicks, ${s.time} seconds<br><a href="//meuziere.free.fr/castleescape/index.html?${btoa(s.clicks)},${btoa(s.time)}" target=_blank>Share`;
+    note.innerHTML = `Congratulations!<br>You're free!<br>Score: ${s.clicks} clicks, ${s.time} seconds<br><a href="//xem.github.io/js13k23/leaderboards/index.html?${btoa(s.clicks)},${btoa(s.time)}" target=_blank>Share`;
     note.className = "";
     s.end = 1;
   },10500);
