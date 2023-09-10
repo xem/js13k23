@@ -267,10 +267,10 @@ burn = function(i){
 }
 
 miniburn = function(i){
-  var n=5e4;
+  var n=3e4;
   if (i > n) return null;
-  var q = t(i,n);
-  return Math.sin(-i*0.03*Math.sin(0.09*i+Math.sin(i/200))+Math.sin(i/100))/q/(i>5e4?i/8e3:5);
+  var q = t(3e4-i,n);
+  return Math.sin(-i*0.03*Math.sin(0.09*i+Math.sin(i/200))+Math.sin(i/100))/q/(i>5e4?i/8e3:5)/2;
 }
 
 wand = function(i){
