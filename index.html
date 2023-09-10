@@ -18,6 +18,7 @@
     <div id=i10 onclick="use(10)"></div>
     <div id=i11 onclick="use(11)"></div>
   </div>
+  <div id=mute onclick="stop()" style="opacity:0">🔇</div>
   <div id=text></div>
   <div id=note class=h onclick="innerHTML='',className='h'"></div>
   <div id=bookcover class=h onclick="innerHTML='',className='h';book.className=''"></div>
@@ -55,15 +56,15 @@ update_sky();
 @keyframes wiggle { 50% { margin-left: -5px } 100% { margin-left: 0 }}
 h1,h2 { color: #000; font-family: Papyrus; text-shadow: 0 0 15px #fff; text-align: center; }
 h1 { font-size: 60px }
-h2 { font-size: 40px }
-#viewport{width:1200px;height:540px;overflow:hidden;position:relative;perspective:500px;cursor:pointer;cursor:grab; background: #cde; transition: background 1s; }
+h2 { font-size: 40px; cursor: pointer }
+#viewport{width:1200px;height:540px;overflow:hidden;position:relative;perspective:500px; background: #cde; transition: background 1s; }
 #viewport *{transform-style:preserve-3d;box-sizing:border-box;line-height:0; }
 .t * { transition: all .5s;}
 * { user-select: none }
 .o0 { opacity: 0 }
 #inventory { width: 250px; background: #555; height: 100%; position: absolute; right: 0; padding:2px; transition: opacity 5s;}
 #inventory div { background: #ccc; width: 115px; height: 81px; margin: 4px; float: left;}
-#viewport .plane { font-size: 170px; font-family: e; }
+#viewport .plane { font-size: 170px; font-family: e; cursor: pointer; }
 svg { pointer-events: none; position: absolute; top: 0;  }
 #text { position: absolute; bottom: 10px; left: 0; text-align: center; font: 45px Papyrus, Calibri; color: #fff; text-shadow: 0 0 15px #000, 0 0 5px #000, 0 0 5px #000; width: 960px; pointer-events: none; }
 #note { position: absolute; top: 50px; left: 100px; width: 800px; text-align: center; font: 45px Papyrus, Calibri; color: #000; background: #fea; padding: 50px; box-shadow: 0 0 5px #000; }
@@ -128,12 +129,14 @@ svg { pointer-events: none; position: absolute; top: 0;  }
 #inventory div .telescope { filter: sepia(.9) brightness(.6) !important }
 #inventory div .key { filter: brightness(2) drop-shadow(0 0 1px #000) }
 #bookcover { width: 350px; height: 490px; background: #cba ; margin: 25px 0 0 250px; box-shadow: 0 0 5px #000; text-align: center; font: 45px Papyrus, Calibri; color: #000; padding: 20px;}
-#book { width: 790px; height: 490px; background: linear-gradient(90deg, #fed 48%, #876 50%, #fed 52%); margin: 28px 0 0 85px; border:10px solid #555; box-shadow: 0 0 5px #000; font: 25px/30px Papyrus, Calibri; color: #000; padding: 10px;}
-.mount { border-radius: 50% }
+#book { width: 820px; height: 490px; background: linear-gradient(90deg, #fed 48%, #876 50%, #fed 52%); margin: 28px 0 0 45px; border:10px solid #555; box-shadow: 0 0 5px #000; font: 25px/30px Papyrus, Calibri; color: #000; padding: 10px;}
+.mount { border-radius: 50%; pointer-events: none }
 #fo { position: absolute; top: 0; left: 0; width: 950px; height: 540px; pointer-events: none; background: #000; transition: opacity .5s } 
 .wheel { background: radial-gradient(#854 20%,#222 22%, #0000 24%), linear-gradient(#cde 45%, #002 55%) !important; border: 2px solid #854; outline: 3px solid #222;  }
 .base { border: 3px solid #222; }
 #viewport .timewheel * { font: 30px e } 
 #skygroup { transition: 1s all; }
 #db { transition: all 10s }
+#mute { font-family: emoji; position: absolute; right: 260px; top: 25px; font-size: 40px; transition: opacity 5s; cursor: pointer; filter: drop-shadow(0 0 5px #000) }
+.sun, .moon { pointer-events: none }
 </style>

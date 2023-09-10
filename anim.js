@@ -16,7 +16,7 @@ anim1 = () => {
     // Wolf
     if((s.day % 8) == 4 && s.r40c < 300 && s.r40c > 60 && !s.r41v){
       setTimeout('r2099.style.transition=".5s all";C.move({n:"r2099",x:-155,y:65})',900);
-      setTimeout('r2099.style.transition="1s all";C.move({n:"r2099",x:-280,y:185});C.move({n:"ww",x:5,y:165,z:50,rx:65,rz:75,sx:2,sy:2})',1410);
+      setTimeout('r2099.style.transition="1s all";C.move({n:"r2099",x:-280,y:185});C.move({n:"ww",x:5,y:165,z:50,rx:65,rz:75,sx:.2,sy:.2})',1410);
       setTimeout('ww.style.opacity=0;s.r41v=1;',2000);
       setTimeout('C.move({n:"key",y:0});',2500);
       setTimeout(fadeout,5500);
@@ -52,7 +52,7 @@ book11 = (i,j) => {
   i=1,j=1;
   bookcover.innerHTML = "King's diary"
   bookcover.style.background = `hsl(${(i*5+j*15)*20} 50% ${63}%)`
-  book.innerHTML = "Dear diary,<br><br>A wild beast attacked me last night.<br>The moon was very bright.<br>It swallowed the key of my castle.<br>I managed to capture it,<br>but I need to find a way to get<br>my key back...<br><br>Also, my drawbridge mechanism<br>is broken!<br><br>- King Andrzej";
+  book.innerHTML = "Dear diary,<br><br>Last night the moon was very bright.<br>A wild beast attacked me<br>in the woods.<br>It swallowed the key of my castle.<br>I managed to capture it,<br>but I need to find a way to get<br>my key back...<br><br>Also, my drawbridge mechanism<br>is broken!<br><br>- King Andrzej";
   bookcover.className = "";
 }
 
@@ -87,14 +87,14 @@ book13 = (i,j) => {
   bookcover.innerHTML = "The gears of power"
   bookcover.style.background = `hsl(${(i*5+j*15)*20} 50% ${63}%)`
   book.innerHTML = `I guess they look like this:`
-  if(!b13b) C.plane({g:"book",html:"⚙️",x:10,y:100,css:"gear",cl:"b13a"});
+  if(!s.b13b) C.plane({g:"book",html:"⚙️",x:10,y:100,css:"gear",cl:"b13a"});
   bookcover.className = "";
 }
 
 //b13b = 0;
 b13a = () => {
   add_inv("gear");
-  r.b13b = 1;
+  s.b13b = 1;
 }
 
 book22 = (i,j) => {
@@ -121,10 +121,10 @@ book23 = (i,j) => {
 }
 
 title = () => {
-  C.plane({w:1100,x:100,y:-100-800,html:"<h1>CASTLE &nbsp;  &nbsp; ESCAPE"});
-  C.plane({w:1100,x:100,y:30-800,html:"<h2>New game",cl:"ng"});
-  if(localStorage.castleescape && !JSON.parse(localStorage.castleescape).end) { C.plane({w:1100,x:100,y:100-800,html:"<h2>Continue",cl:"cg"}); }
-  setTimeout('scene.style.transition=".2s all";scene.style.transform="translateY(800px)translateZ(0)"',500);
+  C.plane({w:1100,x:100,y:-100-1000,html:"<h1>CASTLE &nbsp;  &nbsp; ESCAPE"});
+  C.plane({w:1100,x:100,y:30-1000,html:"<h2>New game",cl:"ng"});
+  if(localStorage.castleescape && !JSON.parse(localStorage.castleescape).end) { C.plane({w:1100,x:100,y:100-1000,html:"<h2>Continue",cl:"cg"}); }
+  setTimeout('scene.style.transition="2s all";scene.style.transform="translateY(1000px)translateZ(0)"',500);
 }
 
 // new game
@@ -133,16 +133,17 @@ ng = () => {
   scene.style.transform="translateY(0)";
   setTimeout(()=> {
     room00();
-  },500);
+  },550);
   setTimeout(()=> {
     inventory.style.opacity=1;
-    //scene.innerHTML="";
+    mute.style.opacity=1;
     scene.style.transform="";
   },2000);
+  draw_inv();
   song();
   bass();
-  setInterval(song,8500);
-  setInterval(bass,8500);
+  AA=setInterval(song,8200);
+  BB=setInterval(bass,8200);
 }
 
 // continue game
@@ -151,18 +152,40 @@ cg = () => {
   scene.style.transform="translateY(0)";
   setTimeout(()=> {
     room00();
-  },500);
+  },550);
   setTimeout(()=> {
     inventory.style.opacity=1;
+    mute.style.opacity=1;
     scene.style.transform="";
   },2000);
   draw_inv();
+  song();
+  bass();
+  AA=setInterval(song,8200);
+  BB=setInterval(bass,8200);
+}
+
+muted = 0;
+stop = () => {
+  muted = 1-muted;
+  mute.innerHTML = ["🔇","🔊"][muted];
+  if(muted){
+    A.close();
+    B.close();
+    clearInterval(AA);
+    clearInterval(BB);
+  }
+  else {
+    song();
+    bass();
+    AA=setInterval(song,8200);
+    BB=setInterval(bass,8200);
+  }
 }
 
 
-
 song = (G,D,i) => {
-  with(new AudioContext)
+  with(A = new AudioContext)
   with(G=createGain())
   for(i in D=[22,,15,,22,,20,,,,20,18,17,,,,18,20,18,,,22,,,22,,15,,22,,20,,,,20,22,24,,,,,22,20,22])
   with(createOscillator())
@@ -171,13 +194,13 @@ song = (G,D,i) => {
   G.connect(destination),
   start(i*.17),
   frequency.setValueAtTime(400*1.06**(13-D[i]),i*.17),type='triangle',
-  gain.setValueAtTime(.05,i*.17),
-  gain.setTargetAtTime(.0001,i*.17+.15,.005),
+  gain.setValueAtTime(.02,i*.17),
+  gain.setTargetAtTime(.0001,i*.17+.12,.005),
   stop(i*.17+.16)
 }
 
 bass = (G,D,i) => {
-  with(new AudioContext)
+  with(B = new AudioContext)
   with(G=createGain())
   for(i in D=[22,,,22,22,22,22,,,22,,,22,,,22,22,22,22,,,22,,,22,,,22,22,22,22,,,22,,,22,,22,22,22,22,,,22])
   with(createOscillator())
@@ -186,7 +209,7 @@ bass = (G,D,i) => {
   G.connect(destination),
   start(i*.17),
   frequency.setValueAtTime(100*1.06**(13-D[i]),i*.17),type='triangle',
-  gain.setValueAtTime(.1,i*.17),
+  gain.setValueAtTime(.05,i*.17),
   gain.setTargetAtTime(.0001,i*.17+.10,.005),
   stop(i*.17+.16)
 }

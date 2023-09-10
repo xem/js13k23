@@ -365,7 +365,7 @@ room00 = () => {
   
   if(!s.r00f){
     C.plane({x:-105,y:120,z:20,html:"🔒",css:"lock",rz:-2,cl:"r00e",n:"r003"});
-    C.plane({x:-150,y:125,z:-35,html:"🚪",css:"door",ry:5,sx:1.1,sy:1.1,n:"r004",o:"100px 100px"});
+    C.plane({x:-147,y:125,z:-35,html:"🚪",css:"door",ry:5,sx:1.1,sy:1.1,n:"r004",o:"100px 100px"});
   }
   else {
     C.plane({x:-105,y:120,z:20,html:"🔒",css:"lock",rz:-2,cl:"r00e",n:"r003",x:-120,y:200,rz:-80});
@@ -381,9 +381,9 @@ room00 = () => {
   C.plane({x:45,y:14-40,html:"👑️",css:"framecrown",on:"",rz:2,sy:.5,g:"frame"});
   C.plane({x:260-15,y:120,html:"🛏️",css:"bed",sx:-1});
   C.plane({x:-250-15,y:208-15,z:-50,html:"🕳️",css:"hole",rz:90,ry:10,sy:2,cl:"r00h"});
-  if(s.r00k) { C.plane({x:-205,y:175,z:50,html:"🧀",css:"mouse",sx:-1,cl:"r00l",n:"r006"}); }
+  if(s.r00k) { C.plane({x:-205,y:175,z:50,html:"🧀",css:"cheese",sx:-1,cl:"r00l",n:"r006"}); }
     
-  if(s.r00m) { C.plane({x:-180,y:175,z:50,html:"🐁",css:"mouse",cl:"r00n",n:"r005"}); }
+  if(s.r00m) { C.plane({x:-180,y:175,z:50,html:"🐁",css:"mouse",cl:"r00n",n:"r005",sx:-.4,sy:.4}); }
   
   if(!s.r00i) { C.plane({x:-340,y:210,z:-100,html:"⚙️",css:"gear",cl:"r00j",n:"r007"}); }
   else if(s.r00i == 1) { C.plane({x:-165,y:175,z:50,html:"⚙️",css:"gear",cl:"r00j",n:"r007"}); }
@@ -428,9 +428,9 @@ r00e = () => {
 
 // put mouse / cheese
 r00h = () => {
-  if(usingstr == "use mouse with " && s.r00i < 2){
+  if(usingstr == "use mouse with " && (s.r00i  || s.r00i < 2)){
     s.r00m = 1;
-    C.plane({x:-180,y:175,z:50,html:"🐁",css:"mouse",cl:"r00n",n:"r005",rx:.4,ry:.4});
+    C.plane({x:-180,y:175,z:50,html:"🐁",css:"mouse",cl:"r00n",n:"r005",sx:.4,sy:.4});
     use(-1);
     rem_inv("mouse");
     setTimeout(()=> {
@@ -438,7 +438,7 @@ r00h = () => {
     },1000);
     setTimeout(()=> {
       C.move({n:"r005",z:50,x:-160,y:175,sx:-.4});
-      C.move({n:"r007",z:50,x:-175,y:175});
+      if(self.r007) C.move({n:"r007",z:50,x:-175,y:175});
       s.r00i = 1;
     },3000);
   }
@@ -450,6 +450,7 @@ r00h = () => {
     setTimeout(()=>{
       if(!s.inv.includes("mouse")){
         note.innerHTML = "Mmm... no mouse here. I should try it on another hole";
+        note.className = "";
       }
     },1000);
   }
@@ -842,10 +843,10 @@ room21 = () => {
   tower(0)
   C.plane({x:-5,y:-190,z:-20,w:690,h:70,b:"linear-gradient(#333,#555)",rx:105,css:"c"});
   C.plane({x:-5,y:225,z:-30,w:690,h:70,b:"linear-gradient(#333,#555)",rx:60,css:"c"});
-  if(!s.r21g) C.plane({x:-10,y:130,z:-20,w:1000,h:1000,html:svghay,on:"hay",sx:.28,sy:.28,cl:"r21a"});
+  if(!s.r21g) C.plane({x:-40,y:130,z:-20,w:1000,h:1000,html:svghay,on:"hay",sx:.28,sy:.28,cl:"r21a"});
   else if(!s.r21i) {
     // burnt - see gear
-    C.plane({x:-40,y:210,z:-10,html:"⚙️",css:"gear",cl:"r21h",n:"r007",rx:130});
+    C.plane({x:-85,y:210,z:-10,html:"⚙️",css:"gear",cl:"r21h",n:"r007",rx:130});
   }
   C.plane({x:-235,y:130,w:500,h:1000,z:-20,html:svgdoorstair,ry:5,sx:.15,sy:.16});
   C.plane({x:-185-35,y:70,z:40,html:"⬆️",css:"arrow",on:"up",cl:"room20"});
@@ -1100,7 +1101,7 @@ room23c = () => {
   C.plane({g:"db",x:14,y:-465,z:0,w:20,h:1000,b:"#222",rx:250,o:"bottom center"});
   C.plane({g:"db",x:470,y:-465,z:0,w:20,h:1000,b:"#222",rx:250,o:"bottom center"});
   
-  setTimeout("inventory.style.opacity=0;C.move({n:'db',rx:90});scene.style.transition='10s all'",1500);
+  setTimeout("inventory.style.opacity=0;mute.style.opacity=0;C.move({n:'db',rx:90});scene.style.transition='10s all'",1500);
   setTimeout("scene.style.transform='translateZ(1200px)rotateX(15deg)'",5500);
   setTimeout(()=>{
     note.style.left = "175px"
@@ -1120,8 +1121,8 @@ room32 = () => {
   room(0,0,1,0);
   C.plane({x:-15,y:-120,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
   C.plane({x:-15,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
-  if(!s.s.r32a)C.plane({x:-120,y:230,w:30,h:30,html:"🔨",css:"hammer",on:"",rz:-45,n:"r323"});
-  if(!r32a) C.plane({x:-120,y:180,z:40,w:20,h:20,on:"???",n:"r321",cl:"r32b"});
+  if(!s.r32a)C.plane({x:-120,y:230,w:30,h:30,html:"🔨",css:"hammer",on:"",rz:-45,n:"r323"});
+  if(!s.r32a) C.plane({x:-120,y:180,z:40,w:20,h:20,on:"???",n:"r321",cl:"r32b"});
   C.plane({x:-330+20,y:230,html:"🪵",css:"wood",rz:-90});
   C.plane({x:-290+20,y:230,z:10,html:"🪵",css:"wood",rz:-90});
   if(!s.r32c) C.plane({x:-310+20,y:200,html:"🪵",css:"wood",rz:-90,n:"r322",cl:"r32d"});
@@ -1316,11 +1317,9 @@ r40a = () => {
     rem_inv("wand");
     note.innerHTML = "You can now turn the wheel of time! You can choose the sun and moon's position in the sky..."
     note.className = "";
-    if(usingstr == "use wand with "){ 
-      C.plane({x:190,y:160,w:60,h:100,html:"🪄",css:"wand"});
-      C.plane({x:-110,y:50,z:80,html:"↩️",css:"arrow",on:"future",cl:"r40r"});
-      C.plane({x:-180,y:50,z:80,html:"↪️",css:"arrow",on:"past",cl:"r40l"});
-    }
+    C.plane({x:190,y:160,w:60,h:100,html:"🪄",css:"wand"});
+    C.plane({x:-110,y:50,z:80,html:"↩️",css:"arrow",on:"future",cl:"r40r"});
+    C.plane({x:-180,y:50,z:80,html:"↪️",css:"arrow",on:"past",cl:"r40l"});
     use(-1);
     save();
   }
@@ -1454,9 +1453,9 @@ room41 = () => {
     }
   }
   if(s.r41y){
-    C.plane({x:r41v ? -280:55,y:185,html:"⬤",css:"boulder",n:"r2099",cl:"r41z"});
+    C.plane({x:s.r41v ? -280:55,y:185,html:"⬤",css:"boulder",n:"r2099",cl:"r41z"});
   }
-  C.plane({x:-40,y:r41v ? 0 : 400,html:"🔑",css:"key",n:"key",cl:"r41x"});
+  C.plane({x:-40,y:s.r41v ? 0 : 400,html:"🔑",css:"key",n:"key",cl:"r41x"});
   windowleft(0,1);
   draw_sky(1,0);
   save();
@@ -1467,7 +1466,7 @@ r41a = () => {
   
   // future
   if(s.day > 796 || (s.day == 796 && s.r40c >= 300)) {
-    note.innerHTML = "I don't know what happened to my cellmate! We arrived here together a few days ago, and one morning I found him like that!<br>By chance I'm not injured...";
+    note.innerHTML = "I don't know what happened to my cellmate! We arrived here together a few days ago, and one morning<br>I found him like that!<br>By chance I'm not injured...";
     note.className = "";
   }
   
