@@ -123,13 +123,16 @@ book23 = (i,j) => {
 title = () => {
   C.plane({w:1100,x:100,y:-100-1000,html:"<h1>CASTLE &nbsp;  &nbsp; ESCAPE"});
   C.plane({w:1100,x:100,y:30-1000,html:"<h2>New game",cl:"ng"});
-  if(localStorage.castleescape && !JSON.parse(localStorage.castleescape).end) { C.plane({w:1100,x:100,y:100-1000,html:"<h2>Continue",cl:"cg"}); }
+  if(localStorage.castleescape) { 
+    C.plane({w:1100,x:100,y:85-1000,html:"<h2>Continue",cl:"cg"});
+    C.plane({w:1100,x:100,y:140-1000,html:"<h2>Best scores",cl:"bs"});
+    }
   setTimeout('scene.style.transition="2s all";scene.style.transform="translateY(1000px)translateZ(0)"',500);
 }
 
 // new game
 ng = () => {
-  s = {inv:[],r40c:300,r40d:300,day:801};
+  s = {inv:[],r40c:300,r40d:300,day:801,clicks:0,time:0};
   scene.style.transform="translateY(0)";
   setTimeout(()=> {
     room00();
@@ -144,6 +147,7 @@ ng = () => {
   bass();
   AA=setInterval(song,8200);
   BB=setInterval(bass,8200);
+  setInterval("s.time++;save()",1000);
 }
 
 // continue game
@@ -163,7 +167,13 @@ cg = () => {
   bass();
   AA=setInterval(song,8200);
   BB=setInterval(bass,8200);
+  setInterval("s.time++;save()",1000);
 }
+
+bs = () => {
+  
+}
+
 
 muted = 0;
 stop = () => {

@@ -1,3 +1,5 @@
+// clicks
+onclick = () => { if(self.s){s.clicks++; document.title=s.clicks} };
 
 // save
 save = () => { localStorage.castleescape = JSON.stringify(s) }
@@ -1105,7 +1107,7 @@ room23c = () => {
   setTimeout("scene.style.transform='translateZ(1200px)rotateX(15deg)'",5500);
   setTimeout(()=>{
     note.style.left = "175px"
-    note.innerHTML = "Congratulations!<br>You're free!";
+    note.innerHTML = `Congratulations!<br>You're free!<br>Score: ${s.clicks} clicks, ${s.time} seconds<br><a href="//meuziere.free.fr/castleescape/index.html?${btoa(s.clicks)},${btoa(s.time)}" target=_blank>Share`;
     note.className = "";
     s.end = 1;
   },10500);
