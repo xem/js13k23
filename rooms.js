@@ -52,8 +52,8 @@ draw_inv = () => {
     else if(s.inv[i] == "wood"){
       C.plane({g:"i"+i,x:40,y:45,w:40,h:30,html:"🪵",css:"wood",on:""});
     }
-    else if(s.inv[i] == "boulder"){
-      C.plane({g:"i"+i,x:40,y:45,w:40,h:30,html:"⬤",css:"boulder",on:""});
+    else if(s.inv[i] == "cannonball"){
+      C.plane({g:"i"+i,x:40,y:45,w:40,h:30,html:"⬤",css:"cannonball",on:""});
     }
     else if(s.inv[i] == "mouse"){
       C.plane({g:"i"+i,x:40,y:45,w:40,h:30,html:"🐁",css:"mouse",on:""});
@@ -214,7 +214,8 @@ wallside = (left,offset,skytop,kitchen,i,j,dx) => {
 tower = (top,i,j,x,y,z,w,dx,ry) => {
   use(-1);
   scene.className = "";
-  scene.innerHTML=text.innerHTM=note.innerHTML=book.innerHTML="";
+  scene.innerHTML=text.innerHTML=note.innerHTML=book.innerHTML="";
+  note.className=book.className="h";
   setTimeout('scene.className = "t"',200);
   for(i = 0; i < 8; i++){
     for(j = 15; j--;){
@@ -280,6 +281,7 @@ room = (skyleft, skyright, skytop, tower,half,i,j,x,y,z,w,dx,ry,no) => {
   use(-1);
   scene.className = "";
   scene.innerHTML=text.innerHTML=note.innerHTML=book.innerHTML="";
+  note.className=book.className="h";
   setTimeout('scene.className = "t"',200);
   for(i = 0; i < 12; i++){
     for(j = 13; j--;){
@@ -387,7 +389,7 @@ room00 = () => {
     
   if(s.r00m) { C.plane({x:-180,y:175,z:50,html:"🐁",css:"mouse",cl:"r00n",n:"r005",sx:-.4,sy:.4}); }
   
-  if(!s.r00i) { C.plane({x:-340,y:210,z:-100,html:"⚙️",css:"gear",cl:"r00j",n:"r007"}); }
+  if(!s.r00i) { C.plane({x:-340,y:410,z:-100,html:"⚙️",css:"gear",cl:"r00j",n:"r007"}); }
   else if(s.r00i == 1) { C.plane({x:-165,y:175,z:50,html:"⚙️",css:"gear",cl:"r00j",n:"r007"}); }
   windowleft(1,1);
   draw_sky(1,0);
@@ -430,9 +432,10 @@ r00e = () => {
 
 // put mouse / cheese
 r00h = () => {
-  if(usingstr == "use mouse with " && (s.r00i  || s.r00i < 2)){
+  if(usingstr == "use mouse with " && (!s.r00i || s.r00i < 2)){
     s.r00m = 1;
     C.plane({x:-180,y:175,z:50,html:"🐁",css:"mouse",cl:"r00n",n:"r005",sx:.4,sy:.4});
+    C.move({n:"r007",y:210});
     use(-1);
     rem_inv("mouse");
     setTimeout(()=> {
@@ -515,10 +518,10 @@ room01 = () => {
   C.plane({x:-165,y:65,z:40,html:"⬇️",css:"arrow",on:"down",cl:"room02"});
   C.plane({x:-207,y:65,z:40,html:"⬆️",css:"arrow",on:"up",cl:"room00"});
   if(s.r01c){
-    C.plane({x:215,y:175,z:-5,html:"⬤",css:"boulder",n:"r012",cl:"r01e"});
+    C.plane({x:215,y:175,z:-5,html:"⬤",css:"cannonball",n:"r012",cl:"r01e"});
   }
   else {
-    C.plane({x:-50,y:s.r01a?125:175,z:-5,html:"⬤",css:"boulder",n:"r012",cl:"r01e"});
+    C.plane({x:-50,y:s.r01a?125:175,z:-5,html:"⬤",css:"cannonball",n:"r012",cl:"r01e"});
   }
   windowright(0,1);
   draw_sky(0,1);
@@ -544,9 +547,9 @@ r01d = () => {
     if(!s.r01c)C.move({n:"r012",y:125});
     use(-1);
   }
-  else if(usingstr == "use boulder with "){
+  else if(usingstr == "use cannonball with "){
     s.r01b = 1;
-    rem_inv("boulder");
+    rem_inv("cannonball");
     r011.className = "loaded cannon";
     r011.setAttribute("onmouseover","txt`loaded cannon`");
     use(-1);
@@ -574,9 +577,9 @@ r01d = () => {
 
 // Pick up boulder shot on wall
 r01e = () => {
-  add_inv("boulder");
+  add_inv("cannonball");
   r012.remove();
-  C.plane({x:-50,y:s.r01a?125:175,z:-5,html:"⬤",css:"boulder",n:"r012",cl:"r01e"});
+  C.plane({x:-50,y:s.r01a?125:175,z:-5,html:"⬤",css:"cannonball",n:"r012",cl:"r01e"});
   s.r01c = 0;
   save();
 }
@@ -748,18 +751,18 @@ r13a = () => {
 
 
 // ===========================================================================
-// Room 2-0: boulders (ok)
+// Room 2-0: cannonball (ok)
 room20 = () => {
   tower(1)
   C.plane({x:-5,y:-130,z:-20,w:690,h:70,b:"linear-gradient(#333,#555)",rx:105,css:"c"});
   C.plane({x:-5,y:225,z:-30,w:690,h:70,b:"linear-gradient(#333,#555)",rx:60,css:"c"});
-  if(!s.r20g) C.plane({x:130-40,y:50+30,z:5,html:"⬤",css:"boulder",n:"r201",cl:"r20a"});
-  C.plane({x:160-40,y:100+30,html:"⬤",css:"boulder"});
-  C.plane({x:100-40,y:100+30,html:"⬤",css:"boulder"});
-  C.plane({x:190-40,y:150+30,html:"⬤",css:"boulder"});
-  C.plane({x:130-40,y:150+30,html:"⬤",css:"boulder"});
-  C.plane({x:70-40,y:150+30,html:"⬤",css:"boulder"});
-  if(animation) C.plane({x:-300,y:20,html:"⬤",css:"boulder",n:"r2099",cl:"r20z"});
+  if(!s.r20g) C.plane({x:130-40,y:50+30,z:5,html:"⬤",css:"cannonball",n:"r201",cl:"r20a"});
+  C.plane({x:160-40,y:100+30,html:"⬤",css:"cannonball"});
+  C.plane({x:100-40,y:100+30,html:"⬤",css:"cannonball"});
+  C.plane({x:190-40,y:150+30,html:"⬤",css:"cannonball"});
+  C.plane({x:130-40,y:150+30,html:"⬤",css:"cannonball"});
+  C.plane({x:70-40,y:150+30,html:"⬤",css:"cannonball"});
+  if(animation) C.plane({x:-300,y:20,html:"⬤",css:"cannonball",n:"r2099",cl:"r20z"});
   C.plane({x:-50,y:-20,html:"🛡️",css:"shield",rz:2});
   C.plane({x:-20,y:-25,html:"🔴",css:"shape",on:"shield",rz:1});
   if(!s.r20pf) {
@@ -777,7 +780,7 @@ room20 = () => {
 //r20g = 0; // removed
 
 r20a = () => {
-  add_inv("boulder");
+  add_inv("cannonball");
   r201.remove();
   s.r20g = 1;
   save();
@@ -869,6 +872,7 @@ r21a = () => {
   if(usingstr == "use telescope with "){
     C.plane({x:180,y:140,w:30,h:30,html:"🔭",css:"telescope",rz:2,sx:-1,sy:1.1});
     s.r21b = 1;
+    rem_inv("telescope");
     use(-1);
   }
   if(s.r21b && s.r40c == 60 && !s.r21g){
@@ -992,8 +996,8 @@ room23 = () => {
     C.plane({x:115,y:45,z:90,ry:95,w:600,h:1000,html:svgexit,css:"doors",sx:-.4,sy:.4,n:"r232"});
   }
   else{
-    C.plane({x:-150,y:35,w:600,h:1000,html:svgexit,css:"doors",sx:.4,sy:.4,n:"r231"});
-    C.plane({x:10,y:35,w:600,h:1000,html:svgexit,css:"doors",sx:-.4,sy:.4,n:"r232"});
+    C.plane({x:-150,y:35,w:600,h:1000,html:svgexit,css:"doors",sx:.4,sy:.4,n:"r231",cl:"r23l"});
+    C.plane({x:10,y:35,w:600,h:1000,html:svgexit,css:"doors",sx:-.4,sy:.4,n:"r232",cl:"r23l"});
     C.plane({x:-30,y:110,w:60,h:100,html:svgkeyhole,css:"keyhole",sx:.5,sy:.5,cl:"r23l",n:"r233"});
   }
   C.plane({x:150+15,y:80+50,z:-40,w:60,h:100,html:svglever,on:"broken lever",css:"lever",cl:"r23h"});
@@ -1125,8 +1129,8 @@ room32 = () => {
   C.plane({x:-15,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
   if(!s.r32a)C.plane({x:-120,y:230,w:30,h:30,html:"🔨",css:"hammer",on:"",rz:-45,n:"r323"});
   if(!s.r32a) C.plane({x:-120,y:180,z:40,w:20,h:20,on:"???",n:"r321",cl:"r32b"});
-  C.plane({x:-330+20,y:230,html:"🪵",css:"wood",rz:-90});
-  C.plane({x:-290+20,y:230,z:10,html:"🪵",css:"wood",rz:-90});
+  C.plane({x:-330+20,y:230,html:"🪵",css:"wood",rz:-90,cl:"r32d"});
+  C.plane({x:-290+20,y:230,z:10,html:"🪵",css:"wood",rz:-90,cl:"r32d"});
   if(!s.r32c) C.plane({x:-310+20,y:200,html:"🪵",css:"wood",rz:-90,n:"r322",cl:"r32d"});
   C.plane({x:110-40,y:125,html:"🏦",css:"fireplace",cl:"r32e"});
   C.plane({x:160-40+3,y:185,z:20,w:30,h:30,html:"🔥",css:"fire",cl:"r32e"});
@@ -1442,7 +1446,7 @@ room41 = () => {
 
   C.plane({x:-110,y:125,w:500,h:1000,z:-20,html:svgdoorstair,ry:5,sx:.16,sy:.16});
   if(animation) { 
-    C.plane({x:-300,y:20,html:"⬤",css:"boulder",n:"r2099",cl:"r41z"});
+    C.plane({x:-300,y:20,html:"⬤",css:"cannonball",n:"r2099",cl:"r41z"});
   }
   else {
     if ((s.day % 8) == 4 && s.r40c < 300 && s.r40c > 60 && !s.r41v){
@@ -1455,7 +1459,7 @@ room41 = () => {
     }
   }
   if(s.r41y){
-    C.plane({x:s.r41v ? -280:55,y:185,html:"⬤",css:"boulder",n:"r2099",cl:"r41z"});
+    C.plane({x:s.r41v ? -280:55,y:185,html:"⬤",css:"cannonball",n:"r2099",cl:"r41z"});
   }
   C.plane({x:-40,y:s.r41v ? 0 : 400,html:"🔑",css:"key",n:"key",cl:"r41x"});
   windowleft(0,1);
@@ -1514,7 +1518,7 @@ r41x = () => { // take it
 r41z = () => { // take it
   r2099.remove();
   s.r41y = 0;
-  add_inv("boulder");
+  add_inv("cannonball");
   draw_inv();
   save();
 }
@@ -1644,7 +1648,7 @@ room43 = () => {
   mount();
   C.plane({x:-45,y:-220,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
   C.plane({x:-45,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
-  if(s.r43c) C.plane({x:70,y:145,w:100,h:100,html:svgchestopen,css:"chest",sx:2,sy:2,cl:"room43p"});
+  if(s.r43c) C.plane({x:70,y:145,w:100,h:100,html:svgchestopen,css:"chest",sx:2,sy:2});
   else C.plane({x:70,y:145,w:100,h:100,html:svgchest,css:"chest",sx:2,sy:2,cl:"room43p"});
   if(!s.r43c)C.plane({x:50,y:140,html:"🔒",css:"lock",rz:-2,cl:"room43p"});
   if(s.r43c && !s.r43d) C.plane({x:50,y:110,html:"🪄",css:"wand",rz:30,cl:"r43e",n:"r432"});
