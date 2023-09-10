@@ -124,7 +124,7 @@ title = () => {
   C.plane({w:1100,x:100,y:-100-800,html:"<h1>CASTLE &nbsp;  &nbsp; ESCAPE"});
   C.plane({w:1100,x:100,y:30-800,html:"<h2>New game",cl:"ng"});
   if(localStorage.castleescape && !JSON.parse(localStorage.castleescape).end) { C.plane({w:1100,x:100,y:100-800,html:"<h2>Continue",cl:"cg"}); }
-  setTimeout('scene.style.transition="2s all";scene.style.transform="translateY(800px)translateZ(0)"',500);
+  setTimeout('scene.style.transition=".2s all";scene.style.transform="translateY(800px)translateZ(0)"',500);
 }
 
 // new game
@@ -140,7 +140,9 @@ ng = () => {
     scene.style.transform="";
   },2000);
   song();
-  setInterval(song,9000);
+  bass();
+  setInterval(song,8500);
+  setInterval(bass,8500);
 }
 
 // continue game
@@ -159,23 +161,32 @@ cg = () => {
 
 
 
-a=(notes,center,duration,decaystart,decayduration,interval,volume,waveform,i)=>{
-  with(A=new AudioContext)
-    with(G=createGain())
-      for(i of notes){
-        with(O=createOscillator()){
-          connect(G),
-          G.connect(destination),
-          start(i[0]*interval),
-          frequency.setValueAtTime(center*1.06**(13-i[1]),i[0]*interval),
-          type=waveform,
-          gain.setValueAtTime(volume,i[0]*interval),
-          gain.setTargetAtTime(1e-5,i[0]*interval+decaystart,decayduration),
-          stop(i[0]*interval+duration);
-        }
-     }
+song = (G,D,i) => {
+  with(new AudioContext)
+  with(G=createGain())
+  for(i in D=[22,,15,,22,,20,,,,20,18,17,,,,18,20,18,,,22,,,22,,15,,22,,20,,,,20,22,24,,,,,22,20,22])
+  with(createOscillator())
+  if(D[i])
+  connect(G),
+  G.connect(destination),
+  start(i*.17),
+  frequency.setValueAtTime(400*1.06**(13-D[i]),i*.17),type='triangle',
+  gain.setValueAtTime(.05,i*.17),
+  gain.setTargetAtTime(.0001,i*.17+.15,.005),
+  stop(i*.17+.16)
 }
 
-song = () => {
-a([[0,21],[4,21],[2,14],[6,19],[10,19],[11,17],[12,16],[16,17],[17,19],[18,17],[21,21],[24,21],[26,14],[28,21],[30,19],[34,19],[35,21],[36,23],[41,19],[42,21],[40,21]],400,.3,.1,.2,.19,0.05,'triangle');
+bass = (G,D,i) => {
+  with(new AudioContext)
+  with(G=createGain())
+  for(i in D=[22,,,22,22,22,22,,,22,,,22,,,22,22,22,22,,,22,,,22,,,22,22,22,22,,,22,,,22,,22,22,22,22,,,22])
+  with(createOscillator())
+  if(D[i])
+  connect(G),
+  G.connect(destination),
+  start(i*.17),
+  frequency.setValueAtTime(100*1.06**(13-D[i]),i*.17),type='triangle',
+  gain.setValueAtTime(.1,i*.17),
+  gain.setTargetAtTime(.0001,i*.17+.10,.005),
+  stop(i*.17+.16)
 }
