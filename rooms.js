@@ -11,6 +11,7 @@ fadein = () => { fo.style.opacity = 0; }
 using = -1; // using an inventory item
 usingstr = ""; // using an inventory item (string)
 add_inv = n => {
+  sound(nudge);
   if(!s.inv.includes(n) || n == "gear"){
     s.inv.push(n);
   }
@@ -19,6 +20,7 @@ add_inv = n => {
 }
 
 rem_inv = n => {
+  sound(nudge);
   if(n == "gear"){
     s.inv.splice(using,1);
   }
@@ -398,10 +400,14 @@ room00 = () => {
 // Tear frame
 //s.r00b = 0;// frame tearing attempts
 r00a = () => {
+  sound(nudge);
   frame.style.animation="wiggle .5s";
   setTimeout('frame.style.animation="";',600);
+  console.log(s.r00b);
   if(!s.r00b) s.r00b = 0;
+  console.log(s.r00b);
   s.r00b++;
+  console.log(s.r00b);
   if(s.r00b>=2){
     r001.onclick="";
     C.move({n:"frame",y:140,rx:-80});
@@ -422,6 +428,8 @@ r00c = () => {
 //r00f = 0; // lock/door open
 r00e = () => {
   if(usingstr == "use hanger with "){
+    sound(lock);
+    sound(dooropen);
     C.move({n:"r003",x:-120,y:200,rz:-80});
     C.move({n:"r004",x:-120,y:140,z:-45,ry:120}); // door
     rem_inv("hanger");
@@ -561,6 +569,7 @@ r01d = () => {
     C.move({n:"r012",x:600,y:-130,z:-135});
     use(-1);
     animation = 1;
+    sound(cannonfire);
     setTimeout(anim1,500);
   }
   if(usingstr == "use lit torch with " && !s.r01a && s.r01b){ // in wall
@@ -649,6 +658,7 @@ r03pp = () => {
     C.move({n:"r03p1",x:80,y:-50,z:200});
     setTimeout(room03,510);
     add_inv("sword");
+    sound(sword);
     s.r03pt = 1;
   }
   
@@ -661,24 +671,28 @@ r03pp = () => {
 
 // move
 r03pu = () => {
+  sound(sword);
   C.move({n:"r03p1",rx:-30})
   setTimeout('C.move({n:"r03p1",rx:-50})',510);
   r03pm+="u";
 }
 
 r03pl = () => {
+  sound(sword);
   C.move({n:"r03p1",rz:30})
   setTimeout('C.move({n:"r03p1",rz:55})',510);
   r03pm+="l";
 }
 
 r03pr = () => {
+  sound(sword);
   C.move({n:"r03p1",rz:70})
   setTimeout('C.move({n:"r03p1",rz:55})',510);
   r03pm+="r";
 }
 
 r03pd = () => {
+  sound(sword);
   C.move({n:"r03p1",rx:-70})
   setTimeout('C.move({n:"r03p1",rx:-50})',510);
   r03pm+="d";
@@ -834,6 +848,7 @@ r20pe = () => { // draw
   r20p3.innerHTML = [svgsquare,svgstar,svgtri,svgcircle][r20pm[2]];
   r20p4.innerHTML = [svgsquare,svgstar,svgtri,svgcircle][r20pm[3]];
   if(r20pm.join("") == "3201"){
+    sound(lock);
     s.r20pf = 1;
     setTimeout(fadeout, 600);
     setTimeout(room20, 1100);
@@ -892,6 +907,7 @@ r21f = () => { // fire
     C.plane({x:-70,y:125,z:20,w:30,h:30,html:"🔥",css:"fire"});
     C.plane({x:-10,y:105,z:20,w:30,h:30,html:"🔥",css:"fire"});
     s.r21g = 1;
+    sound(burn);
   },2000);
   setTimeout(fadeout, 5000);
   setTimeout(room21, 6500);
@@ -1017,6 +1033,7 @@ room23 = () => {
 r23b = () => {
   if(usingstr == "use gear with " && !s.r23a){
     rem_inv("gear");
+    sound(sword);
     use(-1);
     C.plane({x:155-5+15,y:-10+30,html:"⚙️",css:"gear",n:"g1",o:"25px -1px"});
     s.r23a = 1;
@@ -1029,6 +1046,7 @@ r23b = () => {
 r23d = () => {
   if(usingstr == "use gear with " && !s.r23c){
     rem_inv("gear");
+    sound(sword);
     use(-1);
     C.plane({x:120-4+15,y:-40+30,html:"⚙️",css:"gear",n:"g2",o:"25px -1px"});
     s.r23c = 1;
@@ -1041,6 +1059,7 @@ r23d = () => {
 r23f = () => {
   if(usingstr == "use gear with " && !s.r23e){
     rem_inv("gear");
+    sound(sword);
     use(-1);
     C.plane({x:155-5+15,y:-70+30,html:"⚙️",css:"gear",n:"g3",o:"25px -1px"});
     s.r23e = 1;
@@ -1053,6 +1072,7 @@ r23f = () => {
 r23h = () => {
   if(usingstr == "use sword with " && !s.r23g){
     rem_inv("sword");
+    sound(sword);
     use(-1);
     C.plane({x:157+15,y:75,z:-63,html:"🗡️",css:"sword",ry:295,cl:"r23j",n:"r239"});
     s.r23g = 1;
@@ -1068,6 +1088,7 @@ r23j = () => {
     note.className = "";
   }
   else {
+      sound(sword);
       C.move({n:"r239",x:182,y:64,rx:-82,ry:270,rz:-25});
       C.move({n:"g1",rz:-45});
       C.move({n:"g2",rz:45});
@@ -1085,6 +1106,7 @@ r23j = () => {
 //r23k = 0;
 r23l = () => {
   if(usingstr == "use key with "){
+    sound(dooropen);
     rem_inv("key");
     use(-1);
     r233.remove();
@@ -1107,7 +1129,7 @@ room23c = () => {
   C.plane({g:"db",x:14,y:-465,z:0,w:20,h:1000,b:"#222",rx:250,o:"bottom center"});
   C.plane({g:"db",x:470,y:-465,z:0,w:20,h:1000,b:"#222",rx:250,o:"bottom center"});
   
-  setTimeout("inventory.style.opacity=0;mute.style.opacity=0;C.move({n:'db',rx:90});scene.style.transition='10s all'",1500);
+  setTimeout("inventory.style.opacity=0;mute.style.opacity=0;C.move({n:'db',rx:90});scene.style.transition='10s all;sound(downbridge)'",1500);
   setTimeout("scene.style.transform='translateZ(1200px)rotateX(15deg)'",5500);
   setTimeout(()=>{
     note.style.left = "175px"
@@ -1166,6 +1188,7 @@ r32d = () => {
 // Lit torch / heat soup
 r32e = () => {
   if(usingstr == "use torch with "){
+    sound(miniburn);
     s.inv[using] = "lit torch";
     use(-1);
     draw_inv();
@@ -1173,6 +1196,7 @@ r32e = () => {
   else if(usingstr == "use soup with "){
     animation = 1;
     rem_inv("soup");
+    sound(burn);
     use(-1);
     C.plane({x:130,y:150,z:30,html:"🍲",css:"soup",n:"r323",cl:"r32g"});
     C.plane({x:130,y:150,z:31,html:"🍲",css:"hot soup o0",on:"hot soup",n:"r324",cl:"r32g"});
@@ -1321,6 +1345,7 @@ r40a = () => {
   if(usingstr == "use wand with " || s.r40b){
     s.r40b = 1;
     rem_inv("wand");
+    sound(wand);
     note.innerHTML = "You can now turn the wheel of time! You can choose the sun and moon's position in the sky..."
     note.className = "";
     C.plane({x:190,y:160,w:60,h:100,html:"🪄",css:"wand"});
@@ -1631,6 +1656,8 @@ r42pe = () => { // draw
   r42p3.style.background = ["#000","#0F0","#F00","#00F","#FE2"][r42pm[2]];
   r42p4.style.background = ["#000","#0F0","#F00","#00F","#FE2"][r42pm[3]];
   if(r42pm.join("") == "0241"){
+    sound(lock);
+    sound(dooropen);
     s.r42pf = 1;
     animation = 1;
     setTimeout(fadeout, 600);
@@ -1712,6 +1739,7 @@ r43pr = () => {
   r43pm += "r";
   C.move({n:"r43p1",rz:r43pa});
   if(r43pm.endsWith("lrrrrlr")){
+    sound(lock);
     fadeout();
     s.r43c = 1;
     setTimeout("room43();fadein()",500);
