@@ -1,4 +1,4 @@
-svgwindow="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M5 95A35 75 0 0 1 75 95Z' fill='#def' stroke='#555' stroke-width='4'/><path d='M75 95A35 77 0 0 0 33 21A40 89 0 0 1 65 94Z' fill='#777' stroke='#555' stroke-width='4'/></svg>️";
+/*svgwindow="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M5 95A35 75 0 0 1 75 95Z' fill='#def' stroke='#555' stroke-width='4'/><path d='M75 95A35 77 0 0 0 33 21A40 89 0 0 1 65 94Z' fill='#777' stroke='#555' stroke-width='4'/></svg>️";
 
 svgwindownight="<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><path d='M5 95A35 75 0 0 1 75 95Z' fill='#002' stroke='#555' stroke-width='4'/><path d='M75 95A35 77 0 0 0 33 21A40 89 0 0 1 65 94Z' fill='#777' stroke='#555' stroke-width='4'/></svg>️";
 
@@ -53,3 +53,4 @@ svgaxis = "<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><circle cx
 svglever = "<svg width=99 height=99 xmlns='http://www.w3.org/2000/svg'><rect x=30 y=0 width=40 height=60 fill='#888' stroke='#000'/><rect x=45 y=10 width=10 height=40 fill='#222'/></svg>"
 
 svgoutside = "<svg width=999 height=999 xmlns='http://www.w3.org/2000/svg'><path d='M50 950A110 150 0 0 1 950 950Z' fill='#4a3' stroke='#444' stroke-width='10'/><path d='M80 950L200 850L800 850L920 950' fill='#444' stroke-width='10'/><path d='M200 850L200 500C350 310 610 260 800 500L800 850Z' fill='#a73' stroke='#444' stroke-width='5'/></svg>"
+*/

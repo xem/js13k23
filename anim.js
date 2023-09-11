@@ -1,4 +1,4 @@
-animation = 0;
+/*animation = 0;
 
 // Cannon
 anim1 = () => {
@@ -86,7 +86,7 @@ book02 = (i,j) => {
   bookcover.innerHTML = "Map of the castle"
   bookcover.style.background = `hsl(${(i*5+j*15)*20} 50% ${63}%)`
   book.innerHTML += "<br><br><br><br><br><br><br>Thou are here";
-  C.plane({g:"book",html:svgplan,x:40,y:-200,sx:1.5,sy:1.5,css:"plan"});
+  C.p({g:"book",html:svgplan,x:40,y:-200,sx:1.5,sy:1.5,css:"plan"});
   bookcover.className = "";
 }
 
@@ -96,7 +96,7 @@ book13 = (i,j) => {
   bookcover.innerHTML = "The gears of power"
   bookcover.style.background = `hsl(${(i*5+j*15)*20} 50% ${63}%)`
   book.innerHTML = `I guess they look like this:`
-  if(!s.b13b) C.plane({g:"book",html:"⚙️",x:10,y:100,css:"gear",cl:"b13a"});
+  if(!s.b13b) C.p({g:"book",html:"⚙️",x:10,y:100,css:"gear",cl:"b13a"});
   bookcover.className = "";
 }
 
@@ -120,23 +120,23 @@ book23 = (i,j) => {
   sound(paper);
   bookcover.innerHTML = "How to turn your dragon"
   bookcover.style.background = `hsl(${(i*5+j*15)*20} 50% ${63}%)`
-  C.plane({g:"book",w:50,h:50,html:"🐉️",x:50,y:30+30-5,css:"dragon",o:"20px 20px"});
-  C.plane({g:"book",w:50,h:50,html:"🐉️",x:70,y:30+70-8,rz:-90,css:"dragon",o:"20px 20px"});
-  C.plane({g:"book",w:50,h:50,html:"🐉️",x:50,y:30+30+110-11,rz:0,css:"dragon",o:"20px 20px"});
-  C.plane({g:"book",w:50,h:50,html:"🐉️",x:30,y:30+30+150-14,rz:90,css:"dragon",o:"20px 20px"});
-  C.plane({g:"book",w:50,h:50,html:"🐉️",x:50,y:30+30+190-17,rz:180,css:"dragon",o:"20px 20px"});
-  C.plane({g:"book",w:50,h:50,html:"🐉️",x:70,y:30+30+60+230-23,rz:270,css:"dragon",o:"20px 20px"});
-  C.plane({g:"book",w:50,h:50,html:"🐉️",x:50,y:30+30+60+270-26,rz:180,css:"dragon",o:"20px 20px"});
-  C.plane({g:"book",w:50,h:50,html:"🐉️",x:70,y:30+30+60+350-29,rz:270,css:"dragon",o:"20px 20px"});
+  C.p({g:"book",w:50,h:50,html:"🐉️",x:50,y:30+30-5,css:"dragon",o:"20px 20px"});
+  C.p({g:"book",w:50,h:50,html:"🐉️",x:70,y:30+70-8,rz:-90,css:"dragon",o:"20px 20px"});
+  C.p({g:"book",w:50,h:50,html:"🐉️",x:50,y:30+30+110-11,rz:0,css:"dragon",o:"20px 20px"});
+  C.p({g:"book",w:50,h:50,html:"🐉️",x:30,y:30+30+150-14,rz:90,css:"dragon",o:"20px 20px"});
+  C.p({g:"book",w:50,h:50,html:"🐉️",x:50,y:30+30+190-17,rz:180,css:"dragon",o:"20px 20px"});
+  C.p({g:"book",w:50,h:50,html:"🐉️",x:70,y:30+30+60+230-23,rz:270,css:"dragon",o:"20px 20px"});
+  C.p({g:"book",w:50,h:50,html:"🐉️",x:50,y:30+30+60+270-26,rz:180,css:"dragon",o:"20px 20px"});
+  C.p({g:"book",w:50,h:50,html:"🐉️",x:70,y:30+30+60+350-29,rz:270,css:"dragon",o:"20px 20px"});
   bookcover.className = "";
 }
 
 title = () => {
-  C.plane({w:1100,x:100,y:-100-1050,html:"<h1>CASTLE &nbsp;  &nbsp; ESCAPE"});
-  C.plane({w:1100,x:100,y:30-1050,html:"<h2>New game",cl:"ng"});
+  C.p({w:1100,x:100,y:-100-1050,html:"<h1>CASTLE &nbsp;  &nbsp; ESCAPE"});
+  C.p({w:1100,x:100,y:30-1050,html:"<h2>New game",cl:"ng"});
   if(localStorage.castleescape) { 
-    C.plane({w:1100,x:100,y:85-1050,html:"<h2>Continue",cl:"cg"});
-    C.plane({w:1100,x:100,y:140-1050,html:"<h2>Bonus",cl:"bs"});
+    C.p({w:1100,x:100,y:85-1050,html:"<h2>Continue",cl:"cg"});
+    C.p({w:1100,x:100,y:140-1050,html:"<h2>Bonus",cl:"bs"});
     }
   setTimeout('scene.style.transition="2s all";scene.style.transform="translateY(1000px)translateZ(0)"',500);
 }
@@ -323,4 +323,4 @@ sound = (f,sam=96e3,i,m,b,s) => {
   s.buffer=m
   s.connect(A.destination)
   s.start()
-}
+}*/

@@ -1,5 +1,5 @@
-// clicks
-onclick = () => { if(self.s){s.clicks++;} };
+/*// clicks
+onclick = () => { if(self.s)s.clicks++ };
 
 // save
 save = () => { localStorage.castleescape = JSON.stringify(s) }
@@ -35,54 +35,23 @@ rem_inv = n => {
 draw_inv = () => {
   for(i = 0; i < 12; i++){
     self["i"+i].innerHTML = "";
+    
+    
     if(s.inv[i] == "hanger"){
-      C.plane({g:"i"+i,x:10,y:20,html:svghanger,css:"hanger",on:"",sx:2,sy:2});
+      C.p({g:"i"+i,x:10,y:20,html:svghanger,css:"hanger",on:"",sx:2,sy:2});
     }
     else if(s.inv[i] == "telescope"){
-      C.plane({g:"i"+i,x:20,y:35,html:"🔭",css:"telescope",on:""});
+      C.p({g:"i"+i,x:20,y:35,html:"🔭",css:"telescope",on:""});
     }
     else if(s.inv[i] == "torch"){
-      C.plane({g:"i"+i,x:40,y:15,w:40,h:30,html:svgtorch,css:"torch",on:""});
+      C.p({g:"i"+i,x:40,y:15,w:40,h:30,html:svgtorch,css:"torch",on:""});
     }
     else if(s.inv[i] == "lit torch"){
-      C.plane({g:"i"+i,x:40,y:15,w:40,h:30,html:svgtorch,css:"lit torch",on:""});
-      C.plane({g:"i"+i,x:50,y:25,z:2,w:30,h:30,html:"🔥",css:"fire",on:"",sx:.5,sy:.5});
+      C.p({g:"i"+i,x:40,y:15,w:40,h:30,html:svgtorch,css:"lit torch",on:""});
+      C.p({g:"i"+i,x:50,y:25,z:2,w:30,h:30,html:"🔥",css:"fire",on:"",sx:.5,sy:.5});
     }
-    else if(s.inv[i] == "hammer"){
-      C.plane({g:"i"+i,x:40,y:45,w:40,h:30,html:"🔨",css:"hammer",on:""});
-    }
-    else if(s.inv[i] == "wood"){
-      C.plane({g:"i"+i,x:40,y:45,w:40,h:30,html:"🪵",css:"wood",on:""});
-    }
-    else if(s.inv[i] == "cannonball"){
-      C.plane({g:"i"+i,x:40,y:45,w:40,h:30,html:"⬤",css:"cannonball",on:""});
-    }
-    else if(s.inv[i] == "mouse"){
-      C.plane({g:"i"+i,x:40,y:45,w:40,h:30,html:"🐁",css:"mouse",on:""});
-    }
-    else if(s.inv[i] == "soup"){
-      C.plane({g:"i"+i,x:40,y:45,w:40,h:30,html:"🍲",css:"soup",on:""});
-    }
-    else if(s.inv[i] == "hot soup"){
-      C.plane({g:"i"+i,x:40,y:45,w:40,h:30,html:"🍲",css:"hot soup",on:""});
-    }
-    else if(s.inv[i] == "crown"){
-      C.plane({g:"i"+i,x:40,y:45,w:40,h:30,html:"👑",css:"crown",on:""});
-    }
-    else if(s.inv[i] == "gear"){
-      C.plane({g:"i"+i,x:40,y:50,w:40,h:30,html:"⚙️",css:"gear",on:""});
-    }
-    else if(s.inv[i] == "cheese"){
-      C.plane({g:"i"+i,x:40,y:45,w:40,h:30,html:"🧀",css:"cheese",on:""});
-    }
-    else if(s.inv[i] == "wand"){
-      C.plane({g:"i"+i,x:40,y:45,w:40,h:30,html:"🪄",css:"wand",on:""});
-    }
-    else if(s.inv[i] == "sword"){
-      C.plane({g:"i"+i,x:40,y:45,w:40,h:30,html:"🗡️",css:"sword",on:""});
-    }
-    else if(s.inv[i] == "key"){
-      C.plane({g:"i"+i,x:40,y:45,w:40,h:30,html:"🔑",css:"key",on:""});
+    else //if(s.inv[i] == hammer to key){
+      C.p({g:"i"+i,x:40,y:45,w:40,h:30,html:{hammer:"🔨",wood:"🪵",cannonball:"⬤",mouse:"🐁",soup:"🍲","hot soup":"🍲",crown:"👑",gear:"⚙️",cheese:"🧀",wand:"🪄",sword:"🗡️",key:"🔑"}[s.inv[i]],css:s.inv[i],on:""});
     }
   }
 }
@@ -129,27 +98,27 @@ txt = (s = [""]) => {
 
 // Left window
 windowleft = (bars,tower) => {
-  C.plane({x:-280,y:-95+92,z:-50,w:100,h:100,html:(s.r40c > 60 && s.r40c < 300) ? svgwindownight : svgwindow,css:"window",ry:tower?10:0});
-  if(bars) C.plane({x:-300-25,y:-95+42,z:-40,html:svgbars,css:"bars",on:""});
+  C.p({x:-280,y:-95+92,z:-50,w:100,h:100,html:(s.r40c > 60 && s.r40c < 300) ? svgwindownight : svgwindow,css:"window",ry:tower?10:0});
+  if(bars) C.p({x:-300-25,y:-95+42,z:-40,html:svgbars,css:"bars",on:""});
 }
 
 windowright = (bars,tower,cl='') => {
-  C.plane({x:300-70,y:-95+92,z:-50,w:100,h:100,html:(s.r40c > 60 && s.r40c < 300) ? svgwindownight : svgwindow,css:"window",sx:-1,ry:tower?-10:0,cl});
-  if(bars) C.plane({x:278,y:-55,z:-40,html:svgbars,css:"bars",on:"",sx:-1});
+  C.p({x:300-70,y:-95+92,z:-50,w:100,h:100,html:(s.r40c > 60 && s.r40c < 300) ? svgwindownight : svgwindow,css:"window",sx:-1,ry:tower?-10:0,cl});
+  if(bars) C.p({x:278,y:-55,z:-40,html:svgbars,css:"bars",on:"",sx:-1});
 }
 
 draw_sky = (leftwindow,rightwindow,hay) => {
   
   // r40d = sky angle
   // r40c = sky angle 0-360 (300 = sun left, 60 = sun right)
-  C.group({n:"skygroup",x:0,y:200,rz:s.r40d});
-  C.plane({g:"skygroup",x:0,y:-600,z:-100,w:400,h:400,b:"radial-gradient(#ffb 5%,#fff0 50%)",css:"sun"});
-  C.plane({g:"skygroup",x:0,y:600,z:-100,w:100,h:100,html:"🌘",css:"moon",n:"moon"});
+  C.g({n:"skygroup",x:0,y:200,rz:s.r40d});
+  C.p({g:"skygroup",x:0,y:-600,z:-100,w:400,h:400,b:"radial-gradient(#ffb 5%,#fff0 50%)",css:"sun"});
+  C.p({g:"skygroup",x:0,y:600,z:-100,w:100,h:100,html:"🌘",css:"moon",n:"moon"});
   update_sky();
   
   if(leftwindow && s.r40c == 300){
     
-    C.plane({x:0,y:0,z:0,w:700,h:500,b:"#f000",css:"sunwrapper",html:"<canvas id=sun width=700 height=500>"});
+    C.p({x:0,y:0,z:0,w:700,h:500,b:"#f000",css:"sunwrapper",html:"<canvas id=sun width=700 height=500>"});
     ctx=sun.getContext("2d");
     ctx.fillStyle = "#ffb3";
     ctx.beginPath();
@@ -162,7 +131,7 @@ draw_sky = (leftwindow,rightwindow,hay) => {
   }
   else if(hay && rightwindow && s.r40c == 60 && s.r21b && !s.r21g){
     
-    C.plane({x:0,y:0,z:10,w:700,h:500,b:"#f000",css:"sunwrapper",html:"<canvas id=sun width=700 height=500>"});
+    C.p({x:0,y:0,z:10,w:700,h:500,b:"#f000",css:"sunwrapper",html:"<canvas id=sun width=700 height=500>"});
     ctx=sun.getContext("2d");
     ctx.fillStyle = "#ffb3";
     ctx.beginPath();
@@ -183,7 +152,7 @@ draw_sky = (leftwindow,rightwindow,hay) => {
   }
   else if(rightwindow && s.r40c == 60){
     
-    C.plane({x:0,y:0,z:0,w:700,h:500,b:"#f000",css:"sunwrapper",html:"<canvas id=sun width=700 height=500>"});
+    C.p({x:0,y:0,z:0,w:700,h:500,b:"#f000",css:"sunwrapper",html:"<canvas id=sun width=700 height=500>"});
     ctx=sun.getContext("2d");
     ctx.fillStyle = "#ffb3";
     ctx.beginPath();
@@ -198,16 +167,16 @@ draw_sky = (leftwindow,rightwindow,hay) => {
 
 wallside = (left,offset,skytop,kitchen,i,j,dx) => {
   if(kitchen){
-    C.group({n:"wall", x:left?-427:offset?370:320,y:-65+(skytop?110:0),z:left?-88:-40,ry:left ? 65 : 120,cl:"r33i",css:"wall"});
+    C.g({n:"wall", x:left?-427:offset?370:320,y:-65+(skytop?110:0),z:left?-88:-40,ry:left ? 65 : 120,cl:"r33i",css:"wall"});
   }
   else {
-    C.group({n:"wall", x:left?-427:offset?370:320,y:-65+(skytop?110:0),z:left?-88:-40,ry:left ? 65 : 120});
+    C.g({n:"wall", x:left?-427:offset?370:320,y:-65+(skytop?110:0),z:left?-88:-40,ry:left ? 65 : 120});
   }
   for(i = 0; i < 3; i++){
     for(j = 11; j--;){
       
         dx = (j%2) ? 6:0;
-        C.plane({g:"wall",x:i*12+dx,y:j*50-200,z:50,w:102,h:52,b:`hsl(50 0% ${50-i*5}%)`,css:"brick"});
+        C.p({g:"wall",x:i*12+dx,y:j*50-200,z:50,w:102,h:52,b:`hsl(50 0% ${50-i*5}%)`,css:"brick"});
     }
   }
 }
@@ -234,7 +203,7 @@ tower = (top,i,j,x,y,z,w,dx,ry) => {
         x = i*98 - 300 - dx + Math.random()+(i>4?2:0);
         ry = -(x+10)/22;
         z = -(Math.cos(x/320) * 90);
-        C.plane({x,y:j*48-300 + Math.random(),w,h:50,b:`hsl(50 0% ${30-z/3}%)`,ry,z,css:"brick"});
+        C.p({x,y:j*48-300 + Math.random(),w,h:50,b:`hsl(50 0% ${30-z/3}%)`,ry,z,css:"brick"});
       
         // front
         if(j>(top ? 3 : 2) && j < 11){
@@ -245,7 +214,7 @@ tower = (top,i,j,x,y,z,w,dx,ry) => {
             x = i*98 - 300 - 36 + Math.random()*4+ ((j%2) ? 5 : 0);
             ry = (x+10)/22;
             z = (Math.cos(x/300) * 90)-50;
-            C.plane({x,y:j*51-302 + Math.random()-8,w,h:52,b:`hsl(50 0% 70%)`,ry,z,css:"brick"});
+            C.p({x,y:j*51-302 + Math.random()-8,w,h:52,b:`hsl(50 0% 70%)`,ry,z,css:"brick"});
           }
           
           // right
@@ -254,7 +223,7 @@ tower = (top,i,j,x,y,z,w,dx,ry) => {
             x = i*98 - 300 - 65 + Math.random()*4 + ((j%2) ? -5 : 100);
             ry = (x+10)/22;
             z = (Math.cos(x/300) * 90)-50;
-            C.plane({x,y:j*51-302 + Math.random()-8,w,h:52,b:`hsl(50 0% 70%)`,ry,z,css:"brick"});
+            C.p({x,y:j*51-302 + Math.random()-8,w,h:52,b:`hsl(50 0% 70%)`,ry,z,css:"brick"});
           }
         }
         
@@ -271,7 +240,7 @@ tower = (top,i,j,x,y,z,w,dx,ry) => {
           x = i*98 - 300 - dx + Math.random();
           ry = (x+10)/22;
           z = (Math.cos(x/300) * 90)-45;
-          C.plane({x,y:j*50-300 + Math.random()-5,w,h:52,b:`hsl(50 0% ${70+z/4}%)`,ry,z,css:"brick"});
+          C.p({x,y:j*50-300 + Math.random()-5,w,h:52,b:`hsl(50 0% ${70+z/4}%)`,ry,z,css:"brick"});
         }
       }
     }
@@ -303,7 +272,7 @@ room = (skyleft, skyright, skytop, tower,half,i,j,x,y,z,w,dx,ry,no) => {
         x = i*98 - 300 - dx + Math.random();
         ry = (x+10)/22;
         z = (Math.cos(x/300) * 90)-145;
-        if(!no)C.plane({x,y:j*50-300 + Math.random()-5,w,h:52,b:`hsl(50 0% ${90+z/3}%)`,ry,z,css:"brick"});
+        if(!no)C.p({x,y:j*50-300 + Math.random()-5,w,h:52,b:`hsl(50 0% ${90+z/3}%)`,ry,z,css:"brick"});
       }
       
       // Back & front
@@ -333,7 +302,7 @@ room = (skyleft, skyright, skytop, tower,half,i,j,x,y,z,w,dx,ry,no) => {
         
         // Back
         if(j>(skytop ? 2 : 0)){
-          C.plane({x:x-dx,y:j*48-300 + Math.random(),w,h:50,b:`hsl(50 0% ${43}%)`,z,css:"brick"});
+          C.p({x:x-dx,y:j*48-300 + Math.random(),w,h:50,b:`hsl(50 0% ${43}%)`,z,css:"brick"});
         }
         
         // front
@@ -341,8 +310,8 @@ room = (skyleft, skyright, skytop, tower,half,i,j,x,y,z,w,dx,ry,no) => {
           if(j>(skytop ? 3 : 1) && j < 12 && !(j%2) && i == 1 && !skyleft) continue;
           if(j>(skytop ? 4 : 2) && j < 12 && (j%2) && i == 9) continue;
           if(s.r33h && half && j > 1 && j < 12 && i > 8) { continue; }
-          if(!s.r33h && half && j > 1 && j < 12 && (j%2) && i ==10) C.plane({x:x-dx+25,y:j*48-300 + Math.random(),w:50,h:50,b:`hsl(50 0% ${63}%)`,z:-20,css:"brick"});
-          else C.plane({x:x-dx,y:j*48-300 + Math.random(),w,h:50,b:`hsl(50 0% ${63}%)`,z:-20,css:"brick"});
+          if(!s.r33h && half && j > 1 && j < 12 && (j%2) && i ==10) C.p({x:x-dx+25,y:j*48-300 + Math.random(),w:50,h:50,b:`hsl(50 0% ${63}%)`,z:-20,css:"brick"});
+          else C.p({x:x-dx,y:j*48-300 + Math.random(),w,h:50,b:`hsl(50 0% ${63}%)`,z:-20,css:"brick"});
         }
       }
       
@@ -353,7 +322,7 @@ room = (skyleft, skyright, skytop, tower,half,i,j,x,y,z,w,dx,ry,no) => {
 
 // Mountains bg
 mount = () => {
-  C.plane({x:0,y:450,z:-600,w:3500,h:800,b:"radial-gradient(#582,#9c6)",css:"mount",on:""});
+  C.p({x:0,y:450,z:-600,w:3500,h:800,b:"radial-gradient(#582,#9c6)",css:"mount",on:""});
 }
 
 // ===========================================================================
@@ -361,38 +330,38 @@ mount = () => {
 room00 = () => {
   setTimeout('scene.className="t"',200);
   tower(1)
-  C.plane({x:-5,y:-130,z:-20,w:690,h:70,b:"linear-gradient(#333,#555)",rx:105,css:"c"});
-  C.plane({x:-5,y:225,z:-30,w:690,h:70,b:"linear-gradient(#333,#555)",rx:60,css:"c"});
+  C.p({x:-5,y:-130,z:-20,w:690,h:70,b:"linear-gradient(#333,#555)",rx:105,css:"c"});
+  C.p({x:-5,y:225,z:-30,w:690,h:70,b:"linear-gradient(#333,#555)",rx:60,css:"c"});
   
-  C.plane({x:-95,y:135,z:-80,html:svgdoor,w:60,h:100,css:"door",sx:1.8,sy:1.8,ry:5});
-  C.plane({x:-100,y:80,z:-40,html:"⬇️",css:"arrow",on:"down",cl:"room01",ry:5,sx:1.2,sy:1.2});
+  C.p({x:-95,y:135,z:-80,html:svgdoor,w:60,h:100,css:"door",sx:1.8,sy:1.8,ry:5});
+  C.p({x:-100,y:80,z:-40,html:"⬇️",css:"arrow",on:"down",cl:"room01",ry:5,sx:1.2,sy:1.2});
   
-  if(!s.r00d)C.plane({x:145,y:-40,w:20,h:15,html:svghanger,css:"hanger",n:"r002",cl:"r00c"});
+  if(!s.r00d)C.p({x:145,y:-40,w:20,h:15,html:svghanger,css:"hanger",n:"r002",cl:"r00c"});
   
   if(!s.r00f){
-    C.plane({x:-105,y:120,z:20,html:"🔒",css:"lock",rz:-2,cl:"r00e",n:"r003"});
-    C.plane({x:-147,y:125,z:-35,html:"🚪",css:"door",ry:5,sx:1.1,sy:1.1,n:"r004",o:"100px 100px"});
+    C.p({x:-105,y:120,z:20,html:"🔒",css:"lock",rz:-2,cl:"r00e",n:"r003"});
+    C.p({x:-147,y:125,z:-35,html:"🚪",css:"door",ry:5,sx:1.1,sy:1.1,n:"r004",o:"100px 100px"});
   }
   else {
-    C.plane({x:-105,y:120,z:20,html:"🔒",css:"lock",rz:-2,cl:"r00e",n:"r003",x:-120,y:200,rz:-80});
-    C.plane({x:-120,y:140,html:"🚪",css:"door",ry:5,z:-45,n:"r004",o:"100px 100px",ry:120,sx:1.1,sy:1.1});
+    C.p({x:-105,y:120,z:20,html:"🔒",css:"lock",rz:-2,cl:"r00e",n:"r003",x:-120,y:200,rz:-80});
+    C.p({x:-120,y:140,html:"🚪",css:"door",ry:5,z:-45,n:"r004",o:"100px 100px",ry:120,sx:1.1,sy:1.1});
   }
   
-  if(s.r00b>=1){C.group({x:120-15,y:-10,z:10,n:"frame",y:140,rx:-80});}
-  else{C.group({x:120-15,y:-10,z:10,n:"frame"});}
+  if(s.r00b>=1){C.g({x:120-15,y:-10,z:10,n:"frame",y:140,rx:-80});}
+  else{C.g({x:120-15,y:-10,z:10,n:"frame"});}
 
 
-  C.plane({x:0,y:-10-15,html:"🖼️",css:"frame",rz:2,cl:"r00a",n:"r001",g:"frame"});
-  C.plane({x:40,y:32-47,html:"️🧔🏻‍♂️",css:"framehead nofont",on:"",rz:2,g:"frame"});
-  C.plane({x:45,y:14-40,html:"👑️",css:"framecrown",on:"",rz:2,sy:.5,g:"frame"});
-  C.plane({x:260-15,y:120,html:"🛏️",css:"bed",sx:-1});
-  C.plane({x:-250-15,y:208-15,z:-50,html:"🕳️",css:"hole",rz:90,ry:10,sy:2,cl:"r00h"});
-  if(s.r00k) { C.plane({x:-205,y:175,z:50,html:"🧀",css:"cheese",sx:-1,cl:"r00l",n:"r006"}); }
+  C.p({x:0,y:-10-15,html:"🖼️",css:"frame",rz:2,cl:"r00a",n:"r001",g:"frame"});
+  C.p({x:40,y:32-47,html:"️🧔🏻‍♂️",css:"framehead nofont",on:"",rz:2,g:"frame"});
+  C.p({x:45,y:14-40,html:"👑️",css:"framecrown",on:"",rz:2,sy:.5,g:"frame"});
+  C.p({x:260-15,y:120,html:"🛏️",css:"bed",sx:-1});
+  C.p({x:-250-15,y:208-15,z:-50,html:"🕳️",css:"hole",rz:90,ry:10,sy:2,cl:"r00h"});
+  if(s.r00k) { C.p({x:-205,y:175,z:50,html:"🧀",css:"cheese",sx:-1,cl:"r00l",n:"r006"}); }
     
-  if(s.r00m) { C.plane({x:-180,y:175,z:50,html:"🐁",css:"mouse",cl:"r00n",n:"r005",sx:-.4,sy:.4}); }
+  if(s.r00m) { C.p({x:-180,y:175,z:50,html:"🐁",css:"mouse",cl:"r00n",n:"r005",sx:-.4,sy:.4}); }
   
-  if(!s.r00i) { C.plane({x:-340,y:410,z:-100,html:"⚙️",css:"gear",cl:"r00j",n:"r007"}); }
-  else if(s.r00i == 1) { C.plane({x:-165,y:175,z:50,html:"⚙️",css:"gear",cl:"r00j",n:"r007"}); }
+  if(!s.r00i) { C.p({x:-340,y:410,z:-100,html:"⚙️",css:"gear",cl:"r00j",n:"r007"}); }
+  else if(s.r00i == 1) { C.p({x:-165,y:175,z:50,html:"⚙️",css:"gear",cl:"r00j",n:"r007"}); }
   windowleft(1,1);
   draw_sky(1,0);
 }
@@ -442,7 +411,7 @@ r00e = () => {
 r00h = () => {
   if(usingstr == "use mouse with " && (!s.r00i || s.r00i < 2)){
     s.r00m = 1;
-    C.plane({x:-180,y:175,z:50,html:"🐁",css:"mouse",cl:"r00n",n:"r005",sx:.4,sy:.4});
+    C.p({x:-180,y:175,z:50,html:"🐁",css:"mouse",cl:"r00n",n:"r005",sx:.4,sy:.4});
     C.move({n:"r007",y:210});
     use(-1);
     rem_inv("mouse");
@@ -457,7 +426,7 @@ r00h = () => {
   }
   else if(usingstr == "use cheese with ") {
     s.r00k = 1;
-    C.plane({x:-205,y:175,z:50,html:"🧀",css:"cheese",sx:-1,cl:"r00l",n:"r006"});
+    C.p({x:-205,y:175,z:50,html:"🧀",css:"cheese",sx:-1,cl:"r00l",n:"r006"});
     use(-1);
     rem_inv("cheese");
     setTimeout(()=>{
@@ -511,25 +480,25 @@ r00n = () => {
 // Room 0-1: cannon (ok)
 room01 = () => {
   tower(0)
-  C.plane({x:-5,y:-190,z:-20,w:690,h:70,b:"linear-gradient(#333,#555)",rx:105,css:"c"});
-  C.plane({x:-5,y:225,z:-30,w:690,h:70,b:"linear-gradient(#333,#555)",rx:60,css:"c"});
-  C.plane({x:10,y:-50,html:"🛡️",css:"shield",rz:2});
-  C.plane({x:35,y:-85,html:svgtri,css:"shape",on:"shield",rz:2,sx:.5,sy:.5});
-  C.plane({x:-160,y:198,w:1000,h:2000,html:svgdoorstair,ry:9,sx:.16,sy:.16});
+  C.p({x:-5,y:-190,z:-20,w:690,h:70,b:"linear-gradient(#333,#555)",rx:105,css:"c"});
+  C.p({x:-5,y:225,z:-30,w:690,h:70,b:"linear-gradient(#333,#555)",rx:60,css:"c"});
+  C.p({x:10,y:-50,html:"🛡️",css:"shield",rz:2});
+  C.p({x:35,y:-85,html:svgtri,css:"shape",on:"shield",rz:2,sx:.5,sy:.5});
+  C.p({x:-160,y:198,w:1000,h:2000,html:svgdoorstair,ry:9,sx:.16,sy:.16});
   if(s.r01a){
-    C.plane({x:0,y:170,html:"🪵",css:"wood",z:-5});
-      C.plane({x:355,y:-7,z:0,w:900,h:500,html:svgcannon,css:s.r01b ? "loaded cannon" : "cannon",sx:.27,sy:.27,o:"bottom left",cl:"r01d",n:"r011",rz:-25});
+    C.p({x:0,y:170,html:"🪵",css:"wood",z:-5});
+      C.p({x:355,y:-7,z:0,w:900,h:500,html:svgcannon,css:s.r01b ? "loaded cannon" : "cannon",sx:.27,sy:.27,o:"bottom left",cl:"r01d",n:"r011",rz:-25});
   }
   else {
-    C.plane({x:348,y:-10,z:0,w:900,h:500,html:svgcannon,css:s.r01b ? "loaded cannon" : "cannon",sx:.27,sy:.27,o:"bottom left",cl:"r01d",n:"r011"});
+    C.p({x:348,y:-10,z:0,w:900,h:500,html:svgcannon,css:s.r01b ? "loaded cannon" : "cannon",sx:.27,sy:.27,o:"bottom left",cl:"r01d",n:"r011"});
   }
-  C.plane({x:-165,y:65,z:40,html:"⬇️",css:"arrow",on:"down",cl:"room02"});
-  C.plane({x:-207,y:65,z:40,html:"⬆️",css:"arrow",on:"up",cl:"room00"});
+  C.p({x:-165,y:65,z:40,html:"⬇️",css:"arrow",on:"down",cl:"room02"});
+  C.p({x:-207,y:65,z:40,html:"⬆️",css:"arrow",on:"up",cl:"room00"});
   if(s.r01c){
-    C.plane({x:215,y:175,z:-5,html:"⬤",css:"cannonball",n:"r012",cl:"r01e"});
+    C.p({x:215,y:175,z:-5,html:"⬤",css:"cannonball",n:"r012",cl:"r01e"});
   }
   else {
-    C.plane({x:-50,y:s.r01a?125:175,z:-5,html:"⬤",css:"cannonball",n:"r012",cl:"r01e"});
+    C.p({x:-50,y:s.r01a?125:175,z:-5,html:"⬤",css:"cannonball",n:"r012",cl:"r01e"});
   }
   windowright(0,1);
   draw_sky(0,1);
@@ -549,7 +518,7 @@ room01 = () => {
 r01d = () => {
   if(usingstr == "use wood with "){
     s.r01a = 1;
-    C.plane({x:0,y:170,html:"🪵",css:"wood",z:-5});
+    C.p({x:0,y:170,html:"🪵",css:"wood",z:-5});
     C.move({n:"r011",rz:-25,y:-7,x:355});
     rem_inv("wood");
     if(!s.r01c)C.move({n:"r012",y:125});
@@ -589,7 +558,7 @@ r01d = () => {
 r01e = () => {
   add_inv("cannonball");
   r012.remove();
-  C.plane({x:-50,y:s.r01a?125:175,z:-5,html:"⬤",css:"cannonball",n:"r012",cl:"r01e"});
+  C.p({x:-50,y:s.r01a?125:175,z:-5,html:"⬤",css:"cannonball",n:"r012",cl:"r01e"});
   s.r01c = 0;
   save();
 }
@@ -598,13 +567,13 @@ r01e = () => {
 // room 0-2: telescope (ok)
 room02 = () => {
   room(1,0,1,1)
-  C.plane({x:25,y:-120,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
-  C.plane({x:25,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
+  C.p({x:25,y:-120,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
+  C.p({x:25,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
   wallside(1,0,1);
-  if(!s.r02a) C.plane({x:190,y:170,w:30,h:30,html:"🔭",css:"telescope",rz:2,sx:-1,n:"r021",cl:"r02b"});
-  C.plane({x:-50,y:150,w:500,h:1000,z:-20,html:svgdoorstair,sx:.16,sy:.16});
-  C.plane({x:-45,y:95,z:40,html:"⬆️",css:"arrow",on:"up",cl:"room01"});
-  C.plane({x:275,y:95,z:40,html:"➡️",css:"arrow",on:"right",cl:"room12"});
+  if(!s.r02a) C.p({x:190,y:170,w:30,h:30,html:"🔭",css:"telescope",rz:2,sx:-1,n:"r021",cl:"r02b"});
+  C.p({x:-50,y:150,w:500,h:1000,z:-20,html:svgdoorstair,sx:.16,sy:.16});
+  C.p({x:-45,y:95,z:40,html:"⬆️",css:"arrow",on:"up",cl:"room01"});
+  C.p({x:275,y:95,z:40,html:"➡️",css:"arrow",on:"right",cl:"room12"});
   windowleft(0);
   draw_sky(1,0);
 }
@@ -624,12 +593,12 @@ room03 = () => {
   note.className = "h";
   room(1,0,0,0);
   mount();
-  C.plane({x:25,y:-220,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
-  C.plane({x:25,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
-  C.plane({x:-90,y:125,w:30,h:30,html:"💺",css:"throne",sx:-1});
-  C.plane({x:250,y:185,w:30,h:30,html:"🪨",css:"rock",sx:-1});
-  if(!s.r03pt)C.plane({x:210,y:135,z:-5,w:30,h:30,html:"🗡️",css:"sword",sx:-1,rz:40,rx:-30,cl:"room03p"});
-  C.plane({x:275,y:95,z:40,html:"➡️",css:"arrow",on:"right",cl:"room13"});
+  C.p({x:25,y:-220,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
+  C.p({x:25,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
+  C.p({x:-90,y:125,w:30,h:30,html:"💺",css:"throne",sx:-1});
+  C.p({x:250,y:185,w:30,h:30,html:"🪨",css:"rock",sx:-1});
+  if(!s.r03pt)C.p({x:210,y:135,z:-5,w:30,h:30,html:"🗡️",css:"sword",sx:-1,rz:40,rx:-30,cl:"room03p"});
+  C.p({x:275,y:95,z:40,html:"➡️",css:"arrow",on:"right",cl:"room13"});
   wallside(1,0);
   draw_sky(0,0);
 }
@@ -639,14 +608,14 @@ room03p = () => {
   use(-1);
   r03pm = "";
   room(1,0,0,0);
-  C.plane({x:25,y:0,z:50,w:950,h:650,b:"linear-gradient(#333,#555)"});
-  C.plane({x:-170,y:30,z:70,html:"🪨",css:"rock",sx:-1,sx:2,sy:2});
-  C.plane({x:50,y:55,z:50,w:30,h:30,html:"🗡️",css:"sword2",on:"pull sword",sx:-1,rz:54,rx:-50,n:"r03p1",cl:"r03pp"});
-  C.plane({x:-360,y:-180,z:80,html:"❌",css:"cross",on:"exit",cl:"room03"});
-  C.plane({x:-30,y:-180,z:80,html:"⬆️",css:"arrow",on:"up",cl:"r03pu"});
-  C.plane({x:180,y:0,z:80,html:"➡️",css:"arrow",on:"right",cl:"r03pr"});
-  C.plane({x:-230,y:0,z:80,html:"⬅️",css:"arrow",on:"left",cl:"r03pl"});
-  C.plane({x:-30,y:140,z:80,html:"⬇️",css:"arrow",on:"down",cl:"r03pd"});
+  C.p({x:25,y:0,z:50,w:950,h:650,b:"linear-gradient(#333,#555)"});
+  C.p({x:-170,y:30,z:70,html:"🪨",css:"rock",sx:-1,sx:2,sy:2});
+  C.p({x:50,y:55,z:50,w:30,h:30,html:"🗡️",css:"sword2",on:"pull sword",sx:-1,rz:54,rx:-50,n:"r03p1",cl:"r03pp"});
+  C.p({x:-360,y:-180,z:80,html:"❌",css:"cross",on:"exit",cl:"room03"});
+  C.p({x:-30,y:-180,z:80,html:"⬆️",css:"arrow",on:"up",cl:"r03pu"});
+  C.p({x:180,y:0,z:80,html:"➡️",css:"arrow",on:"right",cl:"r03pr"});
+  C.p({x:-230,y:0,z:80,html:"⬅️",css:"arrow",on:"left",cl:"r03pl"});
+  C.p({x:-30,y:140,z:80,html:"⬇️",css:"arrow",on:"down",cl:"r03pd"});
 }
 
 // moves
@@ -706,19 +675,19 @@ r03pd = () => {
 // room 1-2: library (ok)
 room12 = (i,j) => {
   room(0,0,1,0)
-  C.plane({x:-15,y:-120,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
-  C.plane({x:-15,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
-  C.plane({x:-150,y:95,html:"🪜",css:"shelf"});
+  C.p({x:-15,y:-120,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
+  C.p({x:-15,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
+  C.p({x:-150,y:95,html:"🪜",css:"shelf"});
   
   for(i=0;i<3;i++){
     for(j=0;j<4;j++){
-      if(!(j>0&&!((i+j-3)%3))&&!(i==1&&j==0))C.plane({x:i*32-35 + Math.random()*10,y:j*65-30,w:20+Math.random()*2,h:45,b:`hsl(${(i*5+j*15)*20} 50% ${63}%)`,z:20,css:"book",cl:"book"+i+j});
+      if(!(j>0&&!((i+j-3)%3))&&!(i==1&&j==0))C.p({x:i*32-35 + Math.random()*10,y:j*65-30,w:20+Math.random()*2,h:45,b:`hsl(${(i*5+j*15)*20} 50% ${63}%)`,z:20,css:"book",cl:"book"+i+j});
     }
   }
-  C.plane({x:235,y:145,w:50,h:100,html:svgdoor,sx:-1.6,sy:1.6});
-  C.plane({x:275,y:95,z:40,html:"➡️",css:"arrow",on:"right",cl:"room22"});
-  C.plane({x:-325,y:95,z:40,html:"⬅️",css:"arrow",on:"left",cl:"room02"});
-  C.plane({x:195,y:165,z:40,html:"⬇️",css:"arrow",on:"down",cl:"room13"});
+  C.p({x:235,y:145,w:50,h:100,html:svgdoor,sx:-1.6,sy:1.6});
+  C.p({x:275,y:95,z:40,html:"➡️",css:"arrow",on:"right",cl:"room22"});
+  C.p({x:-325,y:95,z:40,html:"⬅️",css:"arrow",on:"left",cl:"room02"});
+  C.p({x:195,y:165,z:40,html:"⬇️",css:"arrow",on:"down",cl:"room13"});
   draw_sky(0,0);
 }
   
@@ -730,13 +699,13 @@ room12 = (i,j) => {
 room13 = () => {
   r13b = 0;
   room(0,0,0,0)
-  C.plane({x:-25,y:-220,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
-  C.plane({x:-25,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
-  C.plane({x:-220,y:105,w:500,h:1000,html:svgknight,css:"knight",sx:.28,sy:.28,cl:"r13a"});
-  C.plane({x:215,y:140,w:500,h:1000,html:svgdoorstair,sx:-.16,sy:.16});
-  C.plane({x:275,y:95,z:40,html:"➡️",css:"arrow",on:"right",cl:"room23"});
-  C.plane({x:-325,y:95,z:40,html:"⬅️",css:"arrow",on:"left",cl:"r13a"});
-  C.plane({x:175,y:85,z:40,html:"⬆️",css:"arrow",on:"up",cl:"room12"});
+  C.p({x:-25,y:-220,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
+  C.p({x:-25,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
+  C.p({x:-220,y:105,w:500,h:1000,html:svgknight,css:"knight",sx:.28,sy:.28,cl:"r13a"});
+  C.p({x:215,y:140,w:500,h:1000,html:svgdoorstair,sx:-.16,sy:.16});
+  C.p({x:275,y:95,z:40,html:"➡️",css:"arrow",on:"right",cl:"room23"});
+  C.p({x:-325,y:95,z:40,html:"⬅️",css:"arrow",on:"left",cl:"r13a"});
+  C.p({x:175,y:85,z:40,html:"⬆️",css:"arrow",on:"up",cl:"room12"});
   draw_sky(0,0);
 }
 
@@ -771,23 +740,23 @@ r13a = () => {
 // Room 2-0: cannonball (ok)
 room20 = () => {
   tower(1)
-  C.plane({x:-5,y:-130,z:-20,w:690,h:70,b:"linear-gradient(#333,#555)",rx:105,css:"c"});
-  C.plane({x:-5,y:225,z:-30,w:690,h:70,b:"linear-gradient(#333,#555)",rx:60,css:"c"});
-  if(!s.r20g) C.plane({x:130-40,y:50+30,z:5,html:"⬤",css:"cannonball",n:"r201",cl:"r20a"});
-  C.plane({x:160-40,y:100+30,html:"⬤",css:"cannonball"});
-  C.plane({x:100-40,y:100+30,html:"⬤",css:"cannonball"});
-  C.plane({x:190-40,y:150+30,html:"⬤",css:"cannonball"});
-  C.plane({x:130-40,y:150+30,html:"⬤",css:"cannonball"});
-  C.plane({x:70-40,y:150+30,html:"⬤",css:"cannonball"});
-  if(animation) C.plane({x:-300,y:20,html:"⬤",css:"cannonball",n:"r2099",cl:"r20z"});
-  C.plane({x:-50,y:-20,html:"🛡️",css:"shield",rz:2});
-  C.plane({x:-20,y:-25,html:"🔴",css:"shape",on:"shield",rz:1});
+  C.p({x:-5,y:-130,z:-20,w:690,h:70,b:"linear-gradient(#333,#555)",rx:105,css:"c"});
+  C.p({x:-5,y:225,z:-30,w:690,h:70,b:"linear-gradient(#333,#555)",rx:60,css:"c"});
+  if(!s.r20g) C.p({x:130-40,y:50+30,z:5,html:"⬤",css:"cannonball",n:"r201",cl:"r20a"});
+  C.p({x:160-40,y:100+30,html:"⬤",css:"cannonball"});
+  C.p({x:100-40,y:100+30,html:"⬤",css:"cannonball"});
+  C.p({x:190-40,y:150+30,html:"⬤",css:"cannonball"});
+  C.p({x:130-40,y:150+30,html:"⬤",css:"cannonball"});
+  C.p({x:70-40,y:150+30,html:"⬤",css:"cannonball"});
+  if(animation) C.p({x:-300,y:20,html:"⬤",css:"cannonball",n:"r2099",cl:"r20z"});
+  C.p({x:-50,y:-20,html:"🛡️",css:"shield",rz:2});
+  C.p({x:-20,y:-25,html:"🔴",css:"shape",on:"shield",rz:1});
   if(!s.r20pf) {
-    C.plane({x:210,y:20,html:"🔒",css:"lock",rz:-2,z:10,cl:"room20p"});
-    C.plane({x:210,y:-15,html:"🔗",css:"chain",rz:40});
+    C.p({x:210,y:20,html:"🔒",css:"lock",rz:-2,z:10,cl:"room20p"});
+    C.p({x:210,y:-15,html:"🔗",css:"chain",rz:40});
   }
-  C.plane({x:-85,y:120,w:50,h:100,z:-20,html:svgdoor,ry:5,sx:-1.6,sy:1.6});
-  if(!animation) C.plane({x:-95,y:65,z:40,html:"⬇️",css:"arrow",on:"down",cl:"room21"})
+  C.p({x:-85,y:120,w:50,h:100,z:-20,html:svgdoor,ry:5,sx:-1.6,sy:1.6});
+  if(!animation) C.p({x:-95,y:65,z:40,html:"⬇️",css:"arrow",on:"down",cl:"room21"})
   windowleft(0,1);
   windowright(s.r20pf ? 0 : 1, 1);
   draw_sky(1,1);
@@ -811,17 +780,17 @@ r20pm = [0,0,0,0];
 room20p = () => {
   use(-1);
   room(1,0,0,0);
-  C.plane({x:25,y:0,z:50,w:950,h:650,b:((s.r40c >= 300 || s.r40c < 120) ? "#def":"#002")});
-  C.plane({x:-360,y:-180,z:80,html:"❌",css:"cross",on:"exit",cl:"room20"});
-  C.plane({x:-420,y:-220,z:55,html:"🔗",css:"big chain",on:"",sx:1.8,sy:1.8,rz:40});
-  C.plane({x:-180,y:-240,z:55,html:"🔗",css:"big chain",on:"",sx:1.8,sy:1.8,rz:40});
-  C.plane({x:20,y:-260,z:51,html:"🔗",css:"big chain",on:"",sx:1.8,sy:1.8,rz:40});
-  C.plane({x:250,y:-280,z:51,html:"🔗",css:"big chain",on:"",sx:1.8,sy:1.8,rz:40});
-  C.plane({x:-220,y:-20,z:52,html:"🔒",css:"big lock",on:"",sx:1.8,sy:1.8});
-  C.plane({x:0,y:-10,z:55,w:50,h:50,b:"#fff",css:"shape shape2",html:[svgsquare,svgstar,svgtri,svgcircle][r20pm[0]],on:"",cl:"r20pa",n:"r20p1"});
-  C.plane({x:0,y:50,z:55,w:50,h:50,b:"#fff",css:"shape shape2",html:[svgsquare,svgstar,svgtri,svgcircle][r20pm[1]],on:"",cl:"r20pb",n:"r20p2"});
-  C.plane({x:0,y:110,z:55,w:50,h:50,b:"#fff",css:"shape shape2",html:[svgsquare,svgstar,svgtri,svgcircle][r20pm[2]],on:"",cl:"r20pc",n:"r20p3"});
-  C.plane({x:0,y:170,z:55,w:50,h:50,b:"#fff",css:"shape shape2",html:[svgsquare,svgstar,svgtri,svgcircle][r20pm[3]],on:"",cl:"r20pd",n:"r20p4"});
+  C.p({x:25,y:0,z:50,w:950,h:650,b:((s.r40c >= 300 || s.r40c < 120) ? "#def":"#002")});
+  C.p({x:-360,y:-180,z:80,html:"❌",css:"cross",on:"exit",cl:"room20"});
+  C.p({x:-420,y:-220,z:55,html:"🔗",css:"big chain",on:"",sx:1.8,sy:1.8,rz:40});
+  C.p({x:-180,y:-240,z:55,html:"🔗",css:"big chain",on:"",sx:1.8,sy:1.8,rz:40});
+  C.p({x:20,y:-260,z:51,html:"🔗",css:"big chain",on:"",sx:1.8,sy:1.8,rz:40});
+  C.p({x:250,y:-280,z:51,html:"🔗",css:"big chain",on:"",sx:1.8,sy:1.8,rz:40});
+  C.p({x:-220,y:-20,z:52,html:"🔒",css:"big lock",on:"",sx:1.8,sy:1.8});
+  C.p({x:0,y:-10,z:55,w:50,h:50,b:"#fff",css:"shape shape2",html:[svgsquare,svgstar,svgtri,svgcircle][r20pm[0]],on:"",cl:"r20pa",n:"r20p1"});
+  C.p({x:0,y:50,z:55,w:50,h:50,b:"#fff",css:"shape shape2",html:[svgsquare,svgstar,svgtri,svgcircle][r20pm[1]],on:"",cl:"r20pb",n:"r20p2"});
+  C.p({x:0,y:110,z:55,w:50,h:50,b:"#fff",css:"shape shape2",html:[svgsquare,svgstar,svgtri,svgcircle][r20pm[2]],on:"",cl:"r20pc",n:"r20p3"});
+  C.p({x:0,y:170,z:55,w:50,h:50,b:"#fff",css:"shape shape2",html:[svgsquare,svgstar,svgtri,svgcircle][r20pm[3]],on:"",cl:"r20pd",n:"r20p4"});
 }
 
 
@@ -864,19 +833,19 @@ r20pe = () => { // draw
 // Room 2-1: hay (ok)
 room21 = () => {
   tower(0)
-  C.plane({x:-5,y:-190,z:-20,w:690,h:70,b:"linear-gradient(#333,#555)",rx:105,css:"c"});
-  C.plane({x:-5,y:225,z:-30,w:690,h:70,b:"linear-gradient(#333,#555)",rx:60,css:"c"});
-  if(!s.r21g) C.plane({x:-40,y:130,z:-20,w:1000,h:1000,html:svghay,on:"hay",sx:.28,sy:.28,cl:"r21a"});
+  C.p({x:-5,y:-190,z:-20,w:690,h:70,b:"linear-gradient(#333,#555)",rx:105,css:"c"});
+  C.p({x:-5,y:225,z:-30,w:690,h:70,b:"linear-gradient(#333,#555)",rx:60,css:"c"});
+  if(!s.r21g) C.p({x:-40,y:130,z:-20,w:1000,h:1000,html:svghay,on:"hay",sx:.28,sy:.28,cl:"r21a"});
   else if(!s.r21i) {
     // burnt - see gear
-    C.plane({x:-85,y:210,z:-10,html:"⚙️",css:"gear",cl:"r21h",n:"r007",rx:130});
+    C.p({x:-85,y:210,z:-10,html:"⚙️",css:"gear",cl:"r21h",n:"r007",rx:130});
   }
-  C.plane({x:-235,y:130,w:500,h:1000,z:-20,html:svgdoorstair,ry:5,sx:.15,sy:.16});
-  C.plane({x:-185-35,y:70,z:40,html:"⬆️",css:"arrow",on:"up",cl:"room20"});
-  C.plane({x:-145-37,y:70,z:40,html:"⬇️",css:"arrow",on:"down",cl:"room22"});
+  C.p({x:-235,y:130,w:500,h:1000,z:-20,html:svgdoorstair,ry:5,sx:.15,sy:.16});
+  C.p({x:-185-35,y:70,z:40,html:"⬆️",css:"arrow",on:"up",cl:"room20"});
+  C.p({x:-145-37,y:70,z:40,html:"⬇️",css:"arrow",on:"down",cl:"room22"});
   windowright(0,1,"r21a");
-  if(s.r21b) { C.plane({x:180,y:140,w:30,h:30,html:"🔭",css:"telescope",rz:2,sx:-1,sy:1.1,cl:"egg"}); }
-  C.plane({x:120,y:-100,z:40,rx:-35,ry:30,html:"🕸️",css:"web"});
+  if(s.r21b) { C.p({x:180,y:140,w:30,h:30,html:"🔭",css:"telescope",rz:2,sx:-1,sy:1.1,cl:"egg"}); }
+  C.p({x:120,y:-100,z:40,rx:-35,ry:30,html:"🕸️",css:"web"});
   draw_sky(0,1,1);
   if(!s.r21g && s.r21b && s.r40c == 60){
     r21f();
@@ -888,7 +857,7 @@ room21 = () => {
 //r21b = 0;
 r21a = () => {
   if(usingstr == "use telescope with "){
-    C.plane({x:180,y:140,w:30,h:30,html:"🔭",css:"telescope",rz:2,sx:-1,sy:1.1,cl:"egg"});
+    C.p({x:180,y:140,w:30,h:30,html:"🔭",css:"telescope",rz:2,sx:-1,sy:1.1,cl:"egg"});
     s.r21b = 1;
     rem_inv("telescope");
     use(-1);
@@ -905,12 +874,12 @@ r21a = () => {
 r21f = () => { // fire
   animation = 1;
   setTimeout(() => {
-    C.plane({x:0,y:185,z:20,w:30,h:30,html:"🔥",css:"fire"});
-    C.plane({x:-50,y:175,z:20,w:30,h:30,html:"🔥",css:"fire"});
-    C.plane({x:-90,y:185,z:20,w:30,h:30,html:"🔥",css:"fire"});
-    C.plane({x:-30,y:145,z:20,w:30,h:30,html:"🔥",css:"fire"});
-    C.plane({x:-70,y:125,z:20,w:30,h:30,html:"🔥",css:"fire"});
-    C.plane({x:-10,y:105,z:20,w:30,h:30,html:"🔥",css:"fire"});
+    C.p({x:0,y:185,z:20,w:30,h:30,html:"🔥",css:"fire"});
+    C.p({x:-50,y:175,z:20,w:30,h:30,html:"🔥",css:"fire"});
+    C.p({x:-90,y:185,z:20,w:30,h:30,html:"🔥",css:"fire"});
+    C.p({x:-30,y:145,z:20,w:30,h:30,html:"🔥",css:"fire"});
+    C.p({x:-70,y:125,z:20,w:30,h:30,html:"🔥",css:"fire"});
+    C.p({x:-10,y:105,z:20,w:30,h:30,html:"🔥",css:"fire"});
     s.r21g = 1;
     sound(burn);
   },2000);
@@ -933,10 +902,10 @@ egg = () => {
   // full moon
   if((s.day % 8) == 4 && s.r40c == 240){
     scene.innerHTML = "";
-    C.plane({x:-360,y:-180,z:80,html:"❌",css:"cross",on:"exit",cl:"room21"});
-    C.plane({x:-90,y:70,html:"🌕",sx:2,sy:2});
-    C.plane({w:640,h:120,x:30,y:-140,z:10,html:"Here's where I would have put an easter egg...<br>If I had enough time and spare bytes!",sx:.5,sy:.5,rz:-10,b:"#853",css:"egg"});
-    C.plane({w:30,h:140,x:30,y:-112,rz:-10,b:"#853"});
+    C.p({x:-360,y:-180,z:80,html:"❌",css:"cross",on:"exit",cl:"room21"});
+    C.p({x:-90,y:70,html:"🌕",sx:2,sy:2});
+    C.p({w:640,h:120,x:30,y:-140,z:10,html:"Here's where I would have put an easter egg...<br>If I had enough time and spare bytes!",sx:.5,sy:.5,rz:-10,b:"#853",css:"egg"});
+    C.p({w:30,h:140,x:30,y:-112,rz:-10,b:"#853"});
   }
 }
 
@@ -944,18 +913,18 @@ egg = () => {
 // room 2-2: torch (ok)
 room22 = (i,j) => {
   room(0,0,1,1)
-  C.plane({x:-15,y:-120,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
-  C.plane({x:-15,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
-  C.plane({x:85,y:75,html:"📜",css:"note",sx:1.6,sy:1.6,cl:"r22a"});
-  C.plane({x:-25,y:85,w:50,h:10,z:10,html:svgtorchsupport,css:"torch holder",sx:1.6,sy:1.6,cl:"r22f"});
-  if(!s.r22b) C.plane({x:-40,y:45,w:50,h:50,html:svgtorch,on:"torch",sx:1.6,sy:1.6,cl:"r22c",n:"r221"});
+  C.p({x:-15,y:-120,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
+  C.p({x:-15,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
+  C.p({x:85,y:75,html:"📜",css:"note",sx:1.6,sy:1.6,cl:"r22a"});
+  C.p({x:-25,y:85,w:50,h:10,z:10,html:svgtorchsupport,css:"torch holder",sx:1.6,sy:1.6,cl:"r22f"});
+  if(!s.r22b) C.p({x:-40,y:45,w:50,h:50,html:svgtorch,on:"torch",sx:1.6,sy:1.6,cl:"r22c",n:"r221"});
   if(!s.r22b && s.r22e){
-    C.plane({x:-35,y:50,z:20,w:30,h:30,html:"🔥",css:"fire",on:"torch",n:"r222",cl:"r22c"});
+    C.p({x:-35,y:50,z:20,w:30,h:30,html:"🔥",css:"fire",on:"torch",n:"r222",cl:"r22c"});
   }
-  C.plane({x:-205,y:140,w:500,h:1000,html:svgdoorstair,sx:.16,sy:.16});
-  C.plane({x:275,y:95,z:40,html:"➡️",css:"arrow",on:"right",cl:"room32"});
-  C.plane({x:-325,y:95,z:40,html:"⬅️",css:"arrow",on:"left",cl:"room12"});
-  C.plane({x:-190,y:85,z:40,html:"⬆️",css:"arrow",on:"up",cl:"r22d"});//"room21"});
+  C.p({x:-205,y:140,w:500,h:1000,html:svgdoorstair,sx:.16,sy:.16});
+  C.p({x:275,y:95,z:40,html:"➡️",css:"arrow",on:"right",cl:"room32"});
+  C.p({x:-325,y:95,z:40,html:"⬅️",css:"arrow",on:"left",cl:"room12"});
+  C.p({x:-190,y:85,z:40,html:"⬆️",css:"arrow",on:"up",cl:"r22d"});//"room21"});
   draw_sky(0,0);
 }
 
@@ -975,14 +944,14 @@ r22f = () => {
     rem_inv("lit torch");
     s.r22b = 0;
     s.r22e = 1;
-    C.plane({x:-40,y:45,w:50,h:50,html:svgtorch,on:"torch",sx:1.6,sy:1.6,cl:"r22c",n:"r221"});
-    C.plane({x:-35,y:50,z:20,w:30,h:30,html:"🔥",css:"fire",on:"torch",n:"r222",cl:"r22c"});
+    C.p({x:-40,y:45,w:50,h:50,html:svgtorch,on:"torch",sx:1.6,sy:1.6,cl:"r22c",n:"r221"});
+    C.p({x:-35,y:50,z:20,w:30,h:30,html:"🔥",css:"fire",on:"torch",n:"r222",cl:"r22c"});
   }
   else if(s.inv.includes("torch")){
     rem_inv("torch");
     s.r22b = 0;
     s.r22e = 0;
-    C.plane({x:-40,y:45,w:50,h:50,html:svgtorch,on:"torch",sx:1.6,sy:1.6,cl:"r22c",n:"r221"});
+    C.p({x:-40,y:45,w:50,h:50,html:svgtorch,on:"torch",sx:1.6,sy:1.6,cl:"r22c",n:"r221"});
   }
   else {
     r22c();
@@ -1021,28 +990,28 @@ r22d = () => {
 room23 = () => {
   room(0,0,0,0)
   mount();
-  C.plane({x:-45,y:-220,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
-  C.plane({x:-45,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
-  C.plane({x:-75,y:25,z:-10,w:1000,h:1000,html:svgoutside,css:"drawbridge",sx:.4,sy:.43});
+  C.p({x:-45,y:-220,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
+  C.p({x:-45,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
+  C.p({x:-75,y:25,z:-10,w:1000,h:1000,html:svgoutside,css:"drawbridge",sx:.4,sy:.43});
   if(s.r23k){
-    C.plane({x:-200,y:45,z:90,ry:-62,w:600,h:1000,html:svgexit,css:"doors",sx:.4,sy:.4,n:"r231"});
-    C.plane({x:115,y:45,z:90,ry:95,w:600,h:1000,html:svgexit,css:"doors",sx:-.4,sy:.4,n:"r232"});
+    C.p({x:-200,y:45,z:90,ry:-62,w:600,h:1000,html:svgexit,css:"doors",sx:.4,sy:.4,n:"r231"});
+    C.p({x:115,y:45,z:90,ry:95,w:600,h:1000,html:svgexit,css:"doors",sx:-.4,sy:.4,n:"r232"});
   }
   else{
-    C.plane({x:-150,y:35,w:600,h:1000,html:svgexit,css:"doors",sx:.4,sy:.4,n:"r231",cl:"r23l"});
-    C.plane({x:10,y:35,w:600,h:1000,html:svgexit,css:"doors",sx:-.4,sy:.4,n:"r232",cl:"r23l"});
-    C.plane({x:-30,y:110,w:60,h:100,html:svgkeyhole,css:"keyhole",sx:.5,sy:.5,cl:"r23l",n:"r233"});
+    C.p({x:-150,y:35,w:600,h:1000,html:svgexit,css:"doors",sx:.4,sy:.4,n:"r231",cl:"r23l"});
+    C.p({x:10,y:35,w:600,h:1000,html:svgexit,css:"doors",sx:-.4,sy:.4,n:"r232",cl:"r23l"});
+    C.p({x:-30,y:110,w:60,h:100,html:svgkeyhole,css:"keyhole",sx:.5,sy:.5,cl:"r23l",n:"r233"});
   }
-  C.plane({x:150+15,y:80+50,z:-40,w:60,h:100,html:svglever,on:"broken lever",css:"lever",cl:"r23h"});
-  C.plane({x:155+15,y:-10+30,w:60,h:100,html:svgaxis,on:"gear axis",css:"axis",cl:"r23b"});
-  C.plane({x:120+15,y:-40+30,z:10,w:60,h:100,html:svgaxis,on:"gear axis",css:"axis",cl:"r23d"});
-  C.plane({x:155+15,y:-70+30,w:60,h:100,html:svgaxis,on:"gear axis",css:"axis",cl:"r23f"});
-  C.plane({x:275,y:95,z:30,html:"➡️",css:"arrow",on:"right",cl:"room33"});
-  C.plane({x:-325,y:95,z:40,html:"⬅️",css:"arrow",on:"left",cl:"room13"});
-  if(s.r23a) C.plane({x:155-5+15,y:-10+30,html:"⚙️",css:"gear",n:"g1"});
-  if(s.r23c) C.plane({x:120-4+15,y:-40+30,html:"⚙️",css:"gear",n:"g2"});
-  if(s.r23e) C.plane({x:155-5+15,y:-70+30,html:"⚙️",css:"gear",n:"g3"});
-  if(s.r23g) C.plane({x:157+15,y:75,z:-63,html:"🗡️",css:"sword",ry:295,cl:"r23j",n:"r239"});
+  C.p({x:150+15,y:80+50,z:-40,w:60,h:100,html:svglever,on:"broken lever",css:"lever",cl:"r23h"});
+  C.p({x:155+15,y:-10+30,w:60,h:100,html:svgaxis,on:"gear axis",css:"axis",cl:"r23b"});
+  C.p({x:120+15,y:-40+30,z:10,w:60,h:100,html:svgaxis,on:"gear axis",css:"axis",cl:"r23d"});
+  C.p({x:155+15,y:-70+30,w:60,h:100,html:svgaxis,on:"gear axis",css:"axis",cl:"r23f"});
+  C.p({x:275,y:95,z:30,html:"➡️",css:"arrow",on:"right",cl:"room33"});
+  C.p({x:-325,y:95,z:40,html:"⬅️",css:"arrow",on:"left",cl:"room13"});
+  if(s.r23a) C.p({x:155-5+15,y:-10+30,html:"⚙️",css:"gear",n:"g1"});
+  if(s.r23c) C.p({x:120-4+15,y:-40+30,html:"⚙️",css:"gear",n:"g2"});
+  if(s.r23e) C.p({x:155-5+15,y:-70+30,html:"⚙️",css:"gear",n:"g3"});
+  if(s.r23g) C.p({x:157+15,y:75,z:-63,html:"🗡️",css:"sword",ry:295,cl:"r23j",n:"r239"});
 }
 
 // Put gear 1
@@ -1052,7 +1021,7 @@ r23b = () => {
     rem_inv("gear");
     sound(sword);
     use(-1);
-    C.plane({x:155-5+15,y:-10+30,html:"⚙️",css:"gear",n:"g1",o:"25px -1px"});
+    C.p({x:155-5+15,y:-10+30,html:"⚙️",css:"gear",n:"g1",o:"25px -1px"});
     s.r23a = 1;
   }
   save();
@@ -1065,7 +1034,7 @@ r23d = () => {
     rem_inv("gear");
     sound(sword);
     use(-1);
-    C.plane({x:120-4+15,y:-40+30,html:"⚙️",css:"gear",n:"g2",o:"25px -1px"});
+    C.p({x:120-4+15,y:-40+30,html:"⚙️",css:"gear",n:"g2",o:"25px -1px"});
     s.r23c = 1;
   }
   save();
@@ -1078,7 +1047,7 @@ r23f = () => {
     rem_inv("gear");
     sound(sword);
     use(-1);
-    C.plane({x:155-5+15,y:-70+30,html:"⚙️",css:"gear",n:"g3",o:"25px -1px"});
+    C.p({x:155-5+15,y:-70+30,html:"⚙️",css:"gear",n:"g3",o:"25px -1px"});
     s.r23e = 1;
   }
   save();
@@ -1091,7 +1060,7 @@ r23h = () => {
     rem_inv("sword");
     sound(sword);
     use(-1);
-    C.plane({x:157+15,y:75,z:-63,html:"🗡️",css:"sword",ry:295,cl:"r23j",n:"r239"});
+    C.p({x:157+15,y:75,z:-63,html:"🗡️",css:"sword",ry:295,cl:"r23j",n:"r239"});
     s.r23g = 1;
   }
   save();
@@ -1144,11 +1113,11 @@ room23c = () => {
   scene.innerHTML=text.innerHTML="";
   draw_sky()
   mount();
-  C.plane({x:0,y:550,z:-500,w:3500,h:400,b:"#7cd",rx:0});
-  C.plane({x:80,y:260,z:0,w:500,h:100,b:"linear-gradient(#333,#555)",rx:88});
-  C.plane({x:80,y:-50,z:-30,w:480,h:600,b:"linear-gradient(#a73,#741)",rx:0,o:"bottom center",n:"db"});
-  C.plane({g:"db",x:14,y:-465,z:0,w:20,h:1000,b:"#222",rx:250,o:"bottom center"});
-  C.plane({g:"db",x:470,y:-465,z:0,w:20,h:1000,b:"#222",rx:250,o:"bottom center"});
+  C.p({x:0,y:550,z:-500,w:3500,h:400,b:"#7cd",rx:0});
+  C.p({x:80,y:260,z:0,w:500,h:100,b:"linear-gradient(#333,#555)",rx:88});
+  C.p({x:80,y:-50,z:-30,w:480,h:600,b:"linear-gradient(#a73,#741)",rx:0,o:"bottom center",n:"db"});
+  C.p({g:"db",x:14,y:-465,z:0,w:20,h:1000,b:"#222",rx:250,o:"bottom center"});
+  C.p({g:"db",x:470,y:-465,z:0,w:20,h:1000,b:"#222",rx:250,o:"bottom center"});
   
   setTimeout("inventory.style.opacity=0;mute.style.opacity=0;C.move({n:'db',rx:90});scene.style.transition='10s all';sound(downbridge,196e3)",1500);
   setTimeout("scene.style.transform='translateZ(1200px)rotateX(15deg)'",5500);
@@ -1168,22 +1137,24 @@ room23c = () => {
 // room 3-2: anvil fire (ok)
 room32 = () => {
   room(0,0,1,0);
-  C.plane({x:-15,y:-120,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
-  C.plane({x:-15,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
-  if(!s.r32a)C.plane({x:-130,y:220,w:30,h:30,html:"🔨",css:"hammer",on:"",rz:-45,n:"r323"});
-  if(!s.r32a) C.plane({x:-125,y:170,z:40,w:20,h:30,on:"???",n:"r321",cl:"r32b"});
-  C.plane({x:-330+20,y:230,html:"🪵",css:"wood",rz:-90,cl:"r32d"});
-  C.plane({x:-290+20,y:230,z:10,html:"🪵",css:"wood",rz:-90,cl:"r32d"});
-  if(!s.r32c) C.plane({x:-310+20,y:200,html:"🪵",css:"wood",rz:-90,n:"r322",cl:"r32d"});
-  C.plane({x:110-40,y:125,html:"🏦",css:"fireplace",cl:"r32e"});
-  C.plane({x:160-40+3,y:185,z:20,w:30,h:30,html:"🔥",css:"fire",cl:"r32e"});
-  C.plane({x:215-40+3,y:185,z:20,w:30,h:30,html:"🔥",css:"fire",cl:"r32e",sx:-1});
-  C.plane({x:230-40+3,y:185,z:20,w:30,h:30,html:"🔥",css:"fire",cl:"r32e"});
-  C.plane({x:208-40,y:163,z:10,w:115,h:70,b:"#444",on:"fireplace",cl:"r32e"});
-  C.plane({x:220-40,y:25,z:-40,w:80,h:300,b:"#555",on:"fireplace",cl:"r32e"});
-  C.plane({x:-100,y:185,w:100,h:50,html:svganvil,css:"anvil",sx:2,sy:2});
-  C.plane({x:275,y:95,z:40,html:"➡️",css:"arrow",on:"right",cl:"room42"});
-  C.plane({x:-325,y:95,z:40,html:"⬅️",css:"arrow",on:"left",cl:"room22"});
+  C.p({x:-15,y:-120,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
+  C.p({x:-15,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
+  if(!s.r32a){
+    C.p({x:-130,y:220,w:30,h:30,html:"🔨",css:"hammer",on:"",rz:-45,n:"r323"});
+    C.p({x:-125,y:170,z:40,w:20,h:30,on:"???",n:"r321",cl:"r32b"});
+  }
+  C.p({x:-330+20,y:230,html:"🪵",css:"wood",rz:-90,cl:"r32d"});
+  C.p({x:-290+20,y:230,z:10,html:"🪵",css:"wood",rz:-90,cl:"r32d"});
+  if(!s.r32c) C.p({x:-310+20,y:200,html:"🪵",css:"wood",rz:-90,n:"r322",cl:"r32d"});
+  C.p({x:110-40,y:125,html:"🏦",css:"fireplace",cl:"r32e"});
+  C.p({x:160-40+3,y:185,z:20,w:30,h:30,html:"🔥",css:"fire",cl:"r32e"});
+  C.p({x:215-40+3,y:185,z:20,w:30,h:30,html:"🔥",css:"fire",cl:"r32e",sx:-1});
+  C.p({x:230-40+3,y:185,z:20,w:30,h:30,html:"🔥",css:"fire",cl:"r32e"});
+  C.p({x:208-40,y:163,z:10,w:115,h:70,b:"#444",on:"fireplace",cl:"r32e"});
+  C.p({x:220-40,y:25,z:-40,w:80,h:300,b:"#555",on:"fireplace",cl:"r32e"});
+  C.p({x:-100,y:185,w:100,h:50,html:svganvil,css:"anvil",sx:2,sy:2});
+  C.p({x:275,y:95,z:40,html:"➡️",css:"arrow",on:"right",cl:"room42"});
+  C.p({x:-325,y:95,z:40,html:"⬅️",css:"arrow",on:"left",cl:"room22"});
   draw_sky(0,0);
 }
 
@@ -1200,10 +1171,12 @@ r32b = () => {
 // Take wood
 //r32c = 0; // wood removed
 r32d = () => {
-  add_inv("wood");
-  r322.remove();
-  s.r32c = 1;
-  save();
+  if(!r32c){
+    add_inv("wood");
+    r322.remove();
+    s.r32c = 1;
+    save();
+  }
 }
 
 // Lit torch / heat soup
@@ -1219,8 +1192,8 @@ r32e = () => {
     rem_inv("soup");
     sound(burn);
     use(-1);
-    C.plane({x:130,y:150,z:30,html:"🍲",css:"soup",n:"r323",cl:"r32g"});
-    C.plane({x:130,y:150,z:31,html:"🍲",css:"hot soup o0",on:"hot soup",n:"r324",cl:"r32g"});
+    C.p({x:130,y:150,z:30,html:"🍲",css:"soup",n:"r323",cl:"r32g"});
+    C.p({x:130,y:150,z:31,html:"🍲",css:"hot soup o0",on:"hot soup",n:"r324",cl:"r32g"});
     setTimeout('r324.className="plane hot soup";r324.setAttribute("onmouseover","txt`hot soup`");animation=0;s.r33b=1;save()',2000);
   }
   save();
@@ -1241,26 +1214,26 @@ r32g = () => {
 // room 3-3: kitchen (ok)
 room33 = () => {
   room(0,0,0,0,1)
-  C.plane({x:25,y:-220,z:-50,w:1050,h:50,b:"linear-gradient(#333,#555)",rx:145});
-  C.plane({x:25,y:235,z:-50,w:1050,h:70,b:"linear-gradient(#333,#555)",rx:60});
-  if(!s.r33h) C.plane({x:400,y:0,z:40,w:120,h:400,on:"wall",cl:"r33i",n:"r334"}); // wall
-  C.plane({x:-60,y:-40,w:100,h:100,html:svgtable,css:"",sx:.3,sy:.3});
-  C.plane({x:10,y:45,html:"🧑🏻‍🍳",css:"cook",cl:"r33g"});
-  if(!s.r33e) C.plane({x:-40,y:75,html:"🧀",css:"cheese",cl:"r33f",n:"r332"});
+  C.p({x:25,y:-220,z:-50,w:1050,h:50,b:"linear-gradient(#333,#555)",rx:145});
+  C.p({x:25,y:235,z:-50,w:1050,h:70,b:"linear-gradient(#333,#555)",rx:60});
+  if(!s.r33h) C.p({x:400,y:0,z:40,w:120,h:400,on:"wall",cl:"r33i",n:"r334"}); // wall
+  C.p({x:-60,y:-40,w:100,h:100,html:svgtable,css:"",sx:.3,sy:.3});
+  C.p({x:10,y:45,html:"🧑🏻‍🍳",css:"cook",cl:"r33g"});
+  if(!s.r33e) C.p({x:-40,y:75,html:"🧀",css:"cheese",cl:"r33f",n:"r332"});
   if(!s.r33c){
-    if(s.r33b) C.plane({x:130,y:60,html:"🍲",css:"hot soup",n:"r331"});
-    else C.plane({x:130,y:60,html:"🍲",css:"soup",cl:"r33d",n:"r331"});
+    if(s.r33b) C.p({x:130,y:60,html:"🍲",css:"hot soup",n:"r331"});
+    else C.p({x:130,y:60,html:"🍲",css:"soup",cl:"r33d",n:"r331"});
   }
-  C.plane({x:-250,y:-60,html:"🛡️",css:"shield",rz:2});
-  C.plane({x:-220,y:-65,html:"⭐️",css:"shape",on:"shield",rz:1});
-  if(s.r33h) C.plane({x:325,y:95,z:40,html:"➡️",css:"arrow",on:"right",cl:"room43"});
+  C.p({x:-250,y:-60,html:"🛡️",css:"shield",rz:2});
+  C.p({x:-220,y:-65,html:"⭐️",css:"shape",on:"shield",rz:1});
+  if(s.r33h) C.p({x:325,y:95,z:40,html:"➡️",css:"arrow",on:"right",cl:"room43"});
   if(s.r33h){
-    C.plane({x:495,y:15,z:40,html:svgrock,css:"",sx:-2,sy:2});
-    C.plane({x:295,y:15,z:40,html:svgrock,css:"",sx:2,sy:2});
-    C.plane({x:435,y:25,z:40,html:svgrock,css:"",sx:-2,sy:2});
+    C.p({x:495,y:15,z:40,html:svgrock,css:"",sx:-2,sy:2});
+    C.p({x:295,y:15,z:40,html:svgrock,css:"",sx:2,sy:2});
+    C.p({x:435,y:25,z:40,html:svgrock,css:"",sx:-2,sy:2});
   }
   else { wallside(0,1,0,1); }
-  C.plane({x:-325,y:95,z:40,html:"⬅️",css:"arrow",on:"left",cl:"room23"});
+  C.p({x:-325,y:95,z:40,html:"⬅️",css:"arrow",on:"left",cl:"room23"});
 }
 
 // soup is hot
@@ -1303,7 +1276,7 @@ r33f = () => {
 // Put hot soup
 r33g = () => {
   if(usingstr == "use hot soup with "){
-    C.plane({x:130,y:60,html:"🍲",css:"hot soup",cl:"r33c",n:"r331"});
+    C.p({x:130,y:60,html:"🍲",css:"hot soup",cl:"r33c",n:"r331"});
     rem_inv("hot soup");
     s.r33c = 0;
     r33a();
@@ -1336,23 +1309,23 @@ r33i = () => {
 // Room 4-0: witch (ok)
 room40 = () => {
   tower(1)
-  C.plane({x:-5,y:-130,z:-20,w:690,h:70,b:"linear-gradient(#333,#555)",rx:105,css:"c"});
-  C.plane({x:-5,y:225,z:-30,w:690,h:70,b:"linear-gradient(#333,#555)",rx:60,css:"c"});
-  C.plane({x:80,y:100,w:600,h:1000,html:svgwitch,css:"witch",sx:.25,sy:.25,cl:"r40a"});
-  if(s.r40b) C.plane({x:190,y:160,w:60,h:100,html:"🪄",css:"wand"});
-  C.plane({x:80,y:-100,html:"🦇",css:"bat",sy:-1});
-  C.plane({x:150,y:-95,html:"🦇",css:"bat",sy:-1});
-  C.plane({x:-30,y:120,w:50,h:100,z:-20,html:svgdoor,ry:0,sx:1.6,sy:1.6});
-  C.plane({x:-15,y:70,z:40,html:"⬇️",css:"arrow",on:"down",cl:"room41"});
+  C.p({x:-5,y:-130,z:-20,w:690,h:70,b:"linear-gradient(#333,#555)",rx:105,css:"c"});
+  C.p({x:-5,y:225,z:-30,w:690,h:70,b:"linear-gradient(#333,#555)",rx:60,css:"c"});
+  C.p({x:80,y:100,w:600,h:1000,html:svgwitch,css:"witch",sx:.25,sy:.25,cl:"r40a"});
+  if(s.r40b) C.p({x:190,y:160,w:60,h:100,html:"🪄",css:"wand"});
+  C.p({x:80,y:-100,html:"🦇",css:"bat",sy:-1});
+  C.p({x:150,y:-95,html:"🦇",css:"bat",sy:-1});
+  C.p({x:-30,y:120,w:50,h:100,z:-20,html:svgdoor,ry:0,sx:1.6,sy:1.6});
+  C.p({x:-15,y:70,z:40,html:"⬇️",css:"arrow",on:"down",cl:"room41"});
   if(s.r40b) {
-    C.plane({x:-110,y:50,z:80,html:"↩️",css:"arrow",on:"future",cl:"r40r"});
-    C.plane({x:-180,y:50,z:80,html:"↪️",css:"arrow",on:"past",cl:"r40l"});
+    C.p({x:-110,y:50,z:80,html:"↩️",css:"arrow",on:"future",cl:"r40r"});
+    C.p({x:-180,y:50,z:80,html:"↪️",css:"arrow",on:"past",cl:"r40l"});
   }
-  C.group({n:"wheel",x:-175,y:15,w:150,h:150,on:"time wheel",css:"timewheel",o:"center center",rz:s.r40d});
-  C.plane({g:"wheel",x:75,y:75,w:150,h:150,b:"#def",css:"c wheel",on:"time wheel"});
-  C.plane({g:"wheel",html:"🌞",on:"",x:75-15,y:75-65});
-  C.plane({g:"wheel",html:"🌘",on:"",x:75-15,y:75+30,n:"wheelmoon"});
-  C.plane({w:158,h:200,x:-175,y:110,b:"linear-gradient(#854,#631)",css:"base",on:"time wheel"});
+  C.g({n:"wheel",x:-175,y:15,w:150,h:150,on:"time wheel",css:"timewheel",o:"center center",rz:s.r40d});
+  C.p({g:"wheel",x:75,y:75,w:150,h:150,b:"#def",css:"c wheel",on:"time wheel"});
+  C.p({g:"wheel",html:"🌞",on:"",x:75-15,y:75-65});
+  C.p({g:"wheel",html:"🌘",on:"",x:75-15,y:75+30,n:"wheelmoon"});
+  C.p({w:158,h:200,x:-175,y:110,b:"linear-gradient(#854,#631)",css:"base",on:"time wheel"});
   
   draw_sky(0,0);
 }
@@ -1370,9 +1343,9 @@ r40a = () => {
     sound(wand);
     note.innerHTML = "You can now turn the wheel of time! You can choose the sun and moon's position in the sky..."
     note.className = "";
-    C.plane({x:190,y:160,w:60,h:100,html:"🪄",css:"wand"});
-    C.plane({x:-110,y:50,z:80,html:"↩️",css:"arrow",on:"future",cl:"r40r"});
-    C.plane({x:-180,y:50,z:80,html:"↪️",css:"arrow",on:"past",cl:"r40l"});
+    C.p({x:190,y:160,w:60,h:100,html:"🪄",css:"wand"});
+    C.p({x:-110,y:50,z:80,html:"↩️",css:"arrow",on:"future",cl:"r40r"});
+    C.p({x:-180,y:50,z:80,html:"↪️",css:"arrow",on:"past",cl:"r40l"});
     use(-1);
     save();
   }
@@ -1428,87 +1401,87 @@ r40l = () => { s.r40c -= 60; s.r40d -= 60; C.move({n:"wheel",rz:s.r40d}); update
 
 room41 = () => {
   tower(0)
-  C.plane({x:-5,y:-190,z:-20,w:690,h:70,b:"linear-gradient(#333,#555)",rx:105,css:"c"});
-  C.plane({x:-5,y:225,z:-30,w:690,h:70,b:"linear-gradient(#333,#555)",rx:60,css:"c"});
+  C.p({x:-5,y:-190,z:-20,w:690,h:70,b:"linear-gradient(#333,#555)",rx:105,css:"c"});
+  C.p({x:-5,y:225,z:-30,w:690,h:70,b:"linear-gradient(#333,#555)",rx:60,css:"c"});
   
   // past before prisoners
   if(s.day <= 790){
-    C.plane({x:50,y:160,html:"🔗",css:"chain",rz:-45});
-    C.plane({x:50,y:130,html:"🔗",css:"chain",rz:-45});
-    C.plane({x:50,y:100,html:"🔗",css:"chain",rz:-45});
+    C.p({x:50,y:160,html:"🔗",css:"chain",rz:-45});
+    C.p({x:50,y:130,html:"🔗",css:"chain",rz:-45});
+    C.p({x:50,y:100,html:"🔗",css:"chain",rz:-45});
     
-    C.plane({x:50+150,y:160,html:"🔗",css:"chain",rz:-45});
-    C.plane({x:50+150,y:130,html:"🔗",css:"chain",rz:-45});
-    C.plane({x:50+150,y:100,html:"🔗",css:"chain",rz:-45});
+    C.p({x:50+150,y:160,html:"🔗",css:"chain",rz:-45});
+    C.p({x:50+150,y:130,html:"🔗",css:"chain",rz:-45});
+    C.p({x:50+150,y:100,html:"🔗",css:"chain",rz:-45});
   }
   
   // past before prisoner 2 dies
   else if(s.day < 796 || (s.day == 796 && s.r40c < 120)){
-    C.plane({x:80-150,y:130,html:"🧍‍♂️",css:"prisoner",cl:"r41a"});
-    C.plane({x:190-150,y:120,html:"🔗",css:"chain",rz:20});
-    C.plane({x:220-150,y:100,html:"🔗",css:"chain",rz:5});
-    C.plane({x:240-150,y:80,html:"🔗",css:"chain",rz:-35});
+    C.p({x:80-150,y:130,html:"🧍‍♂️",css:"prisoner",cl:"r41a"});
+    C.p({x:190-150,y:120,html:"🔗",css:"chain",rz:20});
+    C.p({x:220-150,y:100,html:"🔗",css:"chain",rz:5});
+    C.p({x:240-150,y:80,html:"🔗",css:"chain",rz:-35});
     
-    C.plane({x:80,y:130,html:"🧍‍♂️",css:"prisoner2",on:"prisoner",cl:"r41b"});
-    C.plane({x:190,y:120,html:"🔗",css:"chain",rz:20});
-    C.plane({x:220,y:100,html:"🔗",css:"chain",rz:5});
-    C.plane({x:240,y:80,html:"🔗",css:"chain",rz:-35});
+    C.p({x:80,y:130,html:"🧍‍♂️",css:"prisoner2",on:"prisoner",cl:"r41b"});
+    C.p({x:190,y:120,html:"🔗",css:"chain",rz:20});
+    C.p({x:220,y:100,html:"🔗",css:"chain",rz:5});
+    C.p({x:240,y:80,html:"🔗",css:"chain",rz:-35});
   }
   
   // beast
   else if (s.day >= 790 && (s.day % 8) == 4 && s.r40c < 300 && s.r40c > 60) {
-    if(!s.r41v){ C.plane({x:-60,y:50,w:1000,h:1000,html:svgwolf,css:"werewolf",sx:.37,sy:.37,cl:"r41c",n:"ww"});
-    C.plane({x:190-150,y:110,html:"🔗",css:"chain",rz:20});
-    C.plane({x:220-150,y:100,html:"🔗",css:"chain",rz:5});
-    C.plane({x:240-150,y:80,html:"🔗",css:"chain",rz:-35});
+    if(!s.r41v){ C.p({x:-60,y:50,w:1000,h:1000,html:svgwolf,css:"werewolf",sx:.37,sy:.37,cl:"r41c",n:"ww"});
+    C.p({x:190-150,y:110,html:"🔗",css:"chain",rz:20});
+    C.p({x:220-150,y:100,html:"🔗",css:"chain",rz:5});
+    C.p({x:240-150,y:80,html:"🔗",css:"chain",rz:-35});
     }
     else {
-      C.plane({x:240-150,y:80,html:"🔗",css:"chain",rz:-35});
-      C.plane({x:240-150,y:100,html:"🔗",css:"chain",rz:-35});
-      C.plane({x:240-150,y:120,html:"🔗",css:"chain",rz:-35});
+      C.p({x:240-150,y:80,html:"🔗",css:"chain",rz:-35});
+      C.p({x:240-150,y:100,html:"🔗",css:"chain",rz:-35});
+      C.p({x:240-150,y:120,html:"🔗",css:"chain",rz:-35});
     }
-    C.plane({x:50+150,y:140,html:"🔗",css:"chain"});
-    C.plane({x:70+150,y:120,html:"🔗",css:"chain"});
-    C.plane({x:90+150,y:100,html:"🔗",css:"chain"});
-    C.plane({x:30+150,y:160+20,z:10,html:"💀",css:"skeleton",rz:-30});
-    C.plane({x:50+150,y:180+20,html:"🦴",css:"skeleton",rz:-30});
-    C.plane({x:40+150,y:200+20,html:"🦴",css:"skeleton",rz:-60});
-    C.plane({x:30+150,y:190+20,html:"🦴",css:"skeleton",rz:-90});
+    C.p({x:50+150,y:140,html:"🔗",css:"chain"});
+    C.p({x:70+150,y:120,html:"🔗",css:"chain"});
+    C.p({x:90+150,y:100,html:"🔗",css:"chain"});
+    C.p({x:30+150,y:160+20,z:10,html:"💀",css:"skeleton",rz:-30});
+    C.p({x:50+150,y:180+20,html:"🦴",css:"skeleton",rz:-30});
+    C.p({x:40+150,y:200+20,html:"🦴",css:"skeleton",rz:-60});
+    C.p({x:30+150,y:190+20,html:"🦴",css:"skeleton",rz:-90});
   }
   
   // future
   else { //if(s.day > 780) {
-    C.plane({x:80-150,y:130,html:"🧍‍♂️",css:"prisoner",cl:"r41a"});
-    C.plane({x:190-150,y:120,html:"🔗",css:"chain",rz:20});
-    C.plane({x:220-150,y:100,html:"🔗",css:"chain",rz:5});
-    C.plane({x:240-150,y:80,html:"🔗",css:"chain",rz:-35});
-    C.plane({x:50+150,y:140,html:"🔗",css:"chain"});
-    C.plane({x:70+150,y:120,html:"🔗",css:"chain"});
-    C.plane({x:90+150,y:100,html:"🔗",css:"chain"});
-    C.plane({x:30+150,y:160+20,z:10,html:"💀",css:"skeleton",rz:-30});
-    C.plane({x:50+150,y:180+20,html:"🦴",css:"skeleton",rz:-30});
-    C.plane({x:40+150,y:200+20,html:"🦴",css:"skeleton",rz:-60});
-    C.plane({x:30+150,y:190+20,html:"🦴",css:"skeleton",rz:-90});
+    C.p({x:80-150,y:130,html:"🧍‍♂️",css:"prisoner",cl:"r41a"});
+    C.p({x:190-150,y:120,html:"🔗",css:"chain",rz:20});
+    C.p({x:220-150,y:100,html:"🔗",css:"chain",rz:5});
+    C.p({x:240-150,y:80,html:"🔗",css:"chain",rz:-35});
+    C.p({x:50+150,y:140,html:"🔗",css:"chain"});
+    C.p({x:70+150,y:120,html:"🔗",css:"chain"});
+    C.p({x:90+150,y:100,html:"🔗",css:"chain"});
+    C.p({x:30+150,y:160+20,z:10,html:"💀",css:"skeleton",rz:-30});
+    C.p({x:50+150,y:180+20,html:"🦴",css:"skeleton",rz:-30});
+    C.p({x:40+150,y:200+20,html:"🦴",css:"skeleton",rz:-60});
+    C.p({x:30+150,y:190+20,html:"🦴",css:"skeleton",rz:-90});
   }
 
-  C.plane({x:-110,y:125,w:500,h:1000,z:-20,html:svgdoorstair,ry:5,sx:.16,sy:.16});
+  C.p({x:-110,y:125,w:500,h:1000,z:-20,html:svgdoorstair,ry:5,sx:.16,sy:.16});
   if(animation) { 
-    C.plane({x:-300,y:20,html:"⬤",css:"cannonball",n:"r2099",cl:"r41z"});
+    C.p({x:-300,y:20,html:"⬤",css:"cannonball",n:"r2099",cl:"r41z"});
   }
   else {
     if ((s.day % 8) == 4 && s.r40c < 300 && s.r40c > 60 && !s.r41v){
-      C.plane({x:-110,y:-140,z:40,html:"⬆️",css:"arrow",on:"up",cl:"room40"});
-      C.plane({x:-70,y:-140,z:40,html:"⬇️",css:"arrow",on:"down",cl:"room42"});
+      C.p({x:-110,y:-140,z:40,html:"⬆️",css:"arrow",on:"up",cl:"room40"});
+      C.p({x:-70,y:-140,z:40,html:"⬇️",css:"arrow",on:"down",cl:"room42"});
     }
     else{
-      C.plane({x:-110,y:70,z:40,html:"⬆️",css:"arrow",on:"up",cl:"room40"});
-      C.plane({x:-70,y:70,z:40,html:"⬇️",css:"arrow",on:"down",cl:"room42"});
+      C.p({x:-110,y:70,z:40,html:"⬆️",css:"arrow",on:"up",cl:"room40"});
+      C.p({x:-70,y:70,z:40,html:"⬇️",css:"arrow",on:"down",cl:"room42"});
     }
   }
   if(s.r41y){
-    C.plane({x:s.r41v ? -280:55,y:185,html:"⬤",css:"cannonball",n:"r2099",cl:"r41z"});
+    C.p({x:s.r41v ? -280:55,y:185,html:"⬤",css:"cannonball",n:"r2099",cl:"r41z"});
   }
-  C.plane({x:-40,y:s.r41v ? 0 : 400,html:"🔑",css:"key",n:"key",cl:"r41x"});
+  C.p({x:-40,y:s.r41w == 1 ? 0 : 400,html:"🔑",css:"key",n:"key",cl:"r41x"});
   windowleft(0,1);
   draw_sky(1,0);
   save();
@@ -1551,10 +1524,10 @@ r41c = () => {
 //r41v = 0; // wolf dead
 
 // key
-//r41w = 0; // 1 = on the floor
+//r41w = 0; // 0: not here // 1: on the floor // 2: taken
 r41x = () => { // take it
   key.remove();
-  s.r41w = 0;
+  s.r41w = 2;
   add_inv("key");
   draw_inv();
   save();
@@ -1575,22 +1548,22 @@ r41z = () => { // take it
 // room 4-2: stairs hole (ok)
 room42 = () => {
   room(0,1,1,1)
-  C.plane({x:-45,y:-120,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
-  C.plane({x:-45,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
+  C.p({x:-45,y:-120,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
+  C.p({x:-45,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
   wallside(0,0,1);
-  C.plane({x:-205,y:145,w:500,h:1000,html:svgdoorstair,sx:.16,sy:.16});
-  if(!s.r42pf) { C.plane({x:-262,y:145,z:10,html:"🚪",css:"door"}); }
-  else { C.plane({x:-175,y:150,z:-40,html:"🚪",css:"door",ry:310});}
-  if(!s.r42pf) { C.plane({x:-230,y:140,z:15,html:"🔒",css:"lock",rz:-2,cl:"room42p"}); }
-  C.plane({x:-75,y:65,html:"📜",css:"note",sx:1.6,sy:1.6,cl:"r42a"});
-  C.plane({x:250,y:255,z:-50,html:"🕳️",css:"hole",rz:90,sx:-1,sy:2,cl:"r42d"});
-  C.plane({x:-325,y:95,z:40,html:"⬅️",css:"arrow",on:"left",cl:"room32"});
-  C.plane({x:-205,y:95,z:5,html:"⬆️",css:"arrow",on:"up",cl:"room41"});
-  C.plane({x:50,y:60,html:"🛡️",css:"shield",rz:2});
-  C.plane({x:80,y:55,html:"🟩️",css:"shape",on:"shield",rz:1});
-  if(s.r42b){ C.plane({x:180,y:185,z:50,html:"🧀",css:"cheese",sx:-1,cl:"r42e",n:"r421"}); }
-  if(s.r42b && !s.r42c) { C.plane({x:170,y:185,z:50,html:"🐁",css:"mouse",sx:.4,sy:.4,cl:"r42f",n:"r422"}); }
-  else { C.plane({x:270,y:185,z:-100,html:"🐁",css:"mouse",sx:.4,sy:.4,cl:"r42f",n:"r422"}); }
+  C.p({x:-205,y:145,w:500,h:1000,html:svgdoorstair,sx:.16,sy:.16});
+  if(!s.r42pf) { C.p({x:-262,y:145,z:10,html:"🚪",css:"door"}); }
+  else { C.p({x:-175,y:150,z:-40,html:"🚪",css:"door",ry:310});}
+  if(!s.r42pf) { C.p({x:-230,y:140,z:15,html:"🔒",css:"lock",rz:-2,cl:"room42p"}); }
+  C.p({x:-75,y:65,html:"📜",css:"note",sx:1.6,sy:1.6,cl:"r42a"});
+  C.p({x:250,y:255,z:-50,html:"🕳️",css:"hole",rz:90,sx:-1,sy:2,cl:"r42d"});
+  C.p({x:-325,y:95,z:40,html:"⬅️",css:"arrow",on:"left",cl:"room32"});
+  C.p({x:-205,y:95,z:5,html:"⬆️",css:"arrow",on:"up",cl:"room41"});
+  C.p({x:50,y:60,html:"🛡️",css:"shield",rz:2});
+  C.p({x:80,y:55,html:"🟩️",css:"shape",on:"shield",rz:1});
+  if(s.r42b){ C.p({x:180,y:185,z:50,html:"🧀",css:"cheese",sx:-1,cl:"r42e",n:"r421"}); }
+  if(s.r42b && !s.r42c) { C.p({x:170,y:185,z:50,html:"🐁",css:"mouse",sx:.4,sy:.4,cl:"r42f",n:"r422"}); }
+  else { C.p({x:270,y:185,z:-100,html:"🐁",css:"mouse",sx:.4,sy:.4,cl:"r42f",n:"r422"}); }
   windowright(0);
   draw_sky(0,1);
 }
@@ -1605,7 +1578,7 @@ r42a = () => {
 r42d = () => {
   if(usingstr == "use cheese with ") {
     s.r42b = 1;
-    C.plane({x:180,y:185,z:50,html:"🧀",css:"cheese",sx:-1,cl:"r42e",n:"r421"});
+    C.p({x:180,y:185,z:50,html:"🧀",css:"cheese",sx:-1,cl:"r42e",n:"r421"});
     rem_inv("cheese");
     use(-1);
     setTimeout(()=> {
@@ -1642,13 +1615,13 @@ r42pm = [0,0,0,0];
 room42p = () => {
   use(-1);
   room(1,0,0,0);
-  C.plane({x:25,y:0,z:50,w:950,h:650,b:"linear-gradient(#853,#431)"});
-  C.plane({x:-360,y:-180,z:80,html:"❌",css:"cross",on:"exit",cl:"room42"});
-  C.plane({x:-220,y:-20,z:50,html:"🔒",css:"big lock",on:"",sx:1.8,sy:1.8});
-  C.plane({x:-100,y:50,z:55,w:60,h:60,b:["#000","#0F0","#F00","#00F","#FE2"][r42pm[0]],css:"color",on:"",cl:"r42pa",n:"r42p1"});
-  C.plane({x:-30,y:50,z:55,w:60,h:60,b:["#000","#0F0","#F00","#00F","#FE2"][r42pm[1]],css:"color",on:"",cl:"r42pb",n:"r42p2"});
-  C.plane({x:40,y:50,z:55,w:60,h:60,b:["#000","#0F0","#F00","#00F","#FE2"][r42pm[2]],css:"color",on:"",cl:"r42pc",n:"r42p3"});
-  C.plane({x:110,y:50,z:55,w:60,h:60,b:["#000","#0F0","#F00","#00F","#FE2"][r42pm[3]],css:"color",on:"",cl:"r42pd",n:"r42p4"});
+  C.p({x:25,y:0,z:50,w:950,h:650,b:"linear-gradient(#853,#431)"});
+  C.p({x:-360,y:-180,z:80,html:"❌",css:"cross",on:"exit",cl:"room42"});
+  C.p({x:-220,y:-20,z:50,html:"🔒",css:"big lock",on:"",sx:1.8,sy:1.8});
+  C.p({x:-100,y:50,z:55,w:60,h:60,b:["#000","#0F0","#F00","#00F","#FE2"][r42pm[0]],css:"color",on:"",cl:"r42pa",n:"r42p1"});
+  C.p({x:-30,y:50,z:55,w:60,h:60,b:["#000","#0F0","#F00","#00F","#FE2"][r42pm[1]],css:"color",on:"",cl:"r42pb",n:"r42p2"});
+  C.p({x:40,y:50,z:55,w:60,h:60,b:["#000","#0F0","#F00","#00F","#FE2"][r42pm[2]],css:"color",on:"",cl:"r42pc",n:"r42p3"});
+  C.p({x:110,y:50,z:55,w:60,h:60,b:["#000","#0F0","#F00","#00F","#FE2"][r42pm[3]],css:"color",on:"",cl:"r42pd",n:"r42p4"});
 }
 
 
@@ -1695,14 +1668,14 @@ r42pe = () => { // draw
 room43 = () => {
   room(0,1,0,0)
   mount();
-  C.plane({x:-45,y:-220,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
-  C.plane({x:-45,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
-  if(s.r43c) C.plane({x:70,y:145,w:100,h:100,html:svgchestopen,css:"chest",sx:2,sy:2});
-  else C.plane({x:70,y:145,w:100,h:100,html:svgchest,css:"chest",sx:2,sy:2,cl:"room43p"});
-  if(!s.r43c)C.plane({x:50,y:140,html:"🔒",css:"lock",rz:-2,cl:"room43p"});
-  if(s.r43c && !s.r43d) C.plane({x:50,y:110,html:"🪄",css:"wand",rz:30,cl:"r43e",n:"r432"});
-  if(!s.r43a) C.plane({x:-250,y:185,html:"👑",css:"crown",cl:"r43b",n:"r431"});
-  C.plane({x:-325,y:95,z:40,html:"⬅️",css:"arrow",on:"left",cl:"room33"});
+  C.p({x:-45,y:-220,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
+  C.p({x:-45,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
+  if(s.r43c) C.p({x:70,y:145,w:100,h:100,html:svgchestopen,css:"chest",sx:2,sy:2});
+  else C.p({x:70,y:145,w:100,h:100,html:svgchest,css:"chest",sx:2,sy:2,cl:"room43p"});
+  if(!s.r43c)C.p({x:50,y:140,html:"🔒",css:"lock",rz:-2,cl:"room43p"});
+  if(s.r43c && !s.r43d) C.p({x:50,y:110,html:"🪄",css:"wand",rz:30,cl:"r43e",n:"r432"});
+  if(!s.r43a) C.p({x:-250,y:185,html:"👑",css:"crown",cl:"r43b",n:"r431"});
+  C.p({x:-325,y:95,z:40,html:"⬅️",css:"arrow",on:"left",cl:"room33"});
   wallside(0);
   windowright(1);
   draw_sky(0,1);
@@ -1732,12 +1705,12 @@ room43p = () => {
   r43pm = "";
   r43pa = 0; // angle
   room(1,0,0,0);
-  C.plane({x:25,y:0,z:50,w:950,h:650,b:"linear-gradient(#853,#642 50%,#000 50%,#000 50.5%,#642 50.5%,#431)"});
-  C.plane({x:-360,y:-180,z:80,html:"❌",css:"cross",on:"exit",cl:"room43"});
-  C.plane({x:150,y:50,z:80,html:"↩️",css:"arrow",on:"right",cl:"r43pr"});
-  C.plane({x:-200,y:50,z:80,html:"↪️",css:"arrow",on:"left",cl:"r43pl"});
-  C.plane({x:-130,y:20,z:50,html:"🔒",css:"big lock",on:"lock",rz:-2});
-  C.plane({x:-10,y:100,z:50,w:50,h:50,o:"30px 0px",html:"🐉",css:"dragon",on:"",n:"r43p1",sx:2,sy:2,rz:-2});
+  C.p({x:25,y:0,z:50,w:950,h:650,b:"linear-gradient(#853,#642 50%,#000 50%,#000 50.5%,#642 50.5%,#431)"});
+  C.p({x:-360,y:-180,z:80,html:"❌",css:"cross",on:"exit",cl:"room43"});
+  C.p({x:150,y:50,z:80,html:"↩️",css:"arrow",on:"right",cl:"r43pr"});
+  C.p({x:-200,y:50,z:80,html:"↪️",css:"arrow",on:"left",cl:"r43pl"});
+  C.p({x:-130,y:20,z:50,html:"🔒",css:"big lock",on:"lock",rz:-2});
+  C.p({x:-10,y:100,z:50,w:50,h:50,o:"30px 0px",html:"🐉",css:"dragon",on:"",n:"r43p1",sx:2,sy:2,rz:-2});
 }
 
 
@@ -1770,6 +1743,6 @@ r43pr = () => {
 
 
 
-
+*/
 
 

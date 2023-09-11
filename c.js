@@ -1,21 +1,10 @@
-C = {
-unit: "px",
-camX: 0,
-camY: 0,
-camZ: 0,
-camRX: 0,
-camRY: 0,
-camRZ: 0,
-sprite_count: 0,
-sprites: [],
-plane_count: 0,
-cube_count: 0,
-pyramid_count: 0,
-options: {},
+/*C = {
+p: 0,
+o: {},
 $: t => self[t],
 
-// Initialize an object's properties
-init: t => {
+// iialize an object's properties
+i: t => {
   //if(t.cl)console.log("a", using, t.cl);
   t.css||(t.css=""),
   t.on=`txt\`${t.on!=null?t.on:t.css}\``;
@@ -27,7 +16,7 @@ init: t => {
   }
   t.html||(t.html=""),
   t.g||(t.g="scene"),
-  t.o||(t.o="center"),
+  t.o||(t.o="center center"),
   t.w||(t.w=0),
   t.h||(t.h=0),
   t.x||(t.x=0),
@@ -39,46 +28,29 @@ init: t => {
   t.sx||(t.sx=1),
   t.sy||(t.sy=1),
   t.sz||(t.sz=1),
-  C.options[t.n]=t
+  C.o[t.n]=t
 },
 
-// Group of objects
-group: t => { 
+// g of objects
+g: t => { 
   t.d||t.d===0||(t.d=t.h),
-  C.init(t),
-  C.$(t.g).innerHTML+=`<div id="${t.n}"class="group ${t.css}"style="position:absolute;width:${t.w}${C.unit};height:${t.d}${C.unit};transform:${C.tr(t)}">`
+  C.i(t),
+  C.$(t.g).innerHTML+=`<div id="${t.n}"class="g ${t.css}"style="position:absolute;width:${t.w}px;height:${t.d}px;transform:${C.tr(t)}">`
 },
 
-// Plane
-plane: t => {
-  t.n||(t.n=`plane${C.plane_count++}`),
-  C.init(t),
-  C.$(t.g).insertAdjacentHTML("beforeEnd",`<div id="${t.n}"class="plane ${t.css}"style="position:absolute;width:${t.w}${C.unit};height:${t.h}${C.unit};background:${t.b};transform-origin:${t.o};transform:${C.tr(t)}"onmouseover="${t.on||''}"${t.cl}>${t.html}`)
+// p
+p: t => {
+  t.n||(t.n=`p${C.p++}`),
+  C.i(t),
+  C.$(t.g).insertAdjacentHTML("beforeEnd",`<div id="${t.n}"class="p ${t.css}"style="position:absolute;width:${t.w}px;height:${t.h}px;background:${t.b};transform-origin:${t.o};transform:${C.tr(t)}"onmouseover="${t.on||''}"${t.cl}>${t.html}`)
   //C.camera()
 },
 
-// Move the camera
-/*camera: t => {
-  t&&(t.x||0===t.x)&&(C.camX=t.x),
-  t&&(t.y||0===t.y)&&(C.camY=t.y),
-  t&&(t.z||0===t.z)&&(C.camZ=t.z),
-  t&&(t.rx||0===t.rx)&&(C.camRX=t.rx),
-  t&&(t.ry||0===t.ry)&&(C.camRY=t.ry),
-  t&&(t.rz||0===t.rz)&&(C.camRZ=t.rz),
-  C.camX+=(Math.random()-.5)/1e3,
-  scene.style.transform=`translateX(${-C.camX}${C.unit})translateY(${-C.camY}${C.unit})translateZ(${-C.camZ}${C.unit})rotateX(${C.camRX}deg)rotateY(${C.camRY}deg)rotateZ(${C.camRZ}deg)`;
-  for(var r in C.sprites){
-    var n=C.$(C.sprites[r]),
-    o=n.style.transform.replace(/ *rotate.*\(.*?deg\)/g,"");
-    n.style.transform=o+`rotateZ(${-C.camRZ}deg)rotateX(${-C.camRX}deg)`
-  }
-},*/
-
-// Move an object
-move: t => {
+// m an object
+m: t => {
   if(t.n){
    var r=C.$(t.n),
-   n=C.options[t.n];
+   n=C.o[t.n];
    (t.x||0===t.x)&&(n.x=t.x),
    (t.y||0===t.y)&&(n.y=t.y),
    (t.z||0===t.z)&&(n.z=t.z),
@@ -87,14 +59,14 @@ move: t => {
    (t.rz||0===t.rz)&&(n.rz=t.rz),
    (t.sx||0===t.sx)&&(n.sx=t.sx),
    (t.sy||0===t.sy)&&(n.sx=t.sy),
-   C.options[t.n]=n,
+   C.o[t.n]=n,
    r.style.transform=C.tr(n)
  }
 },
 
 // CSS3D transform string
-tr: t => `translateX(-50%)translateY(-50%)translateX(${t.x}${C.unit})translateY(${t.y}${C.unit})translateZ(${t.z}${C.unit})rotateX(${t.rx}deg)rotateY(${t.ry}deg)rotateZ(${t.rz}deg)scaleX(${t.sx})scaleY(${t.sy})scaleZ(${t.sz})`
+tr: t => `translateX(-50%)translateY(-50%)translateX(${t.x}px)translateY(${t.y}px)translateZ(${t.z}px)rotateX(${t.rx}deg)rotateY(${t.ry}deg)rotateZ(${t.rz}deg)scaleX(${t.sx})scaleY(${t.sy})scaleZ(${t.sz})`
 
 }
 
-
+*/
