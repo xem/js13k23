@@ -313,12 +313,12 @@ step = function(i){
 
 
 // Sound player
-sound = (f,t,A,s,m,b) => {
+sound = (f,sam=96e3,i,m,b,s) => {
   
   A=new AudioContext()
-  m=A.createBuffer(1,96e3,48e3)
+  m=A.createBuffer(1,sam,48e3)
   b=m.getChannelData(0)
-  for(i=96e3;i--;)b[i]=f(i)
+  for(i=sam;i--;)b[i]=f(i)
   s=A.createBufferSource()
   s.buffer=m
   s.connect(A.destination)

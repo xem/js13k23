@@ -1150,7 +1150,7 @@ room23c = () => {
   C.plane({g:"db",x:14,y:-465,z:0,w:20,h:1000,b:"#222",rx:250,o:"bottom center"});
   C.plane({g:"db",x:470,y:-465,z:0,w:20,h:1000,b:"#222",rx:250,o:"bottom center"});
   
-  setTimeout("inventory.style.opacity=0;mute.style.opacity=0;C.move({n:'db',rx:90});scene.style.transition='10s all';sound(downbridge)",1500);
+  setTimeout("inventory.style.opacity=0;mute.style.opacity=0;C.move({n:'db',rx:90});scene.style.transition='10s all';sound(downbridge,196e3)",1500);
   setTimeout("scene.style.transform='translateZ(1200px)rotateX(15deg)'",5500);
   setTimeout(()=>{
     note.style.left = "175px"
