@@ -20,7 +20,7 @@ init: t => {
   t.css||(t.css=""),
   t.on=`txt\`${t.on!=null?t.on:t.css}\``;
   if(t.cl && t.cl.startsWith("room")){
-    t.cl=t.cl?`onclick=if(!animation){fadeout(),setTimeout(()=&gt;{${t.cl}();fadein()},500)}`:"";
+    t.cl=t.cl?`onclick=if(!animation){fadeout(),setTimeout(()=&gt;{${t.cl}();fadein()},500);sound(step);setTimeout("sound(step)",300);setTimeout("sound(step)",600)}`:"";
   }
   else {
     t.cl=t.cl?`onclick=if(!animation)${t.cl}()`:"";

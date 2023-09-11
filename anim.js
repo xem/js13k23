@@ -132,7 +132,6 @@ book23 = (i,j) => {
 }
 
 title = () => {
-  C.plane({w:40,h:40,x:940,y:-1250,html:"<div id=mute2 onclick='stop()' style='opacity:0'>🔇"});
   C.plane({w:1100,x:100,y:-100-1050,html:"<h1>CASTLE &nbsp;  &nbsp; ESCAPE"});
   C.plane({w:1100,x:100,y:30-1050,html:"<h2>New game",cl:"ng"});
   if(localStorage.castleescape) { 
@@ -140,14 +139,13 @@ title = () => {
     C.plane({w:1100,x:100,y:140-1050,html:"<h2>Best scores",cl:"bs"});
     }
   setTimeout('scene.style.transition="2s all";scene.style.transform="translateY(1000px)translateZ(0)"',500);
-  setTimeout('mute2.style.opacity=1',2500);
 }
 
 // new game
 ng = () => {
   s = {inv:[],r40c:300,r40d:300,day:801,clicks:0,time:0};
+  stop();
   inventory.style.display="block";
-  mute2.style.opacity=0;
   scene.style.transform="translateY(0)";
   setTimeout(()=> {
     room00();
@@ -164,8 +162,8 @@ ng = () => {
 // continue game
 cg = () => {
   s = JSON.parse(localStorage.castleescape);
+  stop();
   inventory.style.display="block";
-  mute2.style.opacity=0;
   scene.style.transform="translateY(0)";
   setTimeout(()=> {
     room00();
@@ -188,9 +186,8 @@ muted = 1;
 stop = (A) => {
   muted = 1 - muted;
   mute.innerHTML = ["🔊","🔇"][muted];
-  if(self.mute2)mute2.innerHTML = ["🔊","🔇"][muted];
   if(muted){
-    for(A of acs) A.close();
+    for(A of acs){ if(A.state != "closed") A.close() }
     clearInterval(AA);
   }
   else {
@@ -225,21 +222,6 @@ song = (G,D,i,O,a,s,A) => {
   a([[0,9],[12,9],[0,14],[12,14],[24,9],[24,14],[36,9],[36,14],[0,2],[12,2],[36,2],[24,2]],100,.5,.1,.3,.17,.05,'triangle');
 
 }
-
-/*bass = (G,D,i) => {
-  with(B = new AudioContext)
-  with(G=createGain())
-  for(i in D=[22,,,22,22,22,22,,,22,,,22,,,22,22,22,22,,,22,,,22,,,22,22,22,22,,,22,,,22,,22,22,22,22,,,22])
-  with(createOscillator())
-  if(D[i])
-  connect(G),
-  G.connect(destination),
-  start(i*.17),
-  frequency.setValueAtTime(100*1.06**(13-D[i]),i*.17),type='triangle',
-  gain.setValueAtTime(.05,i*.17),
-  gain.setTargetAtTime(.0001,i*.17+.10,.005),
-  stop(i*.17+.16)
-}*/
 
 // Sounds
 
@@ -320,6 +302,13 @@ dooropen = function(i){
   if (i > n) return null;
   var q = t(i,n);
   return Math.sin(i*0.001*Math.sin(0.009*i+Math.sin(i/200))+Math.sin(i/100))*q*q/9;
+}
+
+step = function(i){
+  var n=3800;
+  if (i > n) return null;
+  var q = t(i,n);
+  return Math.sin(i*0.01*Math.sin(0.001*i+Math.sin(i/200))+Math.sin(i/200))*q*q/9;
 }
 
 
