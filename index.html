@@ -4,7 +4,7 @@
   <div id=camera>
     <div id=scene style="transform:translateZ(100px)rotateX(90deg)"></div>
   </div>
-  <div id=inventory style="opacity:0">
+  <div id=inventory style="opacity:0;display:none">
     <div id=i0 onclick="use(0)"></div>
     <div id=i1 onclick="use(1)"></div>
     <div id=i2 onclick="use(2)"></div>
@@ -18,7 +18,7 @@
     <div id=i10 onclick="use(10)"></div>
     <div id=i11 onclick="use(11)"></div>
   </div>
-  <div id=mute onclick="stop()" style="opacity:0">🔊</div>
+  <div id=mute onclick="stop()" style="opacity:0">🔇</div>
   <div id=text></div>
   <div id=note class=h onclick="innerHTML='',className='h'"></div>
   <div id=bookcover class=h onclick="innerHTML='',className='h';book.className='';sound(paper)"></div>
@@ -137,7 +137,7 @@ svg { pointer-events: none; position: absolute; top: 0;  }
 #viewport .timewheel * { font: 30px e } 
 #skygroup { transition: 1s all; }
 #db { transition: all 10s }
-#mute { font-family: emoji; position: absolute; right: 260px; top: 35px; font-size: 40px; transition: opacity 5s; cursor: pointer; filter: drop-shadow(0 0 5px #000) }
+#mute,#mute2 { font-family: emoji; position: absolute; right: 260px; top: 35px; font-size: 40px; transition: opacity 5s; cursor: pointer; filter: drop-shadow(0 0 5px #000) }
 .sun, .moon { pointer-events: none }
 #viewport .egg { font: 30px Papyrus; padding: 10px }
 </style>

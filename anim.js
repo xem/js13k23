@@ -132,18 +132,22 @@ book23 = (i,j) => {
 }
 
 title = () => {
-  C.plane({w:1100,x:100,y:-100-1000,html:"<h1>CASTLE &nbsp;  &nbsp; ESCAPE"});
-  C.plane({w:1100,x:100,y:30-1000,html:"<h2>New game",cl:"ng"});
+  C.plane({w:40,h:40,x:940,y:-1250,html:"<div id=mute2 onclick='stop()' style='opacity:0'>🔇"});
+  C.plane({w:1100,x:100,y:-100-1050,html:"<h1>CASTLE &nbsp;  &nbsp; ESCAPE"});
+  C.plane({w:1100,x:100,y:30-1050,html:"<h2>New game",cl:"ng"});
   if(localStorage.castleescape) { 
-    C.plane({w:1100,x:100,y:85-1000,html:"<h2>Continue",cl:"cg"});
-    C.plane({w:1100,x:100,y:140-1000,html:"<h2>Best scores",cl:"bs"});
+    C.plane({w:1100,x:100,y:85-1050,html:"<h2>Continue",cl:"cg"});
+    C.plane({w:1100,x:100,y:140-1050,html:"<h2>Best scores",cl:"bs"});
     }
   setTimeout('scene.style.transition="2s all";scene.style.transform="translateY(1000px)translateZ(0)"',500);
+  setTimeout('mute2.style.opacity=1',2500);
 }
 
 // new game
 ng = () => {
   s = {inv:[],r40c:300,r40d:300,day:801,clicks:0,time:0};
+  inventory.style.display="block";
+  mute2.style.opacity=0;
   scene.style.transform="translateY(0)";
   setTimeout(()=> {
     room00();
@@ -154,16 +158,14 @@ ng = () => {
     scene.style.transform="";
   },2000);
   draw_inv();
-  /*song();
-  bass();
-  AA=setInterval(song,8200);
-  BB=setInterval(bass,8200);*/
   setInterval("s.time++;save()",1000);
 }
 
 // continue game
 cg = () => {
   s = JSON.parse(localStorage.castleescape);
+  inventory.style.display="block";
+  mute2.style.opacity=0;
   scene.style.transform="translateY(0)";
   setTimeout(()=> {
     room00();
@@ -174,10 +176,6 @@ cg = () => {
     scene.style.transform="";
   },2000);
   draw_inv();
-  /*song();
-  bass();
-  AA=setInterval(song,8200);
-  BB=setInterval(bass,8200);*/
   setInterval("s.time++;save()",1000);
 }
 
@@ -187,40 +185,48 @@ bs = () => {
 
 
 muted = 1;
-stop = () => {
-  muted = 1-muted;
-  mute.innerHTML = ["🔇","🔊"][muted];
+stop = (A) => {
+  muted = 1 - muted;
+  mute.innerHTML = ["🔊","🔇"][muted];
+  if(self.mute2)mute2.innerHTML = ["🔊","🔇"][muted];
   if(muted){
-    A.close();
-    B.close();
+    for(A of acs) A.close();
     clearInterval(AA);
-    clearInterval(BB);
   }
   else {
     song();
-    bass();
-    AA=setInterval(song,8200);
-    BB=setInterval(bass,8200);
+    AA=setInterval(song,26600);
   }
 }
 
+acs=[];
+song = (G,D,i,O,a,s,A) => {
+  a=(notes,center,duration,decaystart,decayduration,interval,volume,waveform,i)=>{
+    with(A=new AudioContext){
+      acs.push(A);
+      with(G=createGain())
+        for(i of notes){
+          with(O=createOscillator()){
+            connect(G),
+            G.connect(destination),
+            start(i[0]*interval),
+            frequency.setValueAtTime(center*1.06**(13-i[1]),i[0]*interval),
+            type=waveform,
+            gain.setValueAtTime(volume,i[0]*interval),
+            gain.setTargetAtTime(1e-5,i[0]*interval+decaystart,decayduration),
+            stop(i[0]*interval+duration);
+          }
+       }
+    }
+  }
+  
+  a([[0,21],[4,21],[2,14],[6,19],[10,19],[11,17],[12,16],[16,17],[17,19],[18,17],[21,21],[24,21],[26,14],[28,21],[30,19],[34,19],[35,21],[36,23],[41,19],[42,21],[40,21],[48,21],[48,9],[50,14],[52,9],[54,11],[57,12],[60,14],[62,21],[64,14],[66,16],[69,17],[72,17],[74,16],[76,14],[78,11],[81,12],[84,14],[86,17],[88,21],[90,19],[96,21],[98,21],[101,21],[102,21],[100,21],[108,21],[110,21],[112,21],[113,21],[114,21],[108,19],[110,19],[113,19],[114,19],[112,19],[120,21],[122,21],[124,21],[125,21],[126,21],[120,19],[122,19],[124,19],[125,19],[126,19],[120,16],[122,16],[125,16],[124,16],[126,16],[132,21],[134,21],[136,21],[137,21],[138,21],[132,19],[134,19],[136,19],[138,19],[137,19],[132,16],[136,16],[137,16],[134,16],[138,16],[132,14],[134,14],[136,14],[138,14],[137,14],[144,21],[146,21],[148,21],[149,21],[150,21],[144,19],[146,19],[148,19],[149,19],[150,19],[144,16]],400,.16,.1,.05,.17,.02,'triangle');
+  a([[0,21],[4,21],[5,21],[6,21],[9,21],[12,21],[15,21],[16,21],[17,21],[18,21],[21,21],[24,21],[27,21],[28,21],[29,21],[30,21],[33,21],[36,21],[39,21],[40,21],[41,21],[42,21],[45,21],[48,21],[51,21],[52,21],[53,21],[54,21],[57,21],[60,21],[63,21],[64,21],[65,21],[66,21],[69,21],[72,21],[75,21],[76,21],[77,21],[78,21],[81,21],[84,21],[87,21],[88,21],[89,21],[90,21],[93,21],[96,21],[99,21],[100,21],[101,21],[102,21],[105,21],[108,21],[111,21],[112,21],[113,21],[114,21],[117,21],[120,21],[123,21],[124,21],[125,21],[126,21],[129,21],[132,21],[135,21],[137,21],[136,21],[138,21],[141,21],[144,21],[147,21],[148,21],[149,21],[150,21],[153,21],[3,21]],135,.11,.05,.05,.17,.05,'triangle');
+  a([[0,9],[12,9],[0,14],[12,14],[24,9],[24,14],[36,9],[36,14],[0,2],[12,2],[36,2],[24,2]],100,.5,.1,.3,.17,.05,'triangle');
 
-song = (G,D,i) => {
-  with(A = new AudioContext)
-  with(G=createGain())
-  for(i in D=[22,,15,,22,,20,,,,20,18,17,,,,18,20,18,,,22,,,22,,15,,22,,20,,,,20,22,24,,,,,22,20,22])
-  with(createOscillator())
-  if(D[i])
-  connect(G),
-  G.connect(destination),
-  start(i*.17),
-  frequency.setValueAtTime(400*1.06**(13-D[i]),i*.17),type='triangle',
-  gain.setValueAtTime(.02,i*.17),
-  gain.setTargetAtTime(.0001,i*.17+.12,.005),
-  stop(i*.17+.16)
 }
 
-bass = (G,D,i) => {
+/*bass = (G,D,i) => {
   with(B = new AudioContext)
   with(G=createGain())
   for(i in D=[22,,,22,22,22,22,,,22,,,22,,,22,22,22,22,,,22,,,22,,,22,22,22,22,,,22,,,22,,22,22,22,22,,,22])
@@ -233,7 +239,7 @@ bass = (G,D,i) => {
   gain.setValueAtTime(.05,i*.17),
   gain.setTargetAtTime(.0001,i*.17+.10,.005),
   stop(i*.17+.16)
-}
+}*/
 
 // Sounds
 
@@ -243,34 +249,34 @@ nudge = function(i){
   var n=6e3;
   if (i > n) return null;
   var q = t(i,n);
-  return Math.sin(i*0.01*Math.sin(0.009*i+Math.sin(i/200))+Math.sin(i/100))*q*q/4;
+  return Math.sin(i*0.01*Math.sin(0.009*i+Math.sin(i/200))+Math.sin(i/100))*q*q/15;
 }
 
 lock = function(i){
   var n=8e3;
   if (i > n) return null;
-  return ((Math.pow(Math.pow(i,0.9)+Math.sin(i*1.06)*1000,0.8)&200)?0.5:-0.5)*Math.pow(t(i,n),1);
+  return (((Math.pow(Math.pow(i,0.9)+Math.sin(i*1.06)*1000,0.8)&200)?0.5:-0.5)*Math.pow(t(i,n),1))/2;
 }
 
 paper = function(i){
   var n=2e4-9000;
   if (i > n) return null;
   var q = t(i+10000,n);
-  return Math.sin(-i*0.03*Math.sin(0.09*i+Math.sin(i/200))+Math.sin(i/100))*q;
+  return Math.sin(-i*0.03*Math.sin(0.09*i+Math.sin(i/200))+Math.sin(i/100))*q/15;
 }
 
 burn = function(i){
   var n=30e4;
   if (i > n) return null;
   var q = t(i,n);
-  return Math.sin(-i*0.03*Math.sin(0.09*i+Math.sin(i/200))+Math.sin(i/100))/q/(i>5e4?i/8e3:5);
+  return (Math.sin(-i*0.03*Math.sin(0.09*i+Math.sin(i/200))+Math.sin(i/100))/q/(i>5e4?i/8e3:5))/9;
 }
 
 miniburn = function(i){
   var n=3e4;
   if (i > n) return null;
   var q = t(3e4-i,n);
-  return Math.sin(-i*0.03*Math.sin(0.09*i+Math.sin(i/200))+Math.sin(i/100))/q/(i>5e4?i/8e3:5)/2;
+  return Math.sin(-i*0.03*Math.sin(0.09*i+Math.sin(i/200))+Math.sin(i/100))/q/(i>5e4?i/8e3:5)/15;
 }
 
 wand = function(i){
@@ -279,26 +285,26 @@ wand = function(i){
   if (i > n) return null;
   i=Math.pow(i,1.2-Math.sin(i*2/n1))*6;
   var x=Math.sin(i/30+Math.sin(i/1500));
-  return Math.pow(x,9)*t(i,n);
+  return Math.pow(x,9)*t(i,n)/9;
 }
 
 sword = function(i){
   var n=15e3;
   if (i > n) return null;
   var q = t(i,n);
-  return Math.sin(i*0.001*Math.sin(0.009*i+Math.sin(i/200))+Math.sin(i/100))*q*q;
+  return (Math.sin(i*0.001*Math.sin(0.009*i+Math.sin(i/200))+Math.sin(i/100))*q*q)/9;
 }
 
 downbridge = function(i){
   var n=60e4;
   if (i > n) return null;
-  return ((Math.pow(i+Math.sin(i*0.001)*1000,0.8)&200)?0.5:-0.5)*Math.pow(t(i,n),1);
+  return (((Math.pow(i+Math.sin(i*0.001)*1000,0.8)&200)?0.5:-0.5)*Math.pow(t(i,n),1))/9;
 }
 
 cannonfire = function(i){
   var n=4e4;
   if (i > n) return null;
-  return Math.sin(i/200 - Math.sin(i/331)*Math.sin(i/61) + Math.sin(Math.sin(i/59)/39) * 33)*t(i,n)*9;
+  return (Math.sin(i/200 - Math.sin(i/331)*Math.sin(i/61) + Math.sin(Math.sin(i/59)/39) * 33)*t(i,n)*9)/2;
 }
 
 fiou = function(i){
@@ -306,14 +312,14 @@ fiou = function(i){
   if (i > n) return null;
   var q = t(i,n);
   i=i*0.7;
-  return (Math.pow(i*50,0.8)&34)?q:-q;
+  return (Math.pow(i*50,0.8)&34)?q/9:-q/9;
 }
 
 dooropen = function(i){
   var n=3e4;
   if (i > n) return null;
   var q = t(i,n);
-  return Math.sin(i*0.001*Math.sin(0.009*i+Math.sin(i/200))+Math.sin(i/100))*q*q;
+  return Math.sin(i*0.001*Math.sin(0.009*i+Math.sin(i/200))+Math.sin(i/100))*q*q/9;
 }
 
 

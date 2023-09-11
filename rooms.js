@@ -403,11 +403,11 @@ r00a = () => {
   sound(nudge);
   frame.style.animation="wiggle .5s";
   setTimeout('frame.style.animation=""',600);
-  console.log(s.r00b);
+  //console.log(s.r00b);
   if(!s.r00b) s.r00b = 0;
-  console.log(s.r00b);
+  //console.log(s.r00b);
   s.r00b++;
-  console.log(s.r00b);
+  //console.log(s.r00b);
   if(s.r00b>=2){
     r001.onclick="";
     C.move({n:"frame",y:140,rx:-80});
@@ -578,6 +578,7 @@ r01d = () => {
     r011.className = "cannon";
     r011.setAttribute("onmouseover","txt`cannon`");
     C.move({n:"r012",x:235});
+    sound(cannonfire);
     setTimeout('C.move({n:"r012",x:215})',510);
     use(-1);
   }
@@ -708,7 +709,6 @@ room12 = (i,j) => {
   C.plane({x:-15,y:-120,z:-50,w:950,h:50,b:"linear-gradient(#333,#555)",rx:145});
   C.plane({x:-15,y:235,z:-50,w:950,h:70,b:"linear-gradient(#333,#555)",rx:60});
   C.plane({x:-150,y:95,html:"🪜",css:"shelf"});
-  draw_sky(0,0);
   
   for(i=0;i<3;i++){
     for(j=0;j<4;j++){
@@ -894,7 +894,9 @@ r21a = () => {
     use(-1);
   }
   if(s.r21b && s.r40c == 60 && !s.r21g){
-    r21f();
+    setTimeout(fadeout, 1000);
+    setTimeout(room21, 1500);
+    setTimeout("animation=0;fadein()", 1600);
   }
   save();
 }
@@ -1102,7 +1104,7 @@ r23j = () => {
     note.innerHTML = "You shall open the doors first";
     note.className = "";
   }
-  else if(!s.r32c || !s.r32e || !s.r32g){
+  else if(!s.r23c || !s.r23e || !s.r23g){
     note.innerHTML = "Some gears are missing";
     note.className = "";
   }
@@ -1148,7 +1150,7 @@ room23c = () => {
   C.plane({g:"db",x:14,y:-465,z:0,w:20,h:1000,b:"#222",rx:250,o:"bottom center"});
   C.plane({g:"db",x:470,y:-465,z:0,w:20,h:1000,b:"#222",rx:250,o:"bottom center"});
   
-  setTimeout("inventory.style.opacity=0;mute.style.opacity=0;C.move({n:'db',rx:90});scene.style.transition='10s all;sound(downbridge)'",1500);
+  setTimeout("inventory.style.opacity=0;mute.style.opacity=0;C.move({n:'db',rx:90});scene.style.transition='10s all';sound(downbridge)",1500);
   setTimeout("scene.style.transform='translateZ(1200px)rotateX(15deg)'",5500);
   setTimeout(()=>{
     note.style.left = "175px"
@@ -1316,6 +1318,7 @@ r33g = () => {
 //r33h = 0; // broken
 r33i = () => {
   if(usingstr == "use hammer with "){
+    sound(cannonfire);
     s.r33h = 1;
     use(-1);
     rem_inv("hammer");
