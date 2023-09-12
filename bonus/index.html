@@ -1,1 +1,52 @@
-Coming soon
+<h2>CASTLE ESCAPE BONUSES</h2>
+
+<br><div id=your></div>
+
+<h3>IPFS HOSTING</h3>
+
+(coming soon)
+
+<h3>BEST SCORES</h3>
+
+(also hosted on IPFS soon)
+
+<table>
+<tr>
+<td>
+
+<table border>
+<th>Best times</th>
+<tr><td>1. xem (xxxs)
+<tr><td>2. ???
+<tr><td>3. ???
+<tr><td>4. ???
+<tr><td>5. ???
+</table>
+
+<td>
+
+<table border>
+<th>Lowest clicks</th>
+<tr><td>1. xem (xxx)
+<tr><td>2. ???
+<tr><td>3. ???
+<tr><td>4. ???
+<tr><td>5. ???
+</table>
+
+</table>
+
+<style>
+body { background: #def; font-family: Papyrus }
+a { color: #00F }
+
+table table {  background: #eee; }
+</style>
+
+<script>
+if(location.search.length > 1){
+  your.innerHTML = `<h3>YOUR SCORE</h3>${location.search.slice(1).split(",").map(atob)[0]} clicks, ${location.search.slice(1).split(",").map(atob)[1]} seconds - <a href='http://twitter.com/intent/tweet?text=I%20played%20CASTLE%20ESCAPE%20by%20@maximeeuziere!%20My%20score%3A%20${location.search.slice(1).split(",").map(atob)[0]}%20clicks%2C%20${location.search.slice(1).split(",").map(atob)[1]}%20seconds.%20Play%20here%3A%20https%3A//xem.github.io/js13k23'>share on X</a>` 
+  
+}
+
+</script>
