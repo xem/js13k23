@@ -1,11 +1,14 @@
 <h2>CASTLE ESCAPE BONUSES</h2>
+<h3>MAKING-OF</h3>
 
-<br><div id=your></div>
-
+<a href="//xem.github.io/articles/js13k23.html">read it here</a>
+<br>
+<br>
 <h3>IPFS HOSTING</h3>
 
 (coming soon)
-
+<br>
+<br>
 <h3>BEST SCORES</h3>
 
 (also hosted on IPFS soon)
@@ -16,10 +19,10 @@
 
 <table border>
 <th>Best times</th>
-<tr><td>1. xem (xxxs)
-<tr><td>2. ???
-<tr><td>3. ???
-<tr><td>4. ???
+<tr><td>1. xem (294s)
+<tr><td>2. korhosik (977s)
+<tr><td>3. sam (1277s)
+<tr><td>4. mvasilkov (1365s)
 <tr><td>5. ???
 </table>
 
@@ -27,14 +30,19 @@
 
 <table border>
 <th>Lowest clicks</th>
-<tr><td>1. xem (xxx)
-<tr><td>2. ???
-<tr><td>3. ???
-<tr><td>4. ???
+<tr><td>1. xem (174)
+<tr><td>2. korhosik (569)
+<tr><td>3. mvasilkov (1059)
+<tr><td>4. sam (1097)
 <tr><td>5. ???
 </table>
 
 </table>
+<br>
+<br>
+<h3>YOUR SCORE</h3>
+<div id=your></div>
+
 
 <style>
 body { background: #def; font-family: Papyrus }
@@ -45,8 +53,11 @@ table table {  background: #eee; }
 
 <script>
 if(location.search.length > 1){
-  your.innerHTML = `<h3>YOUR SCORE</h3>${location.search.slice(1).split(",").map(atob)[0]} clicks, ${location.search.slice(1).split(",").map(atob)[1]} seconds - <a href='http://twitter.com/intent/tweet?text=I%20played%20CASTLE%20ESCAPE%20by%20@maximeeuziere!%20My%20score%3A%20${location.search.slice(1).split(",").map(atob)[0]}%20clicks%2C%20${location.search.slice(1).split(",").map(atob)[1]}%20seconds.%20Play%20here%3A%20https%3A//xem.github.io/js13k23'>share on X</a>` 
+  your.innerHTML = `${location.search.slice(1).split(",").map(atob)[0]} clicks, ${location.search.slice(1).split(",").map(atob)[1]} seconds - <a href='http://twitter.com/intent/tweet?text=I%20played%20CASTLE%20ESCAPE%20by%20@maximeeuziere!%20My%20score%3A%20${location.search.slice(1).split(",").map(atob)[0]}%20clicks%2C%20${location.search.slice(1).split(",").map(atob)[1]}%20seconds.%20Play%20here%3A%20https%3A//xem.github.io/js13k23'>share on X</a>` 
   
+}
+else {
+  your.innerHTML = "Finish the game to share your best score"
 }
 
 </script>
