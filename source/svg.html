@@ -1,0 +1,16 @@
+﻿<h2>CASTLE ESCAPE SVGs</h2>
+<script src=svg.js></script>
+<table id=a></table>
+<script>
+c=0;
+h = "";
+for(i of svgs){
+  if((c%5) == 0)
+  h += "<tr><td><div>" + i + "</div>";
+  else h += "<td><div>" + i + "</div>";
+  c++;
+}
+a.innerHTML = h;
+</script>
+<style>svg[width="999"] { transform: scale(.1);transform-origin: 0 0 }
+td div { width: 120px; height: 120px; overflow: hidden }
